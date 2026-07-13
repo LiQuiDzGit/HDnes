@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDnes</title>
+    <style>
+      
+
+        :root {
+            --bg-color: #05010a;
+            --neon-pink: #ff00ff;
+            --neon-cyan: #00ffff;
+            --neon-blue: #4d4dff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: #fff;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+            
+            /* Retro Grid Background */
+            background-image: 
+                linear-gradient(rgba(255, 0, 255, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center bottom;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Disclaimer Section */
+        .disclaimer {
+            border: 3px solid var(--neon-cyan);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 15px var(--neon-cyan);
+        }
+
+        .disclaimer h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+        }
+
+        .disclaimer p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        /* Title */
+        .title {
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #fff;
+            text-shadow: 
+                2px 2px 0px var(--neon-blue),
+                -2px -2px 0px var(--neon-pink),
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink);
+            letter-spacing: 2px;
+        }
+
+        /* Game List Box */
+        .list-container {
+            border: 3px solid var(--neon-pink);
+            border-radius: 15px;
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 20px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 20px 0;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        /* Big Letters & Color Cycling */
+        .letter {
+            font-size: 4rem;
+            font-weight: 900;
+            width: 100px;
+            text-align: center;
+            border-right: 2px solid;
+            margin-right: 30px;
+            padding-right: 10px;
+            font-style: italic;
+        }
+
+        /* Auto-cycling neon colors for the A-Z letters */
+        .row:nth-child(6n+1) .letter { color: #fff; text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366; border-right-color: #ff3366; }
+        .row:nth-child(6n+2) .letter { color: #fff; text-shadow: 0 0 10px #33ccff, 0 0 20px #33ccff, 0 0 30px #33ccff; border-right-color: #33ccff; }
+        .row:nth-child(6n+3) .letter { color: #fff; text-shadow: 0 0 10px #ffff33, 0 0 20px #ffff33, 0 0 30px #ffff33; border-right-color: #ffff33; }
+        .row:nth-child(6n+4) .letter { color: #fff; text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33, 0 0 30px #33ff33; border-right-color: #33ff33; }
+        .row:nth-child(6n+5) .letter { color: #fff; text-shadow: 0 0 10px #ff33ff, 0 0 20px #ff33ff, 0 0 30px #ff33ff; border-right-color: #ff33ff; }
+        .row:nth-child(6n+6) .letter { color: #fff; text-shadow: 0 0 10px #ff9933, 0 0 20px #ff9933, 0 0 30px #ff9933; border-right-color: #ff9933; }
+
+        /* Game Links/Items */
+        .games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .game-item {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px var(--neon-cyan);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-item:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-cyan);
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title { font-size: 1.8rem; }
+            .row { flex-direction: column; text-align: center; }
+            .letter { border-right: none; border-bottom: 2px solid; margin: 0 auto 20px auto; padding-right: 0; padding-bottom: 10px; width: 100%; }
+            .games { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="disclaimer">
+            <h2>IMPORTANT DISCLAIMER: GAME NOT INCLUDED, ONLY PATCH.</h2>
+            <p>You must own a legal copy of the original game.</p>
+            <br>
+            <p> NES NEA (Nintendo Enhenced Audio) ARE SAME AS SNES MSU-1 <br>
+                NEA audio patch to replace audio in game with extrenal .ogg file <br>
+                Requires MESEN-2 Emulator.</p>
+        </div>
+
+        <h1 class="title">Cubear Tutorial</h1>
+
+        <div class="list-container">
+            
+   
+      <section class="panel">
+  <a href="../index.html" class="close-btn" style="float: right; font-size: 2.2rem; text-decoration: none;" title="Close - Return to HOME">✖</a>
+  
+  <div class="wrap">
+    <header>
+
+  <br>
+      <h1>Cubear Audio Patch Tutorial</h1>
+      <p>How to create an audio patch for the Mesen HDpack feature.</p>
+    </header>
+
+
+    <nav class="toc">
+      <h2>Contents</h2>
+      <ul>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#basic-workflow">Workflow</a></li>
+        <li><a href="#pause">Pause</a> <i>(Pause Music during Pause)</i></li>
+        <li><a href="#fade">Fade out</a> <i>(End Game Credits)</i></li>
+        <li><a href="#start">Start Menu</a> <i>(Adding Audio to the silent Start Menu)</i></li>
+        <li><a href="#hires2">hires.txt</a></li>
+       
+      </ul>
+    </nav>
+
+
+    
+    <section id="story">
+      <h2>Story</h2>
+
+<br>
+<b>Cubear </b>kindly took the time to explain how to make a Mesen HD Pack patch on the Discord channel, <br>and we’re happy to share his awesome work with everyone!<br>
+
+<br>
+<br>
+<h2>File:</h2>
+Database match: Bio Miracle Bokutte Upa (Japan) <br>
+Database: No-Intro: Nintendo Entertainment System (v. 20210216-231042) <br>
+File SHA-1: E1C7D975E6964F9860B58D5D9530ED7E2A24B376 <br>
+File CRC32: CC4C8E9C <br>
+ROM SHA-1: 31FC500B759EC8AB5B4C977625DC8B33C116470F <br>
+ROM CRC32: 6DC28B5A <br>
+  
+    </section>
+
+    <section id="basic-workflow">
+      <h2>Workflow</h2>
+
+  <img src="0.png" class="center"><br> 
+to make an audio patch you need to accomplish at least two distinct goals. <br>
+1 - find the audio play signal in code (and how a game differentiates between tracks), <br>
+2 - find a way to stop the game's native audio from playing without breaking the game, <br>
+<br>
+pretty much you always gotta do 1 before two in this case, so let's find the audio play routine <br>
+unfortunately for us, this game's title screen doesn't play music (it's ideal if it does, because it makes this at least a little bit easier.) <br>
+ <br>
+so we'll enter the first level and make a song play <br>
+<br>
+<img src="1.webp" class="center"><br> 
+<br>
+<br>
+while the song is playing, i reset access stats in the memory viewer in PRG rom <br>
+<br>
+<img src="2.webp" class="center"><br> 
+<br>
+Note that i've set up the memory viewer to be for PRG rom and also the "do not fade" for fade speed.  <br>
+though that one's jsut personal preference PRG rom is just the ROM image of the game. <br>
+<br>
+now, because all the assets are loaded and nothing's happening in the game, <br> 
+it's likely the only thing happening will be the music being loaded in order to play it  <br>
+<br>
+it can be a bit easier to find with "data" highlighting on as well,<br>
+ but i scroll through until a big solid block of read song occurs (it'll only be solid if you listen through one loop of the song)  <br>
+in this case, this is the first stage's song  <br>
+ <br>
+ <img src="3.webp" class="center"><br> 
+ <br>
+since you're probably not used to seeing this stuff, <br>
+there's one way to really get in and identify for sure that this is the music <br>
+if you click "reset access" while the song is playing, it'll fill in in multiple sections like this <br>
+<br>
+  <img src="4.gif" class="center"><br> 
+ 
+ <br>
+it's because the different parts of the song (for the different instruments the nes can play) are separated from each other,<br>
+ and they all play at the same time, so this is what music looks like. <br>
+<br>
+you can also watch one bar fill up while listening to the song and see that the highlighting only progresses on a note being played on one of the instruments etc  <br>
+ <br>
+so now that we know where the song is, how do we get from there to the code of the game that tells the song to play?  <br>
+
+i usually just select the first byte of the song and set a breakpoint on it <br>
+ <br>
+   <img src="5.webp" class="center"><br> 
+ <br>
+ this breakpoint will stop the NES program at the point in code when this first byte is read <br>
+
+now we reset the game and start the song again <br>
+
+this is the part that will look extra intimidating (if it hasn't looked so already)  <br>
+<br>
+    <img src="6.webp" class="center"><br> 
+    <br>
+    
+    the program execution has stopped on the highlighted line <br>
+so this is the point where the game has started to read the song data <br>
+<code>lda (c8),y </code><br>
+<br>
+which means load information from the pointer stored in $c8 in ram, modified by y<br>
+<br>
+y is 0, which is great, it means we're absolutely on our first note of the song <br>
+so prior to this, we know that C8, C9, are going to be written with a pointer to this song  <br>
+<br>
+so you could set a breakpoint on c8 or c9 and then restart the game and come back in,<br>
+ or you can look upwards in the code until you can see c8 or c9 being written. <br>
+i've opted for the latter, as a quick glance can save you some time. <br>
+    <br>
+here it is: <br>
+
+        <img src="7.webp" class="center"><br> 
+    
+    <br>
+    
+    the top lines in this screenshot are c8 and c9 being written,  <br>
+    the lowest line here is where the first note of the song was read  <br>
+    <br>
+and it's all in the same subroutine which means, absolutely, 100% we are in the right place.  <br>
+now what i usually look for is a way to tell what number is being used to access the song <br>
+<br>
+usually things are done by looking up an index number  <br>
+
+and this index number will be used to set where C8 and C9 are written from (in this game)  <br>
+    <br>
+           <img src="8.webp" class="center"><br> 
+           <br>
+    so the pointers here are coming from a pointer held in cd, ce <br>
+a little more "up" in the code here, we can see CD, CE being written  <br>
+     <br>
+    <img src="9.webp" class="center"><br> 
+     <br>
+    so the data in ram $0151 is being used to set the location of the pointer to the pointer of the current song  <br> 
+so now we're gonna look for where this is set. which is just "up" a little more  <br>
+<br>
+about this much more up  <br>
+<br>
+       <img src="10.webp" class="center"><br> 
+     <br>
+    and if we change 34 (in A) right now, chances are we'll mess up the music real good. <br>
+ <br>    
+       <img src="11.webp" class="center"><br> 
+     <br>
+    so i'll change it and hit play lol <br>
+    <br>
+now i could tell from looking at the code a bit that these were three byte pointers, <br> so going from 34 to 37 makes a different song play. but don't expect to be at that point for a while lmao  <br>
+ <br>
+usually you might expect two byte pointers <br>
+anyways, we're now most interested in where this 34 is coming from, which is actually outside of this subroutine <br>
+so we continue stepping backwards through the code (this button) <br>
+     <br>
+           <img src="12.webp" class="center"><br> 
+            <br>
+           until we find where the value 34 is loaded into A <br>
+            <br>
+                      <img src="13.webp" class="center"><br> 
+                       <br>
+                      so ram 06F8 <br>
+ <br>
+i'll breakpoint this ram and rerun the game to see when it gets written. <br>
+ <br>
+                      <img src="14.webp" class="center"><br> 
+            <br>
+           turns out it was just up from where i was at. oops <br>
+           
+            <br>
+                      <img src="15.webp" class="center"><br> 
+                       <br>
+                      
+                      and now we run it back until we find the source of 34 in A again <br>
+basically we're going to repeat these steps until we hit a source for things <br>
+which also wasn't a long time ago, basically just past the beginning of this subroutine we see this <br>
+            <br>
+                             <img src="16.webp" class="center"><br> 
+                             
+                              <br>
+                    abc4 is a location in rom <br>
+lda abc4 loads from abc4 plus the value in y <br>
+the value in y right now is 0      <br>    
+                              <br>
+                          <img src="17.webp" class="center"><br> 
+                           <br>          
+                          i'll change this Y value to 2 or 3 and see what happens. <br>
+same song plays. so we're not early enough <br>
+where does Y being 0 come from? let's trace it back to when it gets set <br>
+literally right above <br>
+                           <br>
+                             <img src="18.webp" class="center"><br> 
+                             
+                              <br>
+                             when does $33 become 0? let's see when that gets set <br>
+theres a couple false flags in here (ram clearing routines) <br>
+but then i see this <br> <br>
+                                       <img src="19.webp" class="center"><br>        
+ <br>
+this looks right to me lol  <br>
+                 <br>
+oh well, this is a bit odd <br>
+changing the value in A (being loaded from 22, written to 33 from 0 to 3) has warped me to world 2-1 <br>
+                  <br>
+                  <img src="20.webp" class="center"><br>        
+                  <br>
+                 so perhaps now i'm hitting things a bit too early, for what level to load instead of what song to play for the level <br>
+still, we can use this to arbitrarily call up any level we like, including ones that play a different song, so it's a very useful find <br>
+      <br>
+      
+      
+      so since we know the song loader happens here: <br>
+            
+ <br>
+     <img src="21.webp" class="center"><br>     
+ <br>
+
+we can alternate between loading level 1-1 and level 1-2 and see how it changes <br>
+with a breakpoint on this instruction, and one where we can alter the level load <br>
+ <br>
+     <img src="22.webp" class="center"><br>  
+      <br>
+     so we can see that this is actually a 4 byte pointer <br>
+since 34 -> 38 is 4 bytes <br>
+so what's happening is likely... it's using two bytes to point to level data, and two bytes to point to song data <br>
+this is a bit weird, i don't think i've seen a game that does this before  <br>
+as i'm progressing a bit though i do see some things coming through... <br>
+this bit of code here...   <br> 
+                 <br>
+
+
+                         <img src="23.webp" class="center"><br>
+                          <br>
+    it's checking for if an incoming signal is a song ($34 or higher) or sfx  <br>
+                      <br>
+             
+           
+                         mesen's debugger is really helpful if you don't have a good grasp of ASM yet <br>
+you can mouseover instructions for tooltips that tell you what it's doing    <br>                          
+<br>  
+                                   <img src="25.webp" class="center"><br>    
+                                    <br>
+                                   it's doing a poor job of telling you what this means or why the carry might be set,<br>   but it does give you at least the very basic idea of what it does  <br>
+at this point my intuition is telling me some things <br>
+<br>  
+songs are going to be spaced 4 indexes apart <br>
+songs are going to start at 34 and count up <br>
+so 34 38 3C 40 44 48 4C 50 and so on <br>
+
+
+<br>
+so now that we sort of have a rough idea of where the game knows that something is music is,<br>   and what the music calls look like, we can sort of consider goal #1 complete <br>
+<br>  
+turns out about half of what we just did was unnecessary, <br>  but it did lead to some useful info for testing so it really wasn't a waste of time <br>
+<br>  
+goal #2, how to make it not play the game's music <br>
+well, once it knows that something being requested is music, it does this here, which i thought was kinda suspect.. <br>
+ <br>
+                  <img src="26.webp" class="center"><br>                          
+                   <br>
+                  
+                  just before it sets the pointers for the song to play, it's checking something.... <br>  and if it matches, it's skipping setting the pointers, and maybe more.  <br>
+this is probably something akin to "checking if this song is already playing, <br>  so we don't start the same song multiple times" type of check <br>
+so how do we test this? <br>
+                  <br>  
+                  <img src="27.webp" class="center"><br> 
+                   <br>
+                  we can actually manually set the Z flag here:    <br>           
+                  <br>             
+                  <img src="28.webp" class="center"><br>   
+                   <br>
+                  and.. the song doesn't start!
+and the game doesn't crash! <br>
+and.. sound effects still work! <br>
+wow! exactly what we needed to know <br>
+<br>  
+so now we know  <br>
+when we can get an accurate track number <br>
+how to make a song not play on NES hardware <br>
+so we can actually start writing our hooks and code etc <br>
+
+<br>
+<hr>
+ <br>
+
+so there's some reading to be done for the next part, since it's program-y in nature <br>
+there's areas we have to write to with NES code, to make Mesen know to play the replacement music <br>
+they're documented here: https://www.mesen.ca/docs/hdpacks.html#replacing-audio-in-games <br>
+ <br>
+and i have a little written document on what it means to "hook" in a game and how to write it, what it looks like and does, etc  <br>
+https://ff5central.com/spotlight/anatomy-of-a-hack/  <br>
+ <br>
+it goes a bit into snes stuff, but since snes is just a superset of nes most things are still applicable <br>
+so i've decided where i'd like to hook, which is where it decides if it's going to play the song or not. right here <br>
+<br>
+ <img src="29.webp" class="center"><br>   
+  <br>
+
+now we need to find somewhere to put our code, <br>luckily enough theres a TON of freespace in the same block of ROM as our hook, <br>which is 100% ideal (we are not always so lucky) <br>
+<br>
+ <img src="30.webp" class="center"><br>   
+  <br>
+ if you can't find any freespace at all, generally i will overwrite the music data with code, as we'll be using the code to replace the music anyways. this is a destructive change though and is less preferred than freespace like this. <br> 
+  <br>
+ anyways, this means we want to overwrite our hook in mesen with new code. mesen can do this internally, so let's do it<br>
+<br>
+  <img src="31.webp" class="center"><br>   
+   <img src="32.webp" class="center"><br>   
+    <br>
+    
+   mesen will automatically put in enough NOP to make your hook work, but you can put it in manually if you're nervous <br>
+now it looks like so: <br>
+<br>
+                     <img src="33.webp" class="center"><br>
+                      <br>
+   and we'll step forwards to take the jump                   <br>
+                      <br>
+                     <img src="34.webp" class="center"><br>
+<br>
+                     oh no its full of garbage!  nah this is just what ff ff ff ff ff ... looks like <br>
+ <br>
+              <img src="35.webp" class="center"><br>
+               <br>
+              i just select the first one and edit the code, now we can write our NEA code               <br>
+               <br>
+              <hr>
+               <br>
+              my NEA code for castlevania 2 is opensource, and is fairly robust. it can (mostly) just be dropped in with few modifications.<br>
+ <br>
+
+it's probably overkill for NEA since it's written from a very MSU-1 (snes) mindset <br>
+but it'll be fine. <br>
+<pre>
+
+cmp $d6,x  ;start with the native code we replaced.
+bne skip1
+jmp $F926
+
+skip1:
+;now lets do NEA.
+sta $4104 ;store track number as album number because it flows better.
+pha
+lda #$01
+sta $4101 ;stop old music.
+sta $4105 ;don't need a track number, so track 1 in each album is the song.
+pla
+;checking for noloops
+cmp #$FF ; placeholder
+beq noloop
+cmp #$FF; placeholder
+beq noloop
+cmp #$FF ; placeholder
+beq noloop
+cmp #$FF; placeholder
+beq noloop
+lda #$01
+bne yesloop
+
+noloop:
+lda #$00
+
+yesloop:
+sta $4100 ;set loop
+lda #$00
+sta $4101 ;start song play
+lda $4100 ;checking error bit
+cmp #$03 ;is bit 2 (error) set
+bcc errorfound ;bcs is 4+up, values might be 4-7 depending.
+
+lda #$ff
+sta $4102 ;max volume
+jmp $f926 ;exit routine, skip play
+
+errorfound: ;if there's an error, this should avoid muting.
+jmp $F92F ;exit routine, play normal NES music
+ </pre>
+ <br>
+the placeholders here are just so we can edit in up to 4 track numbers that shouldn't loop (like death or victory jingles, credit songs, title screen songs.. etc) <br>
+<br>
+if we need more we'll just need to reinject the code instead. i find 4 is usually enough  <br>
+ <br>
+i'll map out the track numbers and generate the stuff for your hires.txt. <br>
+this does seem to catch death/victory/boss music changes in-level, <br>
+so i think the only thing left to do in code is implement pausing and unpausing   <br>
+ <br>
+scratch that, theres a fade out at the end of the credits <br>
+it might not really be super worth implementing, but it's possible lol <br>
+ <br>
+34: track 1  (1-1) <br>
+38: track 2  (1-2) <br>
+3C: track 3  (3-3) <br>
+40: track 4  (2-2) <br>
+44: track 5  bell (invulnerability) <br>
+48: track 6  boss <br>
+4C: track 7  endboss <br>
+50: track 8  chest appears <br>
+54: track 14 chest opened <br>
+56: track 9  fairy victory song <br>
+5a: track 10 fancy fairy victory song (unused?) <br>
+5e: track 11 died (hit by random enemy) <br>
+62: track 12 game over <br>
+66: track 13 (ending) <br>
+8a: track 11 died (fell?) <br>
+ <br>
+https://www.zophar.net/music/nintendo-nes-nsf/bio-miracle-bokutte-upa track numbers from here
+
+ <br>
+
+    </section>
+
+  <section id="hires">
+      <h2>hires.txt</h2>
+      hires.txt should include<br>
+<pre>
+&lt;bgm&gt;52,1,Track1.ogg
+&lt;bgm&gt;56,1,Track2.ogg
+&lt;bgm&gt;60,1,Track3.ogg
+&lt;bgm&gt;64,1,Track4.ogg
+&lt;bgm&gt;68,1,Track5.ogg
+&lt;bgm&gt;72,1,Track6.ogg
+&lt;bgm&gt;76,1,Track7.ogg
+&lt;bgm&gt;80,1,Track8.ogg
+&lt;bgm&gt;84,1,Track14.ogg
+&lt;bgm&gt;86,1,Track9.ogg
+&lt;bgm&gt;90,1,Track10.ogg
+&lt;bgm&gt;94,1,Track11.ogg
+&lt;bgm&gt;98,1,Track12.ogg
+&lt;bgm&gt;102,1,Track13.ogg
+&lt;bgm&gt;138,1,Track11.ogg
+</pre>
+ <br>
+
+    </section>
+
+
+
+  <section id="pause">
+      <h2>Pause Feature</h2>
+<br>
+okay so let's dev a pause feature. <br>
+ <br>
+it's a shame this comes after the "music player" features  <br>
+because it's a lot easier to deal with most of the time  <br>
+ <br>
+so usually when possible i like to rely upon the in game systems,  <br>
+but occasionally those systems will break when the NES itself is no longer playing music,  <br>
+leading you to sometimes develop independently (from the game's internal audio system) <br>
+ <br>
+so the game needs to keep track in ram of if the game is paused or not,  <br>
+to prevent player movement, enemy movement, the timer countdowns, and so on <br>
+you can actually find it by looking at system ram and just repeatedly pausing and unpausing  <br>
+and seeing if things move between a couple different values.  <br>
+it'll usually be fairly early in ram since it's so important, it's a feature that gets developed early <br>
+ <br>
+in this game, paused status is on $0024 in system ram, it alternates between 0 (unpaused) and 1 (paused),  <br>
+but i've seen it be other values in different games, notably FF and 00 are worth looking at as well. <br>
+ <br>
+you can check your guesses by freezing the value in emulator  <br>
+and seeing if the pause system still works, in this case,  <br>
+i froze the value at 1 and am unable to unpause the game <br>
+ <br>
+
+  <img src="36.webp" class="center"><br> 
+ <br>
+manually setting the value to 0 unpauses the game without any input on the controller. <br>
+suspicion confirmed, anyways, we can put our pause and unpause code right where this gets set and cleared  <br>
+so unfreeze, breakpoint, pause... here's the bit of code that deals with pausing and unpausing the game  <br>
+<br>
+  <img src="37.webp" class="center"><br> 
+ <br>
+ 
+You can see it setting the pause by loading 01 and writing it to 24 then it loads 2e and jumps somewhere else. <br>
+this is likely a jump to the sound routine to play the pause sound  just below that, <br>
+you can see it loading 00 and writing it to 24 to unpause, pretty convenient <br>
+so we can do this with two hooks. we'll replace <br>
+<pre>
+lda #$01
+sta $24
+</pre>
+with one hook, and the same for lda #$00 <br>
+ 
+since we can guess that the sound routine is loaded here, <br>
+we can actually use the space after our existing code to hold the pausing and unpausing code. <br>
+here's our music playing code. lots of space after this, especially since pausing and unpausing is real real easy <br>
+ 
+ <br>
+  <img src="38.webp" class="center"><br> 
+ <br>
+ <br>
+ so in the mesen documentation, we can see this register here controls playback, including start, stop, pause <br>
+ <br>
+
+  <img src="39.webp" class="center"><br> 
+  <br>
+  bit 0 is short for the least significant bit of a byte. a byte is 8 bits. <br>
+  
+    <img src="40.png" class="center"><br> 
+the white square is bit 0.  <br>
+<br>
+if we translate this into numbers it looks like %00000001  <br>
+if we write this into hex or decimal, it becomes 1  <br>
+so we learned that when we send $01 to $4101, we will pause playback  <br>
+so our hook for pausing will look like  <br>
+    <br>
+<pre>
+jsr do_pause
+nop
+</pre>
+and then the code will be
+<pre>  
+LDA #$01
+STA $24
+sta $4101
+rts
+</pre>
+the hook to unpause looks basically the same, the code to unpause will look like
+  <pre>
+LDA #$00
+STA $24
+sta $4101
+rts
+ </pre>
+
+pretty simple stuff, works like a charm. no notes.
+
+
+ <br>
+    </section>
+
+  <section id="fade">
+      <h2>Fade out Feature</h2>
+
+this happens at the konami logo in the credits. (and at no other point in the game that i can see) <br>
+with some RAM watching i can see the area that controls the music, so watching what nearby addresses change when the konami logo pops up gave me some clues
+the areas in red here are the audio controls.. i mostly identified them by watching them as the music played, they sync up. <br>
+hard to really explain what i mean aside from that the values change in time with the various instruments in the music<br>
+ <br>
+  <img src="41.webp" class="center"><br> 
+ <br>
+  <img src="42.webp" class="center"><br> 
+ <br>
+when we advance a screen..
+ <br>
+  <img src="43.webp" class="center"><br> 
+ <br>
+We can see some newly accessed ram bytes. i was curious about the ones near the top of this image, and with a little bit of investigating, <br>
+the highlighted one is a sort of "cutscene" control. which part of a cutscene is being played and at $0091 <br>
+theres a timer that ticks down from FF to 00 during this screen, likely just a timer for how long the screen goes on for. <br>
+<br>
+it's currently $AE now, this is actually pretty perfect! mostly. <br>
+if we want to fade the song, we need to count down from FF to 00 anyways.  <br>
+we could just write this timer's value to our audio volume register <br>
+<br>
+if we can tie this to a ram value that only happens during this screen, we're golden <br>
+so right now i'm playing through the game (with cheats) and making sure the cutscene value doesnt reach $0B at any other point.  <br>
+it'd be nice if we could use this to trigger our fade as well, just very convenient all around <br>
+if it turns out to be a good signal, we can literally write this as our fade code <br>
+<pre>
+lda $7C ;(cutscene progress number)
+cmp #$0B
+bne nofade ;branch not equal, so NOT 0B, don't fade
+lda $91 ;(screen timer, FF to 00)
+sta $4102 ;BGM volume
+nofade:
+rts
+</pre>
+and we can just run this code every frame of the game if we want, it's light enough that it shouldnt seriously impact anything <br>
+all video games really are is getting the right information to the right place at the right time <br>
+so what we're checking for is the right time (during music fade), to get the right information (how much time to the end of the fade), and put it into the right place (music volume) <br>
+ <br>
+it's nice that it counts down instead of up. lol <br>
+ <br>
+unfortunately since i mostly used intuition here instead of a process others could follow, this is a pretty bad lesson overall lol <br>
+ <br>
+the highest value out of the cutscene progress i've seen so far is 08, which happens during the transition from x-3 to x-1 (ie: world clear) so chances are that this is going to be a good value <br>
+ <br>
+
+
+
+</section>
+
+
+
+  <section id="start">
+      <h2>Start Menu Audio Feature</h2>
+<br>
+developing a track start when none exists in a game:<br>
+we're going to allow for a title screen song in this game, which currently is silent.<br>
+ <br>
+  <img src="44.webp" class="center"><br> 
+ <br>
+see? can't hear anything. Okay, so for this, we'll need to isolate a moment in time where we can tell what screen this is,<br>
+and HOPEFULLY a moment in time in code that is only called when this screen first appears so in this case, <br>
+i'll breakpoint where the tilemap is written, since most title screens will have unique tilemaps<br>
+ <br>
+  <img src="45.webp" class="center"><br> 
+ <br>
+you could also breakpoint when the tile graphics are loaded into vram, since most title screens will also have unique tiles etc <br>
+(though this only works in CHR-RAM games so tilemap is more universal). so this game is breaking right here:<br> 
+ <br>
+  <img src="46.webp" class="center"><br> 
+ <br>
+ store into ppu data blah blah. this routine here is likely used many many times over the course of the game<br>
+so we need to go back to slightly before it's called, to where "which tilemap" is being set <br>
+so in this instance i would breakpoint  at $A4FF, rewind by a frame, then go forwards again<br>
+<br>
+since its at the start of this subroutine, chances are it'll break<br>
+  <img src="47.png" class="center"><br> 
+   <img src="48.png" class="center"><br> 
+<br> 
+
+and it breaks! great<br> 
+
+   <img src="49.png" class="center"><br> 
+<br> 
+this little bit of code looks like it's loading a pointer into $00 and $01 to use to transfer a tilemap... <br> 
+modified by X, so when X is set to the current value would be where i'm interested in hooking here<br> 
+X is currently $02<br> 
+   <img src="50.png" class="center"><br> 
+   <br> 
+so i'm going to step backwards and figure out when X becomes 02<br> 
+   <img src="51.png" class="center"><br> 
+   <br> 
+   wouldn't you know it, it's literally right before entering this subroutine<br> 
+     <img src="52.webp" class="center"><br> 
+   <br> 
+   since it's a hardcoded 02 as well, this code is LIKELY unique to loading the title screen. this is a perfect find.<br> 
+here i think i'll hook on top of sta $56, ldx #$02<br> 
+   <br> 
+   
+   We'll just write our own hardcoded NEA code, since its jsut for one track it doesnt need to be flexible.
+  <pre>
+  lda #$01
+sta $4100 ;looping on
+sta $4101 ;pause
+sta $4104 ;album
+lda #$FF
+sta $4105 ;track
+sta $4102 ;volume
+lda #$00
+sta $4101 ;unpause
+rts
+</pre> 
+
+this will be album 1 track 255 in hires.txt
+<br>
+</section>
+  <section id="hires2">
+        <h2>hires.txt</h2>
+<pre>
+# Created by: Cubear 
+&lt;ver&gt;109
+&lt;bgm&gt;52,1,Track1.ogg
+&lt;bgm&gt;56,1,Track2.ogg
+&lt;bgm&gt;60,1,Track3.ogg
+&lt;bgm&gt;64,1,Track4.ogg
+&lt;bgm&gt;68,1,Track5.ogg
+&lt;bgm&gt;72,1,Track6.ogg
+&lt;bgm&gt;76,1,Track7.ogg
+&lt;bgm&gt;80,1,Track8.ogg
+&lt;bgm&gt;84,1,Track14.ogg
+&lt;bgm&gt;86,1,Track9.ogg
+&lt;bgm&gt;90,1,Track10.ogg
+&lt;bgm&gt;94,1,Track11.ogg
+&lt;bgm&gt;98,1,Track12.ogg
+&lt;bgm&gt;102,1,Track13.ogg
+&lt;bgm&gt;138,1,Track11.ogg  
+&lt;bgm&gt;255,1,TrackSTART.ogg  
+</pre>
+
+</section>
+
+
+   
+            
+
+        </div>
+    </div>
+
+</body>
+</html>
