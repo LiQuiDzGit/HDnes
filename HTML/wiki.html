@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Fan-made retro gaming HD packs for the Mesen emulator. Pixel art, enhancements, and community projects." />
+  <meta name="keywords" content="Retro Gaming, HD Pack, NES, Mesen, Pixel Art">
+  <link rel="icon" type="image/png" href="../icon.png">
+<title>LiQuiDz Retro Gaming</title>
+
+
+
+<style>
+/* ==== GLOBAL THEME ==== */
+body {
+  margin: 0;
+  font-family: Verdana, "Courier New", monospace;
+  background-color: black;
+  color: SteelBlue;
+  overflow-x: hidden;
+  font-size: 0.9em;
+
+}
+
+/* ==== SIDEBAR ==== */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 260px;
+  background-color: #0a0a0a;
+  overflow-y: auto;
+  border-right: 1px solid #111;
+  padding-top: 15px;
+}
+
+/* Sidebar scrollbars */
+#sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+#sidebar::-webkit-scrollbar-thumb {
+  background: #0d3b4a;       /* NEW darker color */
+  border-radius: 10px;
+}
+#sidebar::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+/* Sidebar links */
+#sidebar a {
+	font-size: 0.88em;
+  color: MediumTurquoise;
+  text-decoration: none;
+  display: block;
+  padding: 2px 10px;
+  transition: all 0.3s ease;
+}
+#sidebar a:hover {
+  color: #7df9ff;
+  text-shadow: 0 0 6px #7df9ff;
+  background-color: #262323;
+
+  font-size: 0.90em;
+  transition: all 0.2s ease;
+}
+#sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#sidebar li {
+  border-bottom: 1px solid #111;
+}
+
+
+
+/* ==== MAIN CONTENT ==== */
+#body {
+  margin-left: 260px;
+  padding: 20px;
+}
+h1, h2 {
+  color: DarkCyan;
+  text-align: center;
+}
+
+
+h3 {
+  color: DarkCyan;
+  text-align: left;
+}
+ 
+h1 { font-size: 1.8em; }
+h2 { font-size: 1.4em; margin-top: 30px; }
+h3 { font-size: 1.1em; margin-top: 10px; }
+
+a {
+  color: MediumTurquoise;
+  text-decoration: none;
+}
+a:hover {
+  color: #7df9ff;
+  text-shadow: 0 0 6px #7df9ff;
+  
+}
+
+table {
+  border-collapse: collapse;
+  margin: 15px auto;
+  width: 90%;
+  max-width: 900px;
+  border: 1px solid #222;
+  background-color: #050505;
+  box-shadow: 0 0 10px #022;
+}
+th, td {
+  border: 1px solid #222;
+  padding: 10px;
+}
+th {
+  color: MediumTurquoise;
+  text-align: left;
+}
+code {
+  background-color: #111;
+  color: LightSteelBlue;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-family: "Courier New", monospace;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  padding: 5px 0;
+}
+
+/* Scrollbar for main area */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+  background: #0d3b4a;       /* NEW darker color */
+  border-radius: 10px;
+}
+body::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #145b73;       /* slightly brighter on hover */
+}
+
+
+
+
+/* Links in sidebar headers */
+h3.sidebar-title {
+  color: SteelBlue;
+  text-align: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #111;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  #sidebar {
+    width: 200px;
+  }
+  #body {
+    margin-left: 200px;
+  }
+}
+@media (max-width: 700px) {
+  #sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+  }
+  #body {
+    margin: 0;
+  }
+}
+
+
+
+/* Accordion container */
+.accordion {
+    width: 100%;
+    margin: 25px 0;
+}
+
+/* Button (header) */
+.accordion-btn {
+    width: 20%;
+    text-align: left;
+    padding: 14px 16px;
+    background: #0a0a14;              /* darker */
+    color: #c9c9ff;                   /* softer neon */
+    border: 2px solid #2d2d54;        /* muted border */
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    position: relative;
+    transition: 0.15s ease;
+    box-shadow: 0 0 4px #1a1a32 inset; /* soft internal shading */
+}
+
+/* Hover */
+.accordion-btn:hover {
+    background: #131323;
+    border-color: #4f4f82;           /* darker neon */
+    box-shadow: 0 0 6px #2e2e58 inset;
+}
+
+/* Active (opened) state */
+.accordion-btn.active {
+    background: #191932;
+    border-color: #6d6d9d;           /* softer neon glow */
+    box-shadow: 0 0 7px #4c4c7a inset, 0 0 4px #4c4c7a;
+    color: #ffffff;
+}
+
+/* Arrow icons */
+.accordion-btn::after {
+    content: "▼";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.accordion-btn.active::after {
+    content: "▲";
+    opacity: 0.9;
+}
+
+/* Inside panel (content) */
+.panel {
+    display: none;
+    padding: 12px 16px;
+    background: #080812;               /* darker content background */
+    border: 2px solid #2d2d54;
+    border-radius: 0 0 4px 4px;
+    margin-top: -6px;
+    margin-bottom: 12px;
+    color: #d8d8f2;
+    box-shadow: 0 0 6px #1a1a30 inset;
+
+}
+
+
+</style>
+</head>
+
+<body>
+
+  
+
+<!-- ==== SIDEBAR ==== -->
+<nav id="sidebar">
+
+
+  <ul>
+    <li><a href="../index.html">🏠 Home</a></li>
+    <li><a href="#installing-hd-packs">Installing HD Packs</a></li>
+    <li><a href="#using-the-hd-pack-builder">Using the HD Pack Builder</a></li>
+        <li><a href="#file-format-changelog">Changelog</a></li>
+    <li>hires.txt TAG</li>
+
+    <li><a href="#lt-ver-gt-tag">&lt;ver&gt;</a></li>
+    <li><a href="#lt-scale-gt-tag">&lt;scale&gt;</a></li>
+    <li><a href="#lt-overscan-gt-tag">&lt;overscan&gt;</a></li>
+    <li><a href="#lt-patch-gt-tag">&lt;patch&gt;</a></li>
+    <li><a href="#lt-img-gt-tag">&lt;img&gt;</a></li>
+    <li>&lt;condition&gt;</li>
+    <li><a href="#lt-condition-gt-tag">Built-in</a></li>
+    <li><a href="#tilenearby-spritenearby">&lt;tileNearby&gt;</a></li>
+    <li><a href="#tileatposition-spriteatposition">&lt;tileAtPosition&gt;</a></li>
+    <li><a href="#memorycheck-ppumemorycheck">&lt;memoryCheck&gt;</a></li>
+    <li><a href="#memorycheckconstant-ppumemorycheckconstant">&lt;memoryCheckConstant&gt;</a></li>
+    <li><a href="#framerange">&lt;frameRange&gt;</a></li>
+    <li><a href="#spriteframerange">&lt;spriteFrameRange&gt;</a></li>
+    <li><a href="#randombackground">&lt;randomBackground&gt;</a></li>
+
+    <li><a href="#lt-tile-gt-tag">&lt;tile&gt;</a></li>
+    <li><a href="#lt-addition-gt-tag">&lt;additions&gt;</a></li>
+    <li><a href="#lt-fallback">&lt;fallback&gt;</a></li>
+    <li><a href="#lt-background-gt-tag">&lt;background&gt;</a></li>
+    <li><a href="#lt-options-gt-tag">&lt;options&gt;</a></li>
+    <li><a href="#lt-bgm-gt-tag">&lt;bgm&gt;</a></li>
+    <li><a href="#lt-sfx-gt-tag">&lt;sfx&gt;</a></li>
+    <li><a href="#using-conditions">Using Conditions</a></li>
+     <li>Replacing Audio (NEA)</li>
+     
+     
+    <li><a href="#register-APU">NES APU Register</a></li>
+    <li><a href="#register-write-operations">Register Write Operations</a></li>
+    <li><a href="#register-read-operations">Register Read Operations</a></li>
+     <li><a href="cubear/index.html">How to Make Audio Patch (By:Cubear)</a></li>
+
+       <li>More</li>
+
+        <li><a href="#CPUmem">NES CPU Memory Map</a></li>
+        <br>
+  </ul>
+
+ 
+</nav>
+
+<!-- ==== MAIN BODY ==== -->
+<section id="body">
+<br>
+<h2 id="using-hd-packs">Using HD packs</h2>
+<br>
+ <p>HD Packs make it possible to replace a game&rsquo;s graphics and audio with high definition alternatives. <br>
+ This can be used in many ways, for example, one could keep the game&rsquo;s original resolution and simply improve its graphics by adding more colors and shading.</p>
+
+<br>
+
+<h3 id="installing-hd-packs">Installing HD Packs</h3>
+
+<p>To install an HD Pack:</p>
+
+<ul>
+<li>First, load the game for which you want to install the HD Pack.</li>
+<li>Then, click on the <strong><kbd>Tools&rarr;Install HD Pack</kbd></strong> menu and select the <code>.zip</code> file that contains the HD Pack you want to install.</li>
+<li>A message will be shown indicating whether the installation succeeded or failed.</li>
+</ul>
+<br>
+<h3 id="manual-installation">Manual installation</h3>
+
+<p>If the HD Pack installation tool fails to install the HD Pack, you can try to install it manually with these instructions:</p>
+
+<p>To use HD packs, first make sure to turn on the "Enable HDNes HD Packs" option.<br>
+To install a HD Pack, you should extract it in a subfolder inside the <code>HdPacks</code> folder in Mesen&rsquo;s data folder. You can open this folder by clicking on the <code>Open Mesen Folder</code> button in the "Preferences" window.
+The subfolder should have the same name as the rom file itself.</p>
+
+<p>For HD packs created with Mesen&rsquo;s "HD Pack Builder", you can also put them in <code>.zip</code> format in the <code>HdPacks</code> folder, without unzipping them nor worrying about renaming the file.</p>
+<br>
+<h2 id="using-the-hd-pack-builder">Using the HD Pack Builder</h2>
+ 
+ 
+ <div class="imgBox"><div>
+    <img src="HdPackBuilder.png" /><br>
+    <span>HD Pack Builder</span>
+</div></div>
+
+<p>The HD Pack Builder can be used to record a game&rsquo;s graphics into PNG image files and build a matching <code>hires.txt</code> file. These are the 2 basic elements needed for HD Packs: a tile map (the PNG files) and a definition file that specifies where each tile is on the tile map (the <code>hires.txt</code> file).</p>
+
+<p>The basic concept of this tool is to use it to record gameplay of a game from start to finish, attempting to trigger every possible animation or graphics during gameplay.  This will create a complete set of tiles (saved in PNG files) and a single hires.txt file that contains all that is needed to replace the tiles with HD tiles.  Once this is done, the only thing left to do, in most cases, is to replace the graphics in the PNG files with better alternatives (e.g higher resolution, more colors, etc.).</p>
+
+<p>A number of options exist to control the way the PNG files are generated:</p>
+
+<p><strong>Scale/Filter</strong>: Selects the scale and video filter to use when generating the PNG files for the HD Pack. Use the &ldquo;Prescale&rdquo; filters to generate the tiles at a larger scale without applying any transformation to the pixels.</p>
+
+<p><strong>CHR Bank Size</strong>: This option is only available for CHR RAM games.  CHR RAM games have no fixed &ldquo;banks&rdquo; - they are dynamically created by the game&rsquo;s code. This option alters the HD Pack Builder&rsquo;s behavior when grouping the tiles into the PNG files - a smaller bank size will usually result in less PNG files (but depending on the game&rsquo;s code, larger values may produce better results).</p>
+
+<p><strong>Group blank tiles</strong>: This option groups all the blank tiles sequentially into the same PNG files - this helps reduce the number of PNG files produced by removing almost-empty PNG files containing only blank tiles.</p>
+
+<p><strong>Sort pages by usage frequency</strong>: When this option is enabled, the tiles in PNG files are sorted by the frequency at which they are shown on the screen while recording (more common palettes will be grouped together in the first PNG for a specific bank number. If this option is unchecked, the PNGs will be sorted by palette - each PNG will only contain up to 4 different colors in this case.</p>
+
+<p><strong>Use 8x16 sprite display mode</strong>: When enabled, this option will alter the display order of CHR banks that contain only sprites to make the sprites easier to edit in the PNG file.</p>
+
+<p><strong>Ignore tiles at the edges of the screen (overscan)</strong>: When enabled, this will make the builder ignore any pixels in the overscan area. This is useful in games that contain glitches on the outer edge of the screen. Incorrect palette combinations due to these glitches will be ignored and won&rsquo;t be shown in the PNG files.</p>
+
+<p><strong>Save frames which the tiles are first shown</strong>: When enabled, the builder will save a screenshot and the composition of the screen in the pack folder when it encounters new tile in a frame. This is useful for checking where that tile is used. These files are not needed in the pack and should be deleted when sharing the pack.</p>
+
+<p><strong>Tile Type</strong>: This option controls whether only BG tiles or sprite tiles or both are added to the HD Pack.</p>
+
+<p>Before you start recording, select the options you want to use and the location to which you want to save the HD Pack, then press the <code>Start Recording</code> button.</p>
+<br>
+
+<hr>
+
+<h2 id="file-format-changelog">File Format Changelog</h2>
+
+<h4>File Format Changelog</h4>
+<br>
+<h3 id="version-109">Version 107-109 (Mesen 2)</h3>
+<ul>
+<li>-Palette options for <code>&lt;addition&gt; </code>, <code>spriteNearby</code> and <code>tileNearby</code> functions</li> 
+<li>-New Transparency Options for <code>&lt;background&gt;</code> functions: <code>Alpha</code>, <code>Add</code> and <code>Subtract</code> options</li>
+<li>-New: <code>originPositionCheckX</code> and <code>originPositionCheckY</code> conditions functions</li>
+<li>-New: <code> &lt;fallback&gt; </code> functions. </li> 
+<li>-New: <code>&lt;options&gt;automaticFallbackTiles</code> Options</li> 
+</ul>
+
+
+<div class="accordion">
+
+  <div class="item">
+    <button class="accordion-btn">More info on new fonctions</button>
+    <div class="panel">
+      <pre>
+Aclectico — 
+
+Several new features now available with the Mesen 2 Emulator.
+
+-“&lt;addition&gt;” functions: Pack authors can now add artwork beyond native 8x8 sprite tiles (used for Samus animations, boss battles, and more).
+
+-“&lt;fallback&gt;” functions: Cross reference functionality now allows pack authors to drastically reduce hires.txt file coding bloat.
+
+-Palette options for “&lt;addition&gt;,” “spriteNearby,” and “tileNearby” functions: This also helped to drastically reduce coding bloat.
+
+-New Transparency Options for “&lt;background&gt;” functions: “Alpha,” “Add,” and “Subtract” options give pack authors more artistic freedom (“Add” options used for lava and fog effects).
+
+-“originPositionCheckX” and “originPositionCheckY” functions: Allows authors to create unique sprite art depending on screen location (used for Dragon fireballs). 
+
+
+
+      </pre>
+    </div>
+  </div>
+
+ <br>
+
+
+
+
+
+
+
+
+
+<br>
+<h3 id="version-106">Version 106</h3>
+
+<ul>
+<li>Replaced <code>Show Behind Background Priority Sprites</code> flag for <code>&lt;background&gt;</code> tags by a 0 to 39 priority level value.</li>
+<li>Removed contour feature for backgrounds, and removed <code>disableContours</code> option.</li>
+</ul>
+
+<h3 id="version-105">Version 105</h3>
+
+<ul>
+<li>Brightness values above 1.0 are now allowed.</li>
+<li>Added <code>disableOriginalTiles</code> option</li>
+<li>Background tags can now specify <code>left</code> and <code>top</code> values.</li>
+<li>Added <code>loopback point</code>, <code>playback option</code>, <code>volume</code> to <code>&lt;bgm&gt;</code> tag.</li>
+</ul>
+
+<h3 id="version-104">Version 104</h3>
+
+<ul>
+<li>Tile indexes for the <code>&lt;condition&gt;</code> tag (tileNearby/spriteNearby/tileAtPosition/spriteAtPosition) are now in hex instead of decimal (affects CHR ROM games only)</li>
+</ul>
+
+<h3 id="version-103">Version 103</h3>
+
+<ul>
+<li>Added a <code>Mask</code> parameter to the memoryCheck and memoryCheckConstant conditions</li>
+<li>Tile indexes for the <code>&lt;tile&gt;</code> tag are now in hex instead of decimal (affects CHR ROM games only)</li>
+</ul>
+
+<h3 id="version-102">Version 102</h3>
+
+<ul>
+<li>Operands for memoryCheck/memoryCheckConstant conditions must now be specified in hex (used to be decimal)</li>
+<li>Added the <code>Show Behind Background Priority Sprites</code> option to the <code>&lt;background&gt;</code> tag</li>
+</ul>
+ <br>
+ <hr>
+
+
+
+
+
+<h2 id="file-format-hires-txt">File Format (hires.txt)</h2>
+
+<p>The following are the specifications for the hires.txt file, as of version &ldquo;106&rdquo;.</p>
+
+<h3 id="lt-ver-gt-tag">&lt;ver&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;ver&gt;[integer]</code><br>
+<strong>Example</strong>: <code>&lt;ver&gt;109</code></p>
+
+<p>The format&rsquo;s version number (currently 109).</p>
+<br>
+<h3 id="lt-scale-gt-tag">&lt;scale&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;scale&gt;[integer]</code><br>
+<strong>Example</strong>: <code>&lt;scale&gt;4</code></p>
+
+<p>The scale used for the replacement graphics &ndash; this can be any integer number (minimum: 1).<br> Anything above 8-10x will probably have a very hard time running on any computer. It is suggested to use scales between 1x and 4x.</p>
+<br>
+<h3 id="lt-overscan-gt-tag">&lt;overscan&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;overscan&gt;[top],[right],[bottom],[left]</code><br>
+<strong>Example</strong>: <code>&lt;overscan&gt;8,8,8,8</code></p>
+
+<p>The overscan values to use when the HD Pack is loaded - this is useful for games that produce glitches on the edges of the screen.<br>
+<strong>Note:</strong> This feature is only available for HD Packs that contain tile replacement rules. HD Packs that only replace audio cannot use the overscan setting.</p>
+<br>
+<h3 id="lt-patch-gt-tag">&lt;patch&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;patch&gt;[filename],[sha1 hash]</code><br>
+<strong>Example</strong>: <code>&lt;patch&gt;MyPatch.ips,26aec27ef0fc1a6fd282937b918ebdd1fb480891</code></p>
+
+<p>Specifies a patch file to apply if the loaded ROM matches the specified SHA1 hash.<br>
+The patches can be in either <code>.ips</code> or <code>.bps</code> format.
+Multiple <code>&lt;patch&gt;</code> tags with different SHA1 hashes can be present in the same <code>hires.txt</code> file.</p>
+<br>
+<h3 id="lt-img-gt-tag">&lt;img&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;img&gt;[filename]</code><br>
+<strong>Example</strong>: <code>&lt;img&gt;Tileset01.png</code></p>
+
+<p>Specifies a PNG file that contains tile graphics &ndash; each <code>&lt;img&gt;</code> tag is indexed (starting from 0) according to the order it appears in the <code>hires.txt</code> file, the tag&rsquo;s index must be used when using <code>&lt;tile&gt;</code> tags.</p>
+<br>
+<h2 id="lt-condition-gt-tag">&lt;condition&gt; tag</h2>
+
+<p>HD Packs support a number of conditionals that can be used to replace graphics when certain conditions are met.<br>
+This is useful to resolve conflicts that can occur in some games (where the same tile &amp; palette can be reused in multiple distinct objects), etc.<br>
+The sections below describe every available condition type.</p>
+<br>
+<h3 id="built-in-conditions">Built-in Conditions</h3>
+
+<p>A number of built-in conditions can be used to check the value of some flags:</p>
+
+<ul>
+<li><code>hmirror</code>: True if the current pixel is a sprite pixel, and the sprite is mirrored horizontally.</li>
+<li><code>vmirror</code>: True if the current pixel is a sprite pixel, and the sprite is mirrored vertically.</li>
+<li><code>bgpriority</code>: True if the current pixel is a sprite pixel, and the sprite is marked as a background priority sprite.</li>
+<li><code>sppalette0</code>: True if the current pixel is a sprite pixel, and the sprite is using the palette at address $3F10.</li>
+<li><code>sppalette1</code>: True if the current pixel is a sprite pixel, and the sprite is using the palette at address $3F14.</li>
+<li><code>sppalette2</code>: True if the current pixel is a sprite pixel, and the sprite is using the palette at address $3F18.</li>
+<li><code>sppalette3</code>: True if the current pixel is a sprite pixel, and the sprite is using the palette at address $3F1C.</li>
+</ul>
+
+<p><strong>Example:</strong> <code>[hmirror]&lt;tile&gt;...</code></p>
+<br>
+<h3 id="tilenearby-spritenearby">tileNearby / spriteNearby</h3>
+
+<p>The tileNearby and spriteNearby conditions are used to check whether a specific tile or sprite exists in the vicinity of the current pixel. If a matching tile/sprite is found, the condition will be true.</p>
+
+<p><strong>Syntax</strong>: <code>&lt;condition&gt;[name - text], [conditionType - text], [x value - integer], [y value - integer], [tile data], [palette data - hex], [default (pallet) - Y or N] </code><br>
+<strong>Example (CHR ROM)</strong>: <code>&lt;condition&gt;myCondition,tileNearby,8,0,10,0F100017,N</code><br>
+<strong>Example (CHR RAM)</strong>: <code>&lt;condition&gt;myCondition,tileNearby,8,0,D2C2C2C7CF2FFEFC2C3C3C3830D00000,0F100017,N</code></p>
+
+<p><strong>Notes</strong>:<br>
+<code>tileNearby</code> and <code>spriteNearby</code> use positive or negative X/Y offsets to the current position. e.g:<br>
+<code>&lt;condition&gt;myCondition2,tileNearby,-8,0,[tile data],[palette data]</code><br>
+In this case, <code>myCondition2</code> will be true if the tile 8 pixels to the left of the current tile matches the tile+palette data specified.</p>
+
+<p>For CHR ROM games, <code>tile data</code> is an integer (in hexadecimal) representing the position of the original tile in CHR ROM.<br>
+For CHR RAM games, <code>tile data</code> is a 32-character hexadecimal string representing all 16 bytes of the tile.<br>
+<code>palette data</code> is always an 8-character hexadecimal string representing all 4 bytes of the palette used for the tile.  For sprites, the first byte is always &ldquo;FF&rdquo;.</p>
+<br>
+
+
+<h3 id="tileatposition-spriteatposition">tileAtPosition / spriteAtPosition</h3>
+
+<p>The tileAtPosition and spriteAtPosition conditions are used to check whether a specific tile or sprite exists at the specified coordinates. If a matching tile/sprite is found, the condition will be true.</p>
+
+<p><strong>Syntax</strong>: <code>&lt;condition&gt;[name - text], [conditionType - text], [x value - integer], [y value - integer], [tile data], [palette data - hex]</code><br>
+<strong>Example (CHR ROM)</strong>: <code>&lt;condition&gt;myCondition,tileAtPosition,8,0,10,0F100017</code><br>
+<strong>Example (CHR RAM)</strong>: <code>&lt;condition&gt;myCondition,tileAtPosition,8,0,D2C2C2C7CF2FFEFC2C3C3C3830D00000,0F100017</code></p>
+
+<p><strong>Notes</strong>:<br>
+<code>tileAtPosition</code> and <code>spriteAtPosition</code> use the X/Y parameters as screen coordinates. e.g:<br>
+<code>&lt;condition&gt;myCondition,tileAtPosition,10,10,[tile data],[palette data]</code><br>
+In this case, <code>myCondition</code> will be true if the tile at position 10,10 on the NES&rsquo; screen (256x240 resolution) matches the tile+palette data given.</p>
+
+<p>For CHR ROM games, <code>tile data</code> is an integer (in hexadecimal) representing the position of the original tile in CHR ROM.<br>
+For CHR RAM games, <code>tile data</code> is a 32-character hexadecimal string representing all 16 bytes of the tile.<br>
+<code>palette data</code> is always an 8-character hexadecimal string representing all 4 bytes of the palette used for the tile.  For sprites, the first byte is always &ldquo;FF&rdquo;.</p>
+<br>
+<h3 id="memorycheck-ppumemorycheck">memoryCheck / ppuMemoryCheck</h3>
+
+<p>The memoryCheck and ppuMemoryCheck conditions are used to compare the value stored at 2 different memory addresses together. (Use the <code>ppuMemoryCheck</code> variant to check PPU memory)</p>
+
+<p><strong>Syntax</strong>: <code>&lt;condition&gt;[name - text], [conditionType - text], [memory address 1 - hex], [operator - string], [memory address 2 - hex], [mask - hex (optional)]</code><br>
+<strong>Supported operators</strong>: <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code><br>
+<strong>Example</strong>: <code>&lt;condition&gt;myCondition,memoryCheck,8FFF,&gt;,8000</code> (If the value stored at $8FFF is greater than the value stored at $8000, the condition will be true)<br>
+<strong>Example (with mask)</strong>: <code>&lt;condition&gt;myCondition,memoryCheck,8FFF,==,8000,10</code> (If the bit 4 of the value stored at $8FFF is equal to bit 4 of the value at $8000, the condition will be true.  i.e: <code>([$8FFF] &amp; $10) == ([$8000] &amp; $10)</code>)</p>
+<br>
+<h3 id="memorycheckconstant-ppumemorycheckconstant">memoryCheckConstant / ppuMemoryCheckConstant</h3>
+
+<p>The memoryCheck and ppuMemoryCheck conditions are used to compare the value stored at a memory address with a constant.  (Use the <code>ppuMemoryCheckConstant</code> variant to check PPU memory)</p>
+
+<p><strong>Syntax</strong>: <code>&lt;condition&gt;[name - text], [conditionType - text], [memory address - hex], [operator - string], [constant - hex], [mask - hex (optional)]</code><br>
+<strong>Supported operators</strong>: <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code><br>
+<strong>Example</strong>: <code>&lt;condition&gt;myCondition,memoryCheckConstant,8FFF,==,3F</code> (If the value stored at $8FFF is equal to $3F, the condition will be true)<br>
+<strong>Example (with mask)</strong>: <code>&lt;condition&gt;myCondition,memoryCheckConstant,8FFF,==,1F,3F</code> (If the value stored at $8FFF ANDed with $3F is equal to $1F then the condition will be true. i.e: <code>([$8FFF] &amp; $3F) == $1F</code>)</p>
+<br>
+<h3 id="framerange">frameRange</h3>
+
+<p>The frameRange conditions can be used to conditionally replace tiles based on the current frame number.
+The condition is true when the following expression is true:<br>
+<code>[current frame number] % [divisorValue] &gt;= [compareValue]</code></p>
+
+<p><strong>Syntax</strong>: <code>&lt;condition&gt;[name - text], frameRange, [divisorValue - integer], [compareValue - integer]</code><br>
+<strong>Example</strong>: <code>&lt;condition&gt;myCondition,frameRange,10,5</code> (This condition will be true for the last 5 frames out of every 10 frames)</p>
+
+<div class="accordion">
+
+  <div class="item">
+    <button class="accordion-btn">frameRange: Example</button>
+    <div class="panel">
+      <pre>
+      
+#5fps -Draw every 12th frame-
+&lt;condition&gt;5fpsAnimFrame00,frameRange,60,48
+&lt;condition&gt;5fpsAnimFrame01,frameRange,60,36
+&lt;condition&gt;5fpsAnimFrame02,frameRange,60,24
+&lt;condition&gt;5fpsAnimFrame03,frameRange,60,12
+&lt;condition&gt;5fpsAnimFrame04,frameRange,60,0
+
+[5fpsAnimFrame00]&lt;background&gt;Liquids\08-09_lava-frame00.png,1,1,1,10,0,0
+[5fpsAnimFrame01]&lt;background&gt;Liquids\08-09_lava-frame01.png,1,1,1,10,0,0
+[5fpsAnimFrame02]&lt;background&gt;Liquids\08-09_lava-frame02.png,1,1,1,10,0,0
+[5fpsAnimFrame03]&lt;background&gt;Liquids\08-09_lava-frame03.png,1,1,1,10,0,0
+[5fpsAnimFrame04]&lt;background&gt;Liquids\08-09_lava-frame04.png,1,1,1,10,0,0
+
+
+---
+
+4fps -Draw every 15th frame-
+&lt;condition&gt;4fpsAnimFrame00,frameRange,60,45
+&lt;condition&gt;4fpsAnimFrame01,frameRange,60,30
+&lt;condition&gt;4fpsAnimFrame02,frameRange,60,15
+&lt;condition&gt;4fpsAnimFrame03,frameRange,60,0
+
+[4fpsAnimFrame00]&lt;tile&gt;7,200,FF18362A,640,8,1,N
+[4fpsAnimFrame01]&lt;tile&gt;7,200,FF18362A,672,8,1,N
+[4fpsAnimFrame02]&lt;tile&gt;7,200,FF18362A,704,8,1,N
+[4fpsAnimFrame03]&lt;tile&gt;7,200,FF18362A,736,8,1,N
+
+      </pre>
+    </div>
+  </div>
+
+
+
+<br>
+<h3 id="spriteframerange">spriteFrameRange</h3>
+
+<p>The spriteFrameRange conditions can be used to conditionally replace sprite tiles based on the number of frames have passed since the sprite is visible on screen.
+The condition is true when the following expression is true:<br>
+<code>[number of frames have passed] % [divisorValue] &gt;= [compareValue]</code></p>
+
+<p><strong>Syntax</strong>: <code>&lt;condition&gt;[name - text], spriteFrameRange, [divisorValue - integer], [compareValue - integer]</code><br>
+<strong>Example</strong>: <code>&lt;condition&gt;myCondition,spriteFrameRange,8,10</code> (This condition will be true for the last 2 frames out of every 10 frames since the sprite is visible)</p>
+<br>
+<h3 id="randombackground">randomBackground</h3>
+
+<p>The randomBackground conditions can be used to randomly replace background tiles with a given probability.
+The condition is true when the following expression is true:<br>
+<code>[random number between 0 and 1 assigned to the tile] &lt;= [compareValue]</code></p>
+
+<p><strong>Syntax</strong>: <code>&lt;condition&gt;[name - text], randomBackground, [compareValue]</code><br>
+<strong>Example</strong>: <code>&lt;condition&gt;myCondition,randomBackground,0.1</code> (This condition will be true for 10% of the background tiles)</p>
+<br>
+<h3 id="lt-tile-gt-tag">&lt;tile&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;tile&gt;[img index - integer], [tile data], [palette data], [x - integer], [y - integer], [brightness - float (default: 1.0)], [default tile - Y or N]</code><br>
+<strong>Example (CHR ROM)</strong>: <code>&lt;tile&gt;0,2E,FF16360F,0,0,1,N</code><br>
+<strong>Example (CHR RAM)</strong>: <code>&lt;tile&gt;0,0E0E079C1E3EA7076101586121010000,0F100017,176,1168,1,N</code></p>
+
+<p>For CHR ROM games, <code>tile data</code> is an integer (in hexadecimal) representing the position of the original tile in CHR ROM.<br>
+For CHR RAM games, <code>tile data</code> is a 32-character hexadecimal string representing all 16 bytes of the tile.<br>
+<code>palette data</code> is always an 8-character hexadecimal string representing all 4 bytes of the palette used for the tile.  For sprites, the first byte is always &ldquo;FF&rdquo;.</p>
+
+<p><code>&lt;tile&gt;</code> define mappings between the original game&rsquo;s tile data and their replacements in the PNG file.
+The <code>tile data</code> and <code>palette data</code> are used to identify the original tile, while the <code>img index</code>, <code>x</code> and <code>y</code> fields are used to specify in which PNG file the replacement can be found, and at what x,y coordinates in that PNG file.</p>
+
+<p><code>brightness</code> can be used to reuse the same HD tile for multiple original tiles &ndash; this can be useful when a game has fade in and out effects (the brightness can be set to values above 1.0 to increase the PNG&rsquo;s normal brightness level).<br>
+When <code>default tile</code> is enabled (with <code>Y</code>), the tile is marked as the <code>default tile</code> for all palettes.  Whenever a tile appears on the screen that matches the tile data, but has no rules matching its palette data, the default tile will be used instead.</p>
+<br>
+<h3 id="lt-addition-gt-tag">&lt;addition&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;addition&gt;[tile data], [palette data], [distance x - integer], [distance y - integer], [additional tile data], [additional palette data], [default (pallet) - Y or N]</code><br>
+<strong>Example (CHR ROM)</strong>: <code>&lt;addition&gt;2E,FF16360F,12,-10,FF,FF000000,N</code><br>
+<strong>Example (CHR RAM)</strong>: <code>&lt;addition&gt;0E0E079C1E3EA7076101586121010000,0F100017,0,30,00000000000000000000000000000000,FF123456,N</code><br>
+
+
+<p>For CHR ROM games, <code>tile data</code> is an integer (in hexadecimal) representing the position of the original tile in CHR ROM.<br>
+For CHR RAM games, <code>tile data</code> is a 32-character hexadecimal string representing all 16 bytes of the tile.<br>
+<code>palette data</code> is always an 8-character hexadecimal string representing all 4 bytes of the palette used for the tile.  For sprites, the first byte is always &ldquo;FF&rdquo;.</p>
+
+<p><code>&lt;addition&gt;</code> define one additional tile to be shown when a matching sprite tile is found. The <code>distance x</code> and <code>distance y</code> parameters define where it will be shown. The <code>additional tile data</code> and <code>additional palette data</code> parameters define how the additional tile is identified. The tile can only be shown by using <code>&lt;tile&gt;</code> tag to specify the replacement.</p>
+<br>
+
+
+
+
+<h3 id="lt-fallback">&lt;fallback&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;fallback&gt;[new tile data], [fallback to tile data] </code> </p>
+
+
+<p>Using "&lt;fallback&gt;85E,25E" and "&lt;fallback&gt;>145E,25E" as an example, the "85E"  and "145E" are addresses that "fall back" onto the "25E" address.<br>
+This means that whenever the game encounters "145E" or "85E" the game will use the graphics specified for "25E" unless stated otherwise. <br>
+It's like a cross reference sheet, It's useful for some games that have duplicate graphics. ex: In Metroid, the missile graphic address is different depending on your location. <br>
+</p>
+
+
+
+<br>
+
+
+
+
+<h3 id="lt-background-gt-tag">&lt;background&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;background&gt;[name - text], [brightness level - float (default: 1.0)], [horizontal scroll ratio (optional) - float], [vertical scroll ratio (optional) - float], [priority level (optional) - int, 0 to 39 (default 10)], [image left offset (optional) - int], [image top offset (optional) - int]</code><br>
+<strong>Example</strong>: <code>&lt;background&gt;myBackground.png,1.0,0,0,10,0,0</code></p>
+
+<p><code>&lt;background&gt;</code> tags are meant to be used alongside conditions to add a background image under certain conditions (e.g on a specific screen, for example).</p>
+
+<p>The <code>Horizontal Scroll Ratio</code> and <code>Vertical Scroll Ratio</code> parameters are optional (their default value is <code>0.0</code>) and can be used to specify at what speed the background picture should scroll compared to the NES&rsquo; scrolling.<br>
+This can be used to create simple parallax scrolling effects.</p>
+
+<p>The <code>Image Left Offset</code> and <code>Image Top Offset</code> parameters are optional (their default value is <code>0</code>) and can be used to offset the position of the background image within the PNG file. e.g: Specifying 100 for the left offset will cause the background to be scrolled 100 pixels to the left by default.
+With conditions, this can be used to create scrolling effects that are based on something other than the PPU&rsquo;s current scroll offset.</p>
+
+<p>The <code>Priority Level</code> parameter determines where the background is inserted compared to the NES&rsquo; 3 &ldquo;layers&rdquo; (background sprites -&gt; background tiles -&gt; foreground sprites).<br>
+The screen is drawn in this order:</p>
+
+<ul>
+<li>Priority 0 to 9 HD backgrounds (priority 0 is below priority 1, etc.)</li>
+<li>Background-priority sprites</li>
+<li>Priority 10 to 19 HD backgrounds</li>
+<li>Background tiles</li>
+<li>Priority 20 to 29 HD backgrounds</li>
+<li>Foreground-priority sprites</li>
+<li>Priority 30 to 39 HD backgrounds</li>
+</ul>
+
+<p>Note: Only a single background can be active per priority level.</p>
+
+<p>Backgrounds can use a PNG&rsquo;s alpha channel to allow the graphics below to show through them (this can be used to add a fog effect to the screen, etc.)</p>
+<br>
+<h3 id="lt-options-gt-tag">&lt;options&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;options&gt;[option1 - text], [option2 - text], [...]</code><br>
+<strong>Example</strong>: <code>&lt;options&gt;disableSpriteLimit</code></p>
+
+<p><strong>Available options</strong>:<br><br>
+<code>disableSpriteLimit</code>: Forces the emulator to disable the sprite limit when the HD pack is loaded.<br> <br>
+<code>disableOriginalTiles</code>: Normally, when a replacement for a tile is not found, the original tile is drawn. When this option is enabled, the original tiles are never drawn, only their HD replacements.<br> <br>
+<code>automaticFallbackTiles</code>:  Mesen will try to automatically detect duplicate graphics. (also see <a href="#lt-fallback">&lt;fallback&gt;</a>)</p>
+
+
+<br>
+<h3 id="lt-bgm-gt-tag">&lt;bgm&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;bgm&gt;[album - integer],[track - integer],[filename - ogg],[loop point (optional) - integer],[playback option (optional) - integer],[volume (optional) - integer]</code><br>
+<strong>Example</strong>: <code>&lt;bgm&gt;0,0,myBgm.ogg</code><br>
+<strong>Example (with optional values)</strong>: <code>&lt;bgm&gt;0,0,myBgm.ogg,40000,1,-1</code></p>
+
+<p><code>Loop point</code>: The sample number in the ogg file where the track will loop back to.
+<code>Playback option</code>: Use 1 for looping playback, 0 for single playback, -1 for keeping the current value.
+<code>Volume</code>: Use 0 to 128 for changing the volume, -1 for keeping the current volume.</p>
+
+<p>Used to assign a background music track (<code>.ogg</code> audio file) to a specific album and track number.
+Album and track numbers are used to form a unique ID for each bgm, allowing up to 64k different bgm tracks.</p>
+<br>
+<h3 id="lt-sfx-gt-tag">&lt;sfx&gt; tag</h3>
+
+<p><strong>Syntax</strong>: <code>&lt;sfx&gt;[album - integer],[track - integer],[filename - ogg]</code><br>
+<strong>Example</strong>: <code>&lt;sfx&gt;0,0,myBgm.ogg</code></p>
+
+<p>Used to assign a sound effect (<code>.ogg</code> audio file) to a specific album and track number.
+Album and track numbers are used to form a unique ID for each sound effect, allowing up to 64k different sound effects.</p>
+<br>
+<h2 id="using-conditions">Using conditions</h2>
+
+<p>To use conditions, add the condition&rsquo;s name at the start of the line. e.g:<br>
+<code>[myConditionName]&lt;tile&gt;...</code></p>
+
+<p>Conditions can only be applied to <code>&lt;tile&gt;</code> or <code>&lt;background&gt;</code> tags. When a condition is applied to a <code>&lt;tile&gt;</code> or <code>&lt;background&gt;</code> tag, that rule will only be used if the condition is met.</p>
+
+<p>The first matching rule (in the order they are written in the <code>hires.txt</code> file) will be used. So conditional tiles MUST be placed before tiles with no conditions (for the same <code>tile data</code>+<code>palette data</code>) to have any effect.</p>
+
+<p>You can also make it so multiple conditions must be met for a rule to be used by joining each condition name with a &amp;:<br>
+<code>[cond1&amp;cond2]&lt;tile&gt;...</code></p>
+
+<p>It is also possible to invert the result of a condition by prepending a an exclamation mark (<code>!</code>) to it:<br>
+<code>[!myCondition]&lt;tile&gt;...</code></p>
+<br>
+<hr>
+<br>
+
+<h2 id="replacing-audio-in-games">Replacing audio in games</h2>
+<br>
+<p>Audio replacement in HD packs in Mesen works in a similar fashion to the MSU-1 for the SNES. <br> It adds a number of read/write registers in memory and they can be used to play OGG files specified via <code>&lt;bgm&gt;</code> and <code>&lt;sfx&gt;</code> tags.</p>
+
+<h3 id="register-APU">NES APU</h3>
+
+<table style="margin-left:0; margin-right:0; width:100%;">
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Channel / Use</th>
+      <th>Description / Bits</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr>
+      <td>$4000</td>
+      <td>Pulse 1</td>
+      <td>DDLC NNNN — Duty, loop envelope / disable length counter, constant volume / envelope period or volume.</td>
+    </tr>
+
+    <tr>
+      <td>$4001</td>
+      <td>Pulse 1</td>
+      <td>EPPP NSSS — Sweep: enable, period, negate, shift count.</td>
+    </tr>
+
+    <tr>
+      <td>$4002</td>
+      <td>Pulse 1</td>
+      <td>LLLL LLLL — Timer low bits.</td>
+    </tr>
+
+    <tr>
+      <td>$4003</td>
+      <td>Pulse 1</td>
+      <td>LLLL LHHH — Length counter load, timer high, resets duty and starts envelope.</td>
+    </tr>
+
+    <tr>
+      <td>$4004</td>
+      <td>Pulse 2</td>
+      <td>DDLC NNNN — Same control as $4000.</td>
+    </tr>
+
+    <tr>
+      <td>$4005</td>
+      <td>Pulse 2</td>
+      <td>EPPP NSSS — Sweep unit (same as $4001).</td>
+    </tr>
+
+    <tr>
+      <td>$4006</td>
+      <td>Pulse 2</td>
+      <td>LLLL LLLL — Timer low bits.</td>
+    </tr>
+
+    <tr>
+      <td>$4007</td>
+      <td>Pulse 2</td>
+      <td>LLLL LHHH — Length counter load, timer high, resets duty and starts envelope.</td>
+    </tr>
+
+    <tr>
+      <td>$4008</td>
+      <td>Triangle</td>
+      <td>CRRR RRRR — Length counter halt / linear counter control, linear counter reload value.</td>
+    </tr>
+
+    <tr>
+      <td>$400A</td>
+      <td>Triangle</td>
+      <td>LLLL LLLL — Timer low bits.</td>
+    </tr>
+
+    <tr>
+      <td>$400B</td>
+      <td>Triangle</td>
+      <td>LLLL LHHH — Length counter load, timer high, reloads linear counter.</td>
+    </tr>
+
+    <tr>
+      <td>$400C</td>
+      <td>Noise</td>
+      <td>--LC NNNN — Loop envelope / disable length counter, constant volume / envelope period or volume.</td>
+    </tr>
+
+    <tr>
+      <td>$400E</td>
+      <td>Noise</td>
+      <td>L--- PPPP — Loop noise mode, noise period.</td>
+    </tr>
+
+    <tr>
+      <td>$400F</td>
+      <td>Noise</td>
+      <td>LLLL L--- — Length counter load (starts envelope).</td>
+    </tr>
+
+    <tr>
+      <td>$4010</td>
+      <td>DMC</td>
+      <td>IL-- FFFF — IRQ enable, loop sample, frequency index.</td>
+    </tr>
+
+    <tr>
+      <td>$4011</td>
+      <td>DMC</td>
+      <td>-DDD DDDD — Direct load.</td>
+    </tr>
+
+    <tr>
+      <td>$4012</td>
+      <td>DMC</td>
+      <td>AAAA AAAA — Sample address (%11AAAAAA.AA000000).</td>
+    </tr>
+
+    <tr>
+      <td>$4013</td>
+      <td>DMC</td>
+      <td>LLLL LLLL — Sample length (%0000LLLL.LLLL0001).</td>
+    </tr>
+
+    <tr>
+      <td>$4015</td>
+      <td>Control / Status</td>
+      <td>
+        <b>Write:</b> ---D NT21 — Enables (DMC, Noise, Triangle, Pulse2, Pulse1).<br>
+        <b>Read:</b> IF-D NT21 — DMC IRQ, frame IRQ, length counter status.
+      </td>
+    </tr>
+
+    <tr>
+      <td>$4017</td>
+      <td>Frame Counter</td>
+      <td>SD-- ---- — Selects 4- or 5-step sequence, disables frame IRQ.</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="accordion">
+
+  <div class="item">
+    <button class="accordion-btn">$4015: Silence Original Audio</button>
+    <div class="panel">
+      <pre>
+      
+    ; SILENCE ALL NES AUDIO
+    
+    	        LDA #%00000000
+        	STA $4015     ; PUSH #%00000000 to $4015 (NES APU Control / Status)
+		                       ||||||||      
+				       |||||||+-- BIT 0 - DPCM IRQ (0=DISABLE / 1=ENABLE)
+				       ||||||+--- BIT 1 - Square 1 (0=DISABLE / 1=ENABLE)
+				       |||||+---- BIT 2 - Square 2 (0=DISABLE / 1=ENABLE)
+				       ||||+----- BIT 3 - Triangle (0=DISABLE / 1=ENABLE)
+				       |||+------ BIT 4 - Noise    (0=DISABLE / 1=ENABLE)
+				       ||+------- BIT 5 - DPCM     (0=DISABLE / 1=ENABLE)
+				       |+-------- BIT 6 - (unused - always 0)
+				       +--------- BIT 7 - (unused - always 0)
+				            
+$4015 is the APU Channel Enable Register on the NES.
+It turns ON/OFF each audio channel:
+
+Square 1
+Square 2
+Triangle
+Noise
+DPCM (sample channel)
+
+When a bit = 1 → channel ON
+When a bit = 0 → channel OFF / force silent
+
+It is write-only, but can be read to check DPCM / IRQ status.
+
+WRITE TO $4015 (mute or enable channels)
+bit 7 --- unused (always 0)
+bit 6 --- unused (always 0)
+bit 5 --- DPCM enable
+bit 4 --- Noise enable
+bit 3 --- Triangle enable
+bit 2 --- Square 2 enable
+bit 1 --- Square 1 enable
+bit 0 --- DPCM IRQ enable (on write) / status flag on read
+
+✔ NES use for enabling channels:
+Bit	Hex Value	Channel	Common Use
+0	$01	DPCM IRQ	Rarely used
+1	$02	Square 1	Music melody, sometimes SFX
+2	$04	Square 2	Music harmony, sometimes SFX
+3	$08	Triangle	Bassline, Mario jumps, etc.
+4	$10	Noise	SFX (explosion, bump, etc.)
+5	$20	DPCM sample	Sample playback in cutscenes
+
+Bits 6–7 do nothing.
+				            
+      </pre>
+    </div>
+  </div>
+
+ <br>
+
+<h4 id="register-write-operations">(NEA) Register Write Operations:</h4>
+<br>
+<h3 id="4100-playback-options">$4100: Playback Options</h3>
+<p>This register allows you to set the BGM loop flag (bit 0) on or off.</p>
+<div class="accordion">
+
+  <div class="item">
+    <button class="accordion-btn">$4100: Loop ON/OFF</button>
+    <div class="panel">
+      <pre>
+      
+    ; NEA ENABLE LOOP BGM 
+		LDA #$01    ; LOOP ENABLE
+		STA $4100   ; PUSH 01(LOOP) to $4100
+		
+OR
+
+    ; NEA DISABLE LOOP BGM
+		LDA #$00    ; LOOP DISABLE
+		STA $4100   ; PUSH 00(NO LOOP) to $4100
+
+      </pre>
+    </div>
+  </div>
+
+<br>
+<h3 id="4101-playback-control">$4101: Playback Control</h3>
+
+<p>This register allows you to pause/resume or stop sounds.</p>
+<p><strong>Bit 0</strong>: When set, pauses/resumes the BGM track.<br>
+<strong>Bit 1</strong>: When set, the BGM track is stopped.<br>
+<strong>Bit 2</strong>: When set, all SFX tracks are stopped.</p>
+
+
+
+<div class="accordion">
+
+  <div class="item">
+    <button class="accordion-btn">$4101: Pause/Resume Audio</button>
+    <div class="panel">
+      <pre>
+      
+    ; NEA PAUSE
+		LDA #%00000001 ; PAUSE - STOP BGM
+		STA $4101      ; PUSH #%00000001 to $4101
+
+
+    ; NEA RESUME
+		LDA #%00000000 ; PAUSE - RESUME
+		STA $4101      ; PUSH #%00000000 to $4101
+		                      	     |||      
+					     ||+-- BIT 0 - When set, pauses/resumes the BGM track.
+					     |+--- BIT 1 - When set, the BGM track is stopped.
+				             +---- BIT 2 - When set, all SFX tracks are stopped.
+				             			
+      </pre>
+    </div>
+  </div>
+
+ <br>
+<h3 id="4102-bgm-volume">$4102: BGM Volume</h3>
+
+<p>Sets the current volume for the BGM tracks (0: Muted, 255: Maximum volume).<br>
+Setting this register affects the currently playing BGM track - this can be used for fade in/out effects.</p>
+<br>
+
+
+
+
+<h3 id="4103-sfx-volume">$4103: SFX Volume</h3>
+
+<p>Sets the current volume for the SFX tracks (0: Muted, 255: Maximum volume).<br>
+Setting this register affects all currently playing SFX - this can be used for fade in/out effects.</p>
+<br>
+<h3 id="4104-album-number">$4104: Album Number</h3>
+
+<p>Selects the current album (0 - 255).<br>
+This allows up to 65536 BGM and SFX tracks to be defined.<br>
+Writing to this register has no immediate effect - only subsequent writes to the <code>Play BGM Track</code> and <code>Play SFX Track</code> registers will be affected.</p>
+<br>
+<h3 id="4105-play-bgm-track">$4105: Play BGM Track</h3>
+
+<p>Starts playback of the specified BGM track from the specified album (based on the <code>Album Number</code> register).<br>
+Only a single BGM track can be playing at any given time.</p>
+<br>
+<h3 id="4106-play-sfx-track">$4106: Play SFX Track</h3>
+
+<p>Starts playback of the specified SFX track from the specified album (based on the <code>Album Number</code> register).<br>
+Any number of SFX tracks can be played at once.</p>
+<br>
+<h4 id="register-read-operations">Register Read Operations</h4>
+
+<h3 id="4100-status">$4100: Status</h3>
+
+<p>This register returns the current playback status.</p>
+
+<p><strong>Bit 0</strong>: Set when a BGM track is currently playing.<br>
+<strong>Bit 1</strong>: Set when at least one SFX track is currently playing.<br>
+<strong>Bit 2</strong>: Set if an error occurred (e.g the last play BGM/SFX failed because the specified Album+Track number combination was invalid)</p>
+<br>
+<h3 id="4101-revision-number">$4101: Revision Number</h3>
+
+<p>Returns the current revision of the HD Audio API.  This value is currently set to <code>1</code>.</p>
+<br>
+<h3 id="4102-4103-4104-signature">$4102/$4103/$4104: Signature</h3>
+
+<p>These registers return the ASCII string <code>NEA</code> (NES Enhanced Audio) - this can be used to detect whether or not the audio API is available.</p>
+<br>
+
+<hr>
+<br>
+<h3 id="CPUmem">CPU Memory MAP</h3>
+<pre>
+<code>
+CPU Memory Map
+$FFFA - $FFFF is where all of your interrupts are located such as NMI, RESET, and IRQ
+$8000 - $FFF9 is the PRG-ROM, which basically means it's where all of your programming data will be located in, 32K of it. Larger programs can perform bank switching to execute other code.
+$6000 - $7FFF even though it says SRAM, I personally call it WRAM because it's Work Ram.
+$4018 - $5FFF is the expansion ROM, which is for the expansion located on the bottom of the NES. These addresses are never used due to the fact that no expansion device was ever made for it!
+$4017 Controller 2 plus IRQ interrupts
+$4016 Controller 1
+$4015 APU Sound/Vertical Clock Signal Register
+$4014 Sprite DMA Register (Direct Memory Access)
+$4013 APU Delta Modulation Data Length Register
+$4012 APU Delta Modulation Address Register
+$4011 APU Delta Modulation D/A Register
+$4010 APU Delta Modulation Control Register
+$400F APU Noise Frequency Register 2
+$400E APU Noise Frequency Register 1
+$400D Not Used
+$400C APU Noise Control Register 1
+$400B APU Triangle Frequency Register 2
+$400A APU Triangle Frequency Register 1
+$4009 APU Triangle Control Register 2
+$4008 APU Triangle Control Register 1
+$4007 APU Pulse 2 Coarse Tune Register
+$4006 APU Pulse 2 Fine Tune Register
+$4005 APU Pulse 2 Ramp Control Register
+$4004 APU Pulse 2 Control Register
+$4003 APU Pulse 1 Coarse Tune (CT) Register
+$4002 APU Pulse 1 Fine Tune (FT) Register
+$4001 APU Pulse 1 Ramp Control Register
+$4000 APU Pulse 1 Control Register
+$2008 - $3FFF are mirrors of $2000-$2007 over and over again. Any data changed between $2000-$2007 will be copied in $2008-$3FFF and vice versa, hence the term "mirroring".
+$2007 VRAM I/O Register
+$2006 VRAM Address Register 2
+$2005 VRAM Address Register 1
+$2004 SPR-RAM I/O Register
+$2003 SPR-RAM Address Register
+$2002 PPU Status Register
+$2001 PPU Control Register 2
+$2000 PPU Control Register 1
+$0800 - $1FFF are mirrors of $0000-$07FF over and over again.
+$0300 - $07FF is RAM
+$0200 - $02FF is where your sprite data from your CHR file is stored. Note that more sprite data can be swapped using bank switching so you are not limited.
+$0100 - $01FF is the stack, and generally used for arrays I believe.
+$0000 - $00FF is known as the Zero Page. Generally, variables can be declared here.
+</code>
+</pre>
+<br>
+
+ <br>
+
+  <hr style="border:0;border-top:1px solid #111;width:60%;margin:30px auto;">
+
+  <p style="text-align:center;color:SteelBlue;font-size:0.9em;">
+    Based on official Mesen documentation. Styled for <b>Liquidz Retro Gaming</b>.
+  </p>
+<br>
+
+
+
+</section>
+<script>
+document.querySelectorAll(".accordion-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const panel = btn.nextElementSibling;
+
+        document.querySelectorAll(".accordion-btn").forEach(otherBtn => {
+            const otherPanel = otherBtn.nextElementSibling;
+
+            if (otherBtn !== btn) {
+                otherBtn.classList.remove("active");
+                otherPanel.style.display = "none";
+            }
+        });
+
+        const open = panel.style.display === "block";
+        if (open) {
+            panel.style.display = "none";
+            btn.classList.remove("active");
+        } else {
+            panel.style.display = "block";
+            btn.classList.add("active");
+        }
+    });
+});
+</script>
+</body>
+</html>
+

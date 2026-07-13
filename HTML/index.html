@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDnes Redirect</title>
+    <style>
+       
+
+    :root {
+            --bg-color: #05010a;
+            --neon-pink: #ff00ff;
+            --neon-cyan: #00ffff;
+            --neon-blue: #4d4dff;
+            --text-strong: #00CED1;
+            --accent: #ff00ff;
+            --accentX: #8a0c0c;
+            --link: #00ffff;
+            --link-visited: #00ffff;
+            --warning: #B22222;
+            --card: #0e0e0e;
+            --shadow: 0 8px 24px rgba(0,0,0,.45);
+            --radius: 10px;
+            --maxw: 1080px;
+            --panel: #111826;
+            --muted: #9aa7b2;
+            --accent2: #a78bfa;
+            --border: #263241;
+
+          }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: #fff;
+            font-family: -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+            
+            /* Retro Grid Background */
+            background-image: 
+                linear-gradient(rgba(255, 0, 255, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center bottom;
+        }
+
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: var(--link);
+    }
+
+    a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    a:active {
+      color: orange;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    h2 { margin: 12px 0 12px; font-size: 1.30rem; color: var(--accent2); }
+
+  .center {
+      text-align: center;
+    }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Disclaimer Section */
+        .disclaimer {
+            border: 3px solid var(--neon-cyan);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 15px var(--neon-cyan);
+        }
+
+        .disclaimer h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+        }
+
+        .disclaimer p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+        .close-btn:hover {
+      color: var(--accentX);
+      transform: scale(1.75) rotate(5deg);
+    }
+
+    table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+
+    .panel {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      margin-top: 20px;
+    }
+        /* Title */
+        .title {
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #fff;
+            text-shadow: 
+                2px 2px 0px var(--neon-blue),
+                -2px -2px 0px var(--neon-pink),
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink);
+            letter-spacing: 2px;
+        }
+
+        /* Game List Box */
+        .list-container {
+            border: 3px solid var(--neon-pink);
+            border-radius: 15px;
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 20px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 20px 0;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        /* Big Letters & Color Cycling */
+        .letter {
+            font-size: 4rem;
+            font-weight: 900;
+            width: 100px;
+            text-align: center;
+            border-right: 2px solid;
+            margin-right: 30px;
+            padding-right: 10px;
+            font-style: italic;
+        }
+
+        /* Auto-cycling neon colors for the A-Z letters */
+        .row:nth-child(6n+1) .letter { color: #fff; text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366; border-right-color: #ff3366; }
+        .row:nth-child(6n+2) .letter { color: #fff; text-shadow: 0 0 10px #33ccff, 0 0 20px #33ccff, 0 0 30px #33ccff; border-right-color: #33ccff; }
+        .row:nth-child(6n+3) .letter { color: #fff; text-shadow: 0 0 10px #ffff33, 0 0 20px #ffff33, 0 0 30px #ffff33; border-right-color: #ffff33; }
+        .row:nth-child(6n+4) .letter { color: #fff; text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33, 0 0 30px #33ff33; border-right-color: #33ff33; }
+        .row:nth-child(6n+5) .letter { color: #fff; text-shadow: 0 0 10px #ff33ff, 0 0 20px #ff33ff, 0 0 30px #ff33ff; border-right-color: #ff33ff; }
+        .row:nth-child(6n+6) .letter { color: #fff; text-shadow: 0 0 10px #ff9933, 0 0 20px #ff9933, 0 0 30px #ff9933; border-right-color: #ff9933; }
+
+        /* Game Links/Items */
+        .games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .game-item {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px var(--neon-cyan);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-item:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-cyan);
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title { font-size: 1.8rem; }
+            .row { flex-direction: column; text-align: center; }
+            .letter { border-right: none; border-bottom: 2px solid; margin: 0 auto 20px auto; padding-right: 0; padding-bottom: 10px; width: 100%; }
+            .games { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+
+<!-- The "5" below dictates the delay in seconds -->
+    <meta http-equiv="refresh" content="5; url=https://liquidzgit.github.io/nes-nea-audio-patch/">
+    <title>Redirecting...</title>
+
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="disclaimer">
+            <h2>IMPORTANT DISCLAIMER: GAME NOT INCLUDED, ONLY PATCH.</h2>
+            <p>You must own a legal copy of the original game.</p>
+            <br>
+            <p> NES NEA (Nintendo Enhanced Audio) ARE SAME AS SNES MSU-1 <br>
+                NEA audio patch to replace audio in game with extrenal .ogg file <br>
+                Requires MESEN-2 Emulator.</p>
+        </div>
+
+        <h1 class="title">ERROR</h1>
+
+        <div class="list-container">
+              <div class="center">
+
+
+<section class="panel">
+  
+
+
+    <div class="center">
+<br>
+<br>
+<h2>LINK BROKEN</h2><br>
+<br>
+
+    <p>Redirecting to <a href="https://liquidzgit.github.io/nes-nea-audio-patch/">https://liquidzgit.github.io/nes-nea-audio-patch/</a>...</p>
+    <p>If you are not redirected automatically, please click the link above.</p>
+
+<br>
+
+
+</div> 
+</section> 
+</body>
+</html>

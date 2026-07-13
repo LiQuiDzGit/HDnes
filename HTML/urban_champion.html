@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NES NEA AUDIO PATCH</title>
+    <style>
+       
+
+    :root {
+            --bg-color: #05010a;
+            --neon-pink: #ff00ff;
+            --neon-cyan: #00ffff;
+            --neon-blue: #4d4dff;
+      
+            --text-strong: #00CED1;
+            --accent: #ff00ff;
+            --accentX: #8a0c0c;
+            --link: #00ffff;
+            --link-visited: #00ffff;
+            --warning: #B22222;
+            --card: #0e0e0e;
+            --shadow: 0 8px 24px rgba(0,0,0,.45);
+            --radius: 10px;
+            --maxw: 1080px;
+            --panel: #111826;
+            --muted: #9aa7b2;
+            --accent2: #a78bfa;
+            --border: #263241;
+
+          }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: #fff;
+            font-family: -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+            
+            /* Retro Grid Background */
+            background-image: 
+                linear-gradient(rgba(255, 0, 255, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center bottom;
+        }
+
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: var(--link);
+    }
+
+    a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    a:active {
+      color: orange;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    h2 { margin: 12px 0 12px; font-size: 1.30rem; color: var(--accent2); }
+
+  .center {
+      text-align: center;
+    }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Disclaimer Section */
+        .disclaimer {
+            border: 3px solid var(--neon-cyan);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 15px var(--neon-cyan);
+        }
+
+        .disclaimer h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+        }
+
+        .disclaimer p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+        .close-btn:hover {
+      color: var(--accentX);
+      transform: scale(1.75) rotate(5deg);
+    }
+
+    table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+
+    .panel {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      margin-top: 20px;
+    }
+        /* Title */
+        .title {
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #fff;
+            text-shadow: 
+                2px 2px 0px var(--neon-blue),
+                -2px -2px 0px var(--neon-pink),
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink);
+            letter-spacing: 2px;
+        }
+
+        /* Game List Box */
+        .list-container {
+            border: 3px solid var(--neon-pink);
+            border-radius: 15px;
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 20px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 20px 0;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        /* Big Letters & Color Cycling */
+        .letter {
+            font-size: 4rem;
+            font-weight: 900;
+            width: 100px;
+            text-align: center;
+            border-right: 2px solid;
+            margin-right: 30px;
+            padding-right: 10px;
+            font-style: italic;
+        }
+
+        /* Auto-cycling neon colors for the A-Z letters */
+        .row:nth-child(6n+1) .letter { color: #fff; text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366; border-right-color: #ff3366; }
+        .row:nth-child(6n+2) .letter { color: #fff; text-shadow: 0 0 10px #33ccff, 0 0 20px #33ccff, 0 0 30px #33ccff; border-right-color: #33ccff; }
+        .row:nth-child(6n+3) .letter { color: #fff; text-shadow: 0 0 10px #ffff33, 0 0 20px #ffff33, 0 0 30px #ffff33; border-right-color: #ffff33; }
+        .row:nth-child(6n+4) .letter { color: #fff; text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33, 0 0 30px #33ff33; border-right-color: #33ff33; }
+        .row:nth-child(6n+5) .letter { color: #fff; text-shadow: 0 0 10px #ff33ff, 0 0 20px #ff33ff, 0 0 30px #ff33ff; border-right-color: #ff33ff; }
+        .row:nth-child(6n+6) .letter { color: #fff; text-shadow: 0 0 10px #ff9933, 0 0 20px #ff9933, 0 0 30px #ff9933; border-right-color: #ff9933; }
+
+        /* Game Links/Items */
+        .games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .game-item {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px var(--neon-cyan);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-item:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-cyan);
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title { font-size: 1.8rem; }
+            .row { flex-direction: column; text-align: center; }
+            .letter { border-right: none; border-bottom: 2px solid; margin: 0 auto 20px auto; padding-right: 0; padding-bottom: 10px; width: 100%; }
+            .games { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+
+
+
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="disclaimer">
+            <h2>IMPORTANT DISCLAIMER: GAME NOT INCLUDED, ONLY PATCH.</h2>
+            <p>You must own a legal copy of the original game.</p>
+            <br>
+            <p> NES NEA (Nintendo Enhanced Audio) ARE SAME AS SNES MSU-1 <br>
+                NEA audio patch to replace audio in game with extrenal .ogg file <br>
+                Requires MESEN-2 Emulator.</p>
+        </div>
+
+        <h1 class="title">Urban Champion</h1>
+
+        <div class="list-container">
+              <div class="center">
+
+
+<section class="panel">
+  <a href="../index.html" class="close-btn" style="float: right; font-size: 2.2rem; text-decoration: none;" title="Close - Return to HOME">✖</a>
+
+
+    <div class="center">
+   <img src="https://liquidzgit.github.io/nes-nea-audio-patch/HTML/IMG/urb_cha-img-2.webp" alt="IMAGE">
+ 
+ <h2> アーバンチャンピオン </h2>
+  <h3>Urban Champion</h3>
+
+      <p>
+        AUTHOR: LiQuiDz <br>
+        DATE: 2026 <br>
+      </p>
+    <div class="center">
+   <img src="https://liquidzgit.github.io/nes-nea-audio-patch/HTML/IMG//urb_cha-img-1.gif" alt="IMAGE">
+   <br>
+   <br>
+
+<div id="download" class="accordion-content">
+
+   <table border="1" cellpadding="4" cellspacing="0">
+  <thead>
+    <tr>
+      <th>FILENAME</th>
+      <th>DOWNLOAD</th>
+      <th>DETAILS</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr><td>NEA-UrbanChampion.zip<br>Size: 1.3 KB</td><td><a href="https://liquidzgit.github.io/nes-nea-audio-patch/Urban_Champion/NEA-Urban_Champion.zip" target="_blank">DOWNLOAD</a>
+        <br> Host: GitHub </td> <td>BPS Patch + hires.txt<br> By: LiQuiDz</td></tr>
+
+    <tr><td>Audio-UrbanChampionJazz.zip<br>Size: 2.0 MB</td><td>Host1: <a href="https://mega.nz/file/AABgXRSL#lZTKl7xuxgPAhU9MOcbO1jX9yOnOYsuGHajqWIar2Z4" target="_blank">MEGA</a>
+        <br>Host2: <a href="https://drive.google.com/file/d/1wgfVlXyefHR1yl4A893l7wfXKvXjzlyn/view?usp=sharing" target="_blank">GoogleDrive</a></td><td><b>Audio Pack #1:</b> <br>Jazzy Brass Remix</td></tr>
+
+    <tr><td>Audio-UrbanChampionGangster.zip<br>Size: 5.4 MB</td><td>Host1: <a href="https://mega.nz/file/9cBVGLIL#6qsetbhz4mQfKo1RdcjRwmZZLW2e0HMvNOLuyMQJCgc" target="_blank">MEGA</a>
+        <br> Host2: <a href="https://drive.google.com/file/d/1O5idXatE_wrnK9A-R2-C-PiVQEgtpBmn/view?usp=sharing" target="_blank">GoogleDrive</a> </td><td><b>Audio Pack #2:</b> <br>Gangster Beat</td></tr>
+
+  </tbody>
+</table>
+
+</div>
+
+     
+<p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
+ <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Urban Champion (World) <br> File CRC32: 770CDAA / E64B806E <br> SHA-1: 26623B69661011AF701B5BEB23C37F9BF80D52F1 
+  <br> SHA-1: D130CB806B16094EDD0EA93D3C418F5AC77EBA6E </p>
+
+
+
+<table id="audioTable" border="1" cellpadding="4" cellspacing="0">
+
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Album</th>
+      <th>Track</th>
+      <th>File (suggested)</th>
+      <th>Detail</th>
+            <th>Original<br>NES</th>
+            <th>Pack #1<br>Jazzy</th>
+            <th>Pack #2<br>Gangster</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr><td>SFX</td><td>000</td><td>002</td><td>snd_00-02-swing.ogg</td><td>Swing attack</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_00-02_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-02-swing.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-02-swing.ogg')">▶ Play</button></td></tr>
+    
+
+<tr><td>SFX</td><td>000</td><td>004</td><td>snd_00-04-walk.ogg</td><td>Walk step</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_00-04_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-04-walk.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-04-walk.ogg')">▶ Play</button></td></tr>
+
+
+<tr><td>SFX</td><td>000</td><td>008<br>010</td><td>snd_00-08-block.ogg</td><td>Block impact</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_00-10_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-10-block.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-10-block.ogg')">▶ Play</button></td></tr>
+
+
+<tr><td>SFX</td><td>000</td><td>016</td><td>snd_00-16-punch.ogg</td><td>Punch</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_00-16_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-16-punch.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-16-punch.ogg')">▶ Play</button></td></tr>
+    
+
+<tr><td>SFX</td><td>000</td><td>032</td><td>snd_00-32-block.ogg</td><td>Blocking</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_00-32_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-32-block.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-32-block.ogg')">▶ Play</button></td></tr>
+
+
+<tr><td>SFX</td><td>000</td><td>064</td><td>snd_00-64-punch.ogg</td><td>Heavy punch</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_00-64_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-64-punch.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-64-punch.ogg')">▶ Play</button></td></tr>
+
+
+<tr><td>SFX</td><td>000</td><td>080</td><td>snd_00-80-heli.ogg</td><td>Helicopter <i>(Extra SFX)</i></td>
+    <td><i>(None)</i></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-80-heli.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-80-heli.ogg')">▶ Play</button></td></tr>
+
+
+
+
+ <tr><td>SFX</td><td>000</td><td>128<br>160<br>192</td><td>snd_00-128-punch.ogg</td><td>Strong punch</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_00-128_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-128-punch.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_00-128-punch.ogg')">▶ Play</button></td></tr>
+
+
+<tr><td>SFX</td><td>001</td><td>001</td><td>snd_01-01-fall.ogg</td><td>Fall</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_01-01_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-01-fall.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-01-fall.ogg')">▶ Play</button></td></tr>
+
+ 
+  <tr><td>SFX</td><td>001</td><td>004</td><td>snd_01-04-police.ogg</td><td>Police siren</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_01-04_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-04-police.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-04-police.ogg')">▶ Play</button></td></tr>    
+ 
+
+
+
+
+<tr><td>SFX</td><td>001</td><td>016</td><td>snd_01-16-ground.ogg</td><td>Ground hit</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_01-16_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-16-ground.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-16-ground.ogg')">▶ Play</button></td></tr>  
+
+
+<tr><td>SFX</td><td>001</td><td>032</td><td>snd_01-32-brokenvase.ogg</td><td>Vase breaking</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_01-32_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-32-brokenvase.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-32-brokenvase.ogg')">▶ Play</button></td></tr>  
+
+
+<tr><td>SFX</td><td>001</td><td>064<br>096</td><td>snd_01-64-vasehit.ogg</td><td>Vase hit</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_01-64_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-64-vasehit.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-64-vasehit.ogg')">▶ Play</button></td></tr>  
+
+
+<tr><td>SFX</td><td>001</td><td>128</td><td>snd_01-128-vasefall.ogg</td><td>Vase falling</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_01-128_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-128-vasefall.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_01-128-vasefall.ogg')">▶ Play</button></td></tr>  
+
+<tr><td>BGM</td><td>002</td><td>001</td><td>snd_02-01-pause.ogg</td><td>Pause music</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_02-01-pause_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_02-01-pause.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk2/snd_02-01-pause.ogg')">▶ Play</button></td></tr>  
+
+<tr><td>BGM</td><td>002</td><td>002<br>016<br>032</td><td>snd_02-02-intro.ogg</td><td>Intro music</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_02-02-intro_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_02-02-intro.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk2/snd_02-02-intro.ogg')">▶ Play</button></td></tr>  
+
+<tr><td>BGM</td><td>002</td><td>004</td><td>snd_02-04-intro.ogg</td><td>Intro variation</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_02-04-intro_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_02-04-intro.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk2/snd_02-02-intro.ogg')">▶ Play</button></td></tr> 
+
+<tr><td>BGM</td><td>002</td><td>008</td><td>snd_02-08-round.ogg</td><td>Round start music</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_02-08_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_02-08-round.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk2/snd_02-08-round.ogg')">▶ Play</button></td></tr>  
+
+
+
+<tr><td>BGM</td><td>002</td><td>064</td><td>snd_02-64-win.ogg</td><td>Victory music</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_02-64_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_02-64-win.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk2/snd_02-64-win.ogg')">▶ Play</button></td></tr>  
+
+
+<tr><td>BGM</td><td>002</td><td>128</td><td>snd_02-128-mainbgm.ogg</td><td>[LOOP]Main music</td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/org/snd_02-128_org.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk1/snd_02-128-mainbgm.ogg')">▶ Play</button></td>
+    <td><button onclick="toggleAudio(this, 'https://hdnes.com/urb.cha/pk2/snd_02-128-mainbgm.ogg')">▶ Play</button></td></tr>  
+
+
+</tbody>
+</table>
+
+
+
+<p style="text-align: left;"> 
+<br>
+<br>
+HIRES.TXT:</p>
+<pre style="text-align: left;"> 
+&lt;ver>106                                                                 ; VERSION 106-109 = MESEN-2
+&lt;patch>NEA-UrbanChampion0.bps,D130CB806B16094EDD0EA93D3C418F5AC77EBA6E   ; NEA Patch for Game  
+&lt;patch>NEA-UrbanChampion1.bps,26623B69661011AF701B5BEB23C37F9BF80D52F1   ; NEA Patch for Game
+&lt;sfx>0,002,snd_00-02-swing.ogg
+&lt;sfx>0,004,snd_00-04-walk.ogg
+&lt;sfx>0,008,snd_00-10-block.ogg
+&lt;sfx>0,010,snd_00-10-block.ogg
+&lt;sfx>0,016,snd_00-16-punch.ogg
+&lt;sfx>0,032,snd_00-32-block.ogg
+&lt;sfx>0,064,snd_00-64-punch.ogg
+&lt;sfx>0,080,snd_00-80-heli.ogg
+&lt;sfx>0,128,snd_00-128-punch.ogg
+&lt;sfx>0,160,snd_00-128-punch.ogg
+&lt;sfx>0,192,snd_00-128-punch.ogg
+&lt;sfx>1,001,snd_01-01-fall.ogg
+&lt;sfx>1,004,snd_01-04-police.ogg
+&lt;sfx>1,008,snd_01-08.ogg
+&lt;sfx>1,016,snd_01-16-ground.ogg
+&lt;sfx>1,032,snd_01-32-brokenvase.ogg
+&lt;sfx>1,064,snd_01-64-vasehit.ogg
+&lt;sfx>1,096,snd_01-64-vasehit.ogg
+&lt;sfx>1,128,snd_01-128-vasefall.ogg
+&lt;bgm>2,001,snd_02-01-pause.ogg
+&lt;bgm>2,002,snd_02-02-intro.ogg
+&lt;bgm>2,004,snd_02-04-intro.ogg
+&lt;bgm>2,008,snd_02-08-round.ogg
+&lt;bgm>2,016,snd_02-02-intro.ogg
+&lt;bgm>2,032,snd_02-02-intro.ogg
+&lt;bgm>2,064,snd_02-64-win.ogg
+&lt;bgm>2,128,snd_02-128-mainbgm.ogg
+  |  |  |  |
+  |  |  |  +---- File.ogg
+  |  |  +------- Track #
+  |  +---------- Album #
+  +------------- SFX/BGM
+
+
+
+</pre>      
+
+</div> </div> </section> </div> </div> </div>
+
+<script>
+
+let currentAudio = null;
+let currentButton = null;
+
+function toggleAudio(btn, src) {
+    // If clicking the same button that is currently playing, stop it
+    if (currentAudio && currentButton === btn) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        btn.innerHTML = '▶ Play';
+        currentAudio = null;
+        currentButton = null;
+    } else {
+        // If another audio is playing, stop it and reset its button
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            if (currentButton) currentButton.innerHTML = '▶ Play';
+        }
+        
+        // Start the new audio and change button text
+        currentAudio = new Audio(src);
+        currentButton = btn;
+        btn.innerHTML = '⏹ Stop';
+        currentAudio.play();
+        
+        // Revert the button text when the audio finishes naturally
+        currentAudio.onended = function() {
+            btn.innerHTML = '▶ Play';
+            currentButton = null;
+            currentAudio = null;
+        };
+    }
+}
+</script>
+</body>
+</html>
