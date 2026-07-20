@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Gaming Layout - Live Search Included</title>
+    <!-- Importing pixelated and retro fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-cyan: #00f0ff;
+            --neon-magenta: #ff007f;
+            --neon-green: #39ff14;
+            --neon-purple: #9d00ff;
+            --bg-color: #0b031a;
+            --grid-color: rgba(157, 0, 255, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            /* Retro 80s grid background effect */
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: #fff;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- 1. DISCLAIMER BOX --- */
+        .disclaimer-container {
+            border: 3px solid var(--neon-magenta);
+            box-shadow: 0 0 15px var(--neon-magenta), inset 0 0 10px var(--neon-magenta);
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(11, 3, 26, 0.8);
+        }
+
+        .disclaimer-title {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-cyan);
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            text-transform: uppercase;
+        }
+
+        .disclaimer-text {
+            font-size: 1.0rem;
+            line-height: 1.2;
+            color: #e0e0ff;
+            letter-spacing: 1px;
+        }
+
+        /* --- 2. MENU ITEMS --- */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+            list-style: none;
+        }
+
+        .nav-item a {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-item a:hover {
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.1);
+        }
+
+        /* --- 3. RETRO SEARCH BAR --- */
+        .search-container {
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(20, 5, 40, 0.9);
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Search Bar Hover/Focus visual changes */
+        .search-input:focus, .search-input:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px var(--neon-green);
+            background: rgba(25, 10, 55, 0.95);
+        }
+
+        /* Custom flashing placeholder text effect */
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+        }
+
+        /* --- 4. CONTENT BOXES (CLICKABLE) --- */
+        .content-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border-radius: 8px;
+            transition: transform 0.2s ease, opacity 0.3s ease;
+        }
+
+        .card {
+            border: 3px solid var(--neon-cyan);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+            border-radius: 8px;
+            background: rgba(20, 5, 40, 0.85);
+            padding: 20px;
+            display: flex;
+            gap: 25px;
+            position: relative;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Visual change on hover over the boxes (Neon Green) */
+        .card-link:hover {
+            transform: scale(1.02);
+        }
+
+        .card-link:hover .card {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 25px var(--neon-green), inset 0 0 10px rgba(57, 255, 20, 0.15);
+            background: rgba(15, 15, 45, 0.95);
+        }
+
+        .card-link:hover .card-title {
+            color: var(--neon-green);
+            text-shadow: 0 0 8px var(--neon-green);
+        }
+
+        .card-link:hover .card-img-wrapper {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 12px var(--neon-green);
+        }
+
+        .card-link:hover .card-info-badge {
+            color: var(--neon-magenta);
+            text-shadow: 0 0 5px var(--neon-magenta);
+        }
+
+        /* Image Placeholder styling */
+        .card-img-wrapper {
+            width: 140px;
+            height: 140px;
+            border: 2px solid var(--neon-magenta);
+            box-shadow: 0 0 8px var(--neon-magenta);
+            flex-shrink: 0;
+            background: #1a0033;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated; 
+        }
+
+        /* Info Content Layout */
+        .card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 140px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-family: 'Press Start 2P', cursive;
+            color: #fff;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .card-info-badge {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.75rem;
+            color: var(--neon-magenta);
+            text-shadow: 0 0 5px var(--neon-magenta);
+            transition: all 0.3s ease;
+        }
+
+        .card-description {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #ccd;
+            margin-bottom: 15px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .card-date {
+            font-size: 0.9rem;
+            color: var(--neon-cyan);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .card {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card-img-wrapper {
+                width: 100%;
+                height: 180px;
+            }
+            .card-content {
+                width: 100%;
+                min-height: auto;
+            }
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+        <!-- 1. Disclaimer Section -->
+    <div class="disclaimer-container">
+        <h1 class="disclaimer-title">Disclaimer</h1>
+        <p class="disclaimer-text">
+          This site does not host, share, or provide downloads of game ROMs, ISOs, <br> or any other copyrighted game files.<br>
+      <br>
+      All rights to original games, trademarks, and characters <br>remain the property of their respective copyright
+      holders. <br>No copyright infringement is intended.</p>
+    </div>
+
+
+        <!-- 2. Navigation Menu -->
+    <nav>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#home">Home</a></li>
+            <li class="nav-item"><a href="#games">Games</a></li>
+            <li class="nav-item"><a href="#about">Patcher</a></li>
+            <li class="nav-item"><a href="#about">Github</a></li>
+            <li class="nav-item"><a href="#scores">Wiki(Help)</a></li>
+        </ul>
+    </nav>
+
+    <!-- 3. Search Box Section -->
+    <div class="search-container">
+        <input type="text" id="arcadeSearch" class="search-input" placeholder="Type to search...">
+    </div>
+
+    <!-- 4. Dynamic Box Container -->
+    <div class="content-list" id="contentList">
+        
+
+
+<!-- 2026-02-28 Urban Champion -->     
+        <a href="HTML/urban_champion.html" class="card-link">
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="urban_champion.webp" alt="IMAGE">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h2 class="card-title">Urban Champion</h2>
+                        <span class="card-info-badge">NEA</span>
+                    </div>
+                    <p class="card-description">
+                        NEA Audio Patch <br>
+                        by LiQuiDz
+
+                    </p>
+                    <div class="card-footer">
+                        <span class="card-date">2026-02-28</span>
+                    </div>
+                </div>
+            </article>
+        </a>
+
+
+<!-- 2026-01-03 Yie Ar Kung Fu -->     
+        <a href="HTML/yie_ar-kung_fu.html" class="card-link">
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="yie_ar_kung_fu.webp" alt="IMAGE">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h2 class="card-title">Yie Ar Kung Fu</h2>
+                        <span class="card-info-badge">NEA</span>
+                    </div>
+                    <p class="card-description">
+                        NEA Audio Patch <br>
+                        by LiQuiDz
+
+                    </p>
+                    <div class="card-footer">
+                        <span class="card-date">2026-01-03</span>
+                    </div>
+                </div>
+            </article>
+        </a>
+
+
+
+<!-- 2025-11-02 GALAGA -->     
+        <a href="HTML/GALAGA" class="card-link">
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="galaga.webp" alt="IMAGE">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h2 class="card-title">Galaga</h2>
+                        <span class="card-info-badge">HDpack</span>
+                    </div>
+                    <p class="card-description">
+                        Galaga: Redraw by LiQuiDz <br> with upgraded sprite by KESTREL
+                    </p>
+                    <div class="card-footer">
+                        <span class="card-date">2025-11-02</span>
+                    </div>
+                </div>
+            </article>
+        </a>
+
+
+<!-- 2025-11-01 Road Fighter -->     
+        <a href="HTML/road_fighter.html" class="card-link">
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="road_fighter.webp" alt="IMAGE">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h2 class="card-title">Road Fighter</h2>
+                        <span class="card-info-badge">HDpack</span>
+                    </div>
+                    <p class="card-description">
+                        Road Fighter (Japan): by LiQuiDz <br> based on the HDpack from: AllanUr4
+                    </p>
+                    <div class="card-footer">
+                        <span class="card-date">2025-11-01</span>
+                    </div>
+                </div>
+            </article>
+        </a>
+
+
+
+<!-- 2023-10-02 POPEYE -->     
+        <a href="HTML/popeye" class="card-link">
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="popeye.webp" alt="IMAGE">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h2 class="card-title">Popeye</h2>
+                        <span class="card-info-badge">HDpack</span>
+                    </div>
+                    <p class="card-description">
+                        Popeye: Aracade by LiQuiDz<br>
+                        Game updated using Arcade Sprites <br>and other drawing by LiQuiDz
+
+                    </p>
+                    <div class="card-footer">
+                        <span class="card-date">2023-10-02</span>
+                    </div>
+                </div>
+            </article>
+        </a>
+
+
+
+
+    </div>
+
+    <!-- JavaScript Filter System -->
+    <script>
+        const searchInput = document.getElementById('arcadeSearch');
+        const cards = document.querySelectorAll('.card-link');
+
+        searchInput.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+
+            cards.forEach(card => {
+                // Extracts all plain text within the card element
+                const cardText = card.textContent.toLowerCase();
+                
+                if (cardText.includes(query)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
