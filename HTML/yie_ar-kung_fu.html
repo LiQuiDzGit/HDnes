@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NES NEA AUDIO PATCH</title>
     <style>
-       
-
-    :root {
+        :root {
             --bg-color: #05010a;
             --neon-pink: #ff00ff;
             --neon-cyan: #00ffff;
             --neon-blue: #4d4dff;
-      
             --text-strong: #00CED1;
             --accent: #ff00ff;
             --accentX: #8a0c0c;
@@ -27,8 +24,7 @@
             --muted: #9aa7b2;
             --accent2: #a78bfa;
             --border: #263241;
-
-          }
+        }
 
         body {
             margin: 0;
@@ -49,36 +45,36 @@
             background-position: center bottom;
         }
 
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
 
-    a {
-      color: var(--link);
-      text-decoration: none;
-    }
+        a:visited {
+            color: var(--link);
+        }
 
-    a:visited {
-      color: var(--link);
-    }
+        a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
 
-    a:hover {
-      color: var(--accent);
-      text-decoration: underline;
-    }
+        a:active {
+            color: orange;
+        }
 
-    a:active {
-      color: orange;
-    }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 6px;
-    }
+        h2 { margin: 12px 0 12px; font-size: 1.30rem; color: var(--accent2); }
 
-    h2 { margin: 12px 0 12px; font-size: 1.30rem; color: var(--accent2); }
-
-  .center {
-      text-align: center;
-    }
+        .center {
+            text-align: center;
+        }
+        
         .container {
             width: 90%;
             max-width: 1000px;
@@ -112,23 +108,25 @@
             color: var(--neon-cyan);
             text-shadow: 0 0 5px var(--neon-cyan);
         }
+        
         .close-btn:hover {
-      color: var(--accentX);
-      transform: scale(1.75) rotate(5deg);
-    }
+            color: var(--accentX);
+            transform: scale(1.75) rotate(5deg);
+        }
 
-    table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+        table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
 
-    .panel {
-      position: relative;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: var(--shadow);
-      margin-top: 20px;
-    }
+        .panel {
+            position: relative;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+        }
+        
         /* Title */
         .title {
             text-align: center;
@@ -214,218 +212,243 @@
             .letter { border-right: none; border-bottom: 2px solid; margin: 0 auto 20px auto; padding-right: 0; padding-bottom: 10px; width: 100%; }
             .games { grid-template-columns: 1fr; text-align: center; }
         }
+        
+        /* --- 1. DISCLAIMER BOX --- */
+        .disclaimer-container {
+            border: 3px solid var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto 30px auto; /* FIXED: Centers the disclaimer horizontally */
+            background: rgba(11, 3, 26, 0.8);
+        }
+
+        .disclaimer-title {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-cyan);
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            text-transform: uppercase;
+        }
+
+        .disclaimer-text {
+            font-size: 1.0rem;
+            line-height: 1.2;
+            color: #e0e0ff;
+            letter-spacing: 1px;
+        }
+
+        /* --- 2. MENU ITEMS --- */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+            list-style: none;
+            padding-left: 0; /* Ensures list centers perfectly */
+        }
+
+        .nav-item a {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-item a:hover {
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.1);
+        }
     </style>
-
-
-
 </head>
 <body>
 
-
+    <!-- ADDED: Wrap all content in the container class you already defined -->
     <div class="container">
-        <div class="disclaimer">
-            <h2>IMPORTANT DISCLAIMER: GAME NOT INCLUDED, ONLY PATCH.</h2>
-            <p>You must own a legal copy of the original game.</p>
-            <br>
-            <p> NES NEA (Nintendo Enhanced Audio) ARE SAME AS SNES MSU-1 <br>
-                NEA audio patch to replace audio in game with extrenal .ogg file <br>
-                Requires MESEN-2 Emulator.</p>
-        </div>
+
+        <!-- 1. Disclaimer Section -->
+        <div id="disclaimer-placeholder"></div>
+
+        <script>
+        fetch('disclaimer.html')
+            .then(response => response.text())
+            .then(data => {
+            document.getElementById('disclaimer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading the disclaimer:', error));
+        </script>
+
+        <!-- 2. Navigation Menu -->
+        <div id="navigation_menu-placeholder"></div>
+
+        <script>
+        fetch('navigation_menu.html')
+            .then(response => response.text())
+            .then(data => {
+            document.getElementById('navigation_menu-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading the menu:', error));
+        </script>
 
         <h1 class="title">Yie Ar Kung Fu</h1>
 
         <div class="list-container">
+            <section class="panel">
+                <a href="../index.html" class="close-btn" style="float: right; font-size: 2.2rem; text-decoration: none;" title="Close - Return to HOME">✖</a>
 
+                <div class="center">
+                    <div class="center">
+                        <img src="IMG/yie.ar.kung-fu.png" alt="IMAGE">
+                        <h2>イー・アル・カンフー</h2>
+                        <h3>Yie Ar Kung-Fu</h3>
 
- <section class="panel">
-  <a href="../index.html" class="close-btn" style="float: right; font-size: 2.2rem; text-decoration: none;" title="Close - Return to HOME">✖</a>
+                        <p>
+                            AUTHOR: LiQuiDz <br>
+                            DATE: 2026 <br>
+                        </p>
 
-              <div class="center">
+                        <div id="download" class="accordion-content">
+                            <table border="1" cellpadding="4" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>FILENAME</th>
+                                        <th>DOWNLOAD</th>
+                                        <th>DETAILS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>NEA-Yie.Ar.Kung-Fu.zip<br>Size: 9.7 KB</td>
+                                        <td><a href="http://liquidzgit.github.io/HDnes/Yie_Ar_Kung_Fu/NEA-Yie.Ar.Kung-Fu.zip" target="_blank">DOWNLOAD</a><br> Github </td>
+                                        <td>IPS Patch + hires.txt<br> By: LiQuiDz</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NEA_Audio1-Yie.Ar.Kung-Fu.zip<br>Size: 9.9 MB</td>
+                                        <td><a href="https://drive.google.com/file/d/11Bk47efl7bKRiKW4U9uSLgIFd_uFdvP5/view?usp=sharing" target="_blank">DOWNLOAD</a><br> GoogleDrive </td>
+                                        <td>Audio Pack #1: Remake Audio</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-<div class="center">
-   <img src="IMG/yie.ar.kung-fu.png" alt="IMAGE">
-  <h2>  イー・アル・カンフー </h2>
-        <h3>Yie Ar Kung-Fu</h3>
+                        <p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
+                        <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Yie Ar Kung-Fu (Japan) <br>-<br> File CRC32: D526208 <br> SHA-1: AFD2B46265E14AB87FBDDF054252FB2D4B5AD257 (Rev 1.4)<br>-
+                            <br> File CRC32: 41088D5E <br> SHA-1: D07BE428CF7D198453F4942F5288A05FD55720DC (Rev 1.4)<br>-
+                            <br> File CRC32: 4C6C2EBE <br> SHA-1: C24D3DB34F7EC1373DF0617ABDFAF9BA85172455  (Rev 1.2)
+                        </p>
+                        
+                        <table id="audioTable" border="1" cellpadding="4" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Album</th>
+                                    <th>Track</th>
+                                    <th>File (suggested)</th>
+                                    <th>Detail</th>
+                                    <th>Pack #1<br>HD SND</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>BGM</td><td>255</td><td>001</td><td>bgm-gong.ogg</td><td>Hit the Gong</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-gong.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>BGM</td><td>255</td><td>002</td><td>bgm-over.ogg</td><td>Game Over</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-over.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>BGM</td><td>255</td><td>007</td><td>bgm-bonus.ogg</td><td>Bonus</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-bonus.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>BGM</td><td>255</td><td>009</td><td>bgm-lost.ogg</td><td>You Lose</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-lost.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>BGM</td><td>255</td><td>010</td><td>bgm-win.ogg</td><td>You Win</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-win.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>BGM</td><td>255</td><td>101</td><td>bgm-main.ogg</td><td>Main Music</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-main.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>SFX</td><td>255</td><td>002<br>128</td><td>sfx-chain.ogg</td><td>Chains SFX</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-chain.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>SFX</td><td>255</td><td>003</td><td>sfx-kick2.ogg</td><td>Kick SFX #2</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-kick2.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>SFX</td><td>255</td><td>004</td><td>sfx-swing.ogg</td><td>Swing SFX #1</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-swing.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>SFX</td><td>255</td><td>005</td><td>sfx-swing2.ogg</td><td>Swing SFX #2</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-swing2.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>SFX</td><td>255</td><td>008</td><td>sfx-punch.ogg</td><td>Punch SFX</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-punch.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>SFX</td><td>255</td><td>009</td><td>sfx-gong.ogg</td><td>Gong SFX</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-gong.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>SFX</td><td>255</td><td>010<br>011<br>012</td><td>sfx-star.ogg</td><td>Star SFX</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-star.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>SFX</td><td>255</td><td>129</td><td>sfx-kick.ogg</td><td>Kick SFX</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-kick.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>SFX</td><td>255</td><td>151</td><td>sfx-pause.ogg</td><td>Pause</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-pause.mp3')">▶ Play</button></td></tr>
+                                
+                                <tr><td>SFX</td><td>195<br>197</td><td>001</td><td>sfx-hit.ogg</td><td>Hit SFX</td>
+                                    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-hit.mp3')">▶ Play</button></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div> <!-- Close container wrapper -->
 
- 
-      <p>
-        AUTHOR: LiQuiDz <br>
-        DATE: 2026 <br>
+    <script>
+    let currentAudio = null;
+    let currentButton = null;
 
-</p>
-    
-
-
-
-<div id="download" class="accordion-content">
-
- 
-<table border="1" cellpadding="4" cellspacing="0">
-  <thead>
-    <tr>
-      <th>FILENAME</th>
-      
-      <th>DOWNLOAD</th>
-      <th>DETAILS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>NEA-Yie.Ar.Kung-Fu.zip<br>Size: 9.7 KB</td><td><a href="http://liquidzgit.github.io/HDnes/Yie_Ar_Kung_Fu/NEA-Yie.Ar.Kung-Fu.zip" target="_blank">DOWNLOAD</a><br> Github </td><td>IPS Patch + hires.txt<br> By: LiQuiDz</td></tr>
-   <tr><td>NEA_Audio1-Yie.Ar.Kung-Fu.zip<br>Size: 9.9 MB</td><td><a href="https://drive.google.com/file/d/11Bk47efl7bKRiKW4U9uSLgIFd_uFdvP5/view?usp=sharing" target="_blank">DOWNLOAD</a><br> GoogleDrive </td><td>Audio Pack #1: Remake Audio</td></tr>
-   
- 
-  </tbody>
-</table>
-
-</div>
-
-<p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
- <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Yie Ar Kung-Fu (Japan) <br>-<br> File CRC32: D526208 <br> SHA-1: AFD2B46265E14AB87FBDDF054252FB2D4B5AD257 (Rev 1.4)<br>-
-                                                                                                                       <br> File CRC32: 41088D5E <br> SHA-1: D07BE428CF7D198453F4942F5288A05FD55720DC (Rev 1.4)<br>-
-                                                                                                                       <br> File CRC32: 4C6C2EBE <br> SHA-1: C24D3DB34F7EC1373DF0617ABDFAF9BA85172455  (Rev 1.2)</p>
-    
-
-<table id="audioTable" border="1" cellpadding="4" cellspacing="0">
-
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Album</th>
-      <th>Track</th>
-      <th>File (suggested)</th>
-      <th>Detail</th>
-            <th>Pack #1<br>HD SND</th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-
-<tr><td>BGM</td><td>255</td><td>001</td><td>bgm-gong.ogg</td><td>Hit the Gong</td>
-
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-gong.mp3')">▶ Play</button></td>
-    
-
-<tr><td>BGM</td><td>255</td><td>002</td><td>bgm-over.ogg</td><td>Game Over</td>
-
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-over.mp3')">▶ Play</button></td>
-    
-
-<tr><td>BGM</td><td>255</td><td>007</td><td>bgm-bonus.ogg</td><td>Bonus</td>
- 
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-bonus.mp3')">▶ Play</button></td>
-    
-
-<tr><td>BGM</td><td>255</td><td>009</td><td>bgm-lost.ogg</td><td>You Lose</td>
-    
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-lost.mp3')">▶ Play</button></td>
-    
-
-
-<tr><td>BGM</td><td>255</td><td>010</td><td>bgm-win.ogg</td><td>You Win</td>
-   
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-win.mp3')">▶ Play</button></td>
-    
-
-
-<tr><td>BGM</td><td>255</td><td>101</td><td>bgm-main.ogg</td><td>Main Music</td>
-
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/bgm-main.mp3')">▶ Play</button></td>
-    
-
-<tr><td>SFX</td><td>255</td><td>002<br>128</td><td>sfx-chain.ogg</td><td>Chains SFX</td>
-    
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-chain.mp3')">▶ Play</button></td>
-    
-
-<tr><td>SFX</td><td>255</td><td>003</td><td>sfx-kick2.ogg</td><td>Kick SFX #2</td>
-
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-kick2.mp3')">▶ Play</button></td>
-    
-
-<tr><td>SFX</td><td>255</td><td>004</td><td>sfx-swing.ogg</td><td>Swing SFX #1</td>
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-swing.mp3')">▶ Play</button></td>
-    
-
-<tr><td>SFX</td><td>255</td><td>005</td><td>sfx-swing2.ogg</td><td>Swing SFX #2</td>
-   
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-swing2.mp3')">▶ Play</button></td>
-    
-
-<tr><td>SFX</td><td>255</td><td>008</td><td>sfx-punch.ogg</td><td>Punch SFX</td>
-
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-punch.mp3')">▶ Play</button></td>
-    
-
-<tr><td>SFX</td><td>255</td><td>009</td><td>sfx-gong.ogg</td><td>Gong SFX</td>
-   
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-gong.mp3')">▶ Play</button></td>
-    
-
-<tr><td>SFX</td><td>255</td><td>010<br>011<br>012</td><td>sfx-star.ogg</td><td>Star SFX</td>
-
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-star.mp3')">▶ Play</button></td>
-    
-
-<tr><td>SFX</td><td>255</td><td>129</td><td>sfx-kick.ogg</td><td>Kick SFX</td>
-    
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-kick.mp3')">▶ Play</button></td>
-    
-
-<tr><td>SFX</td><td>255</td><td>151</td><td>sfx-pause.ogg</td><td>Pause</td>
-
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-pause.mp3')">▶ Play</button></td>
-    
-
-<tr><td>SFX</td><td>195<br>197</td><td>001</td><td>sfx-hit.ogg</td><td>Hit SFX</td>
-   
-    <td><button onclick="toggleAudio(this, 'https://hdnes.com/yie.ar.kf/pk1/sfx-hit.mp3')">▶ Play</button></td>
-    
-
-</tbody>
-</table>
-
-
-
-
-
-</div> </div> </section> </div> </div> </div>
-
-<script>
-
-let currentAudio = null;
-let currentButton = null;
-
-function toggleAudio(btn, src) {
-    // If clicking the same button that is currently playing, stop it
-    if (currentAudio && currentButton === btn) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        btn.innerHTML = '▶ Play';
-        currentAudio = null;
-        currentButton = null;
-    } else {
-        // If another audio is playing, stop it and reset its button
-        if (currentAudio) {
+    function toggleAudio(btn, src) {
+        // If clicking the same button that is currently playing, stop it
+        if (currentAudio && currentButton === btn) {
             currentAudio.pause();
             currentAudio.currentTime = 0;
-            if (currentButton) currentButton.innerHTML = '▶ Play';
-        }
-        
-        // Start the new audio and change button text
-        currentAudio = new Audio(src);
-        currentButton = btn;
-        btn.innerHTML = '⏹ Stop';
-        currentAudio.play();
-        
-        // Revert the button text when the audio finishes naturally
-        currentAudio.onended = function() {
             btn.innerHTML = '▶ Play';
-            currentButton = null;
             currentAudio = null;
-        };
+            currentButton = null;
+        } else {
+            // If another audio is playing, stop it and reset its button
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                if (currentButton) currentButton.innerHTML = '▶ Play';
+            }
+            
+            // Start the new audio and change button text
+            currentAudio = new Audio(src);
+            currentButton = btn;
+            btn.innerHTML = '⏹ Stop';
+            currentAudio.play();
+            
+            // Revert the button text when the audio finishes naturally
+            currentAudio.onended = function() {
+                btn.innerHTML = '▶ Play';
+                currentButton = null;
+                currentAudio = null;
+            };
+        }
     }
-}
-</script>
+    </script>
 </body>
 </html>
