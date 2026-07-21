@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -288,6 +289,22 @@
             box-shadow: 0 0 5px var(--neon-cyan);
         }
 
+        /* --- 6. CLOSE BUTTON --- */
+        .close-btn {
+            float: right;
+            font-size: 2.2rem;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block; /* Required for the scale transform to apply perfectly */
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: #ff3333; /* Red color */
+            transform: scale(1.3); /* Makes it 30% larger */
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); /* Adds a subtle red glow */
+        }
+
         @media (max-width: 600px) {
             .card {
                 flex-direction: column;
@@ -349,7 +366,7 @@
             <div class="card-content">
                 <div class="card-description">
                     
-                    <a href="../index.html" class="close-btn" style="float: right; font-size: 2.2rem; text-decoration: none;" title="Close - Return to HOME">✖</a>
+                    <a href="../index.html" class="close-btn" title="Close - Return to HOME">✖</a>
 
                     <div class="center">
                         <p><img src="IMG/galaga0.webp" alt="Galaga"><br></p>
@@ -373,11 +390,11 @@
                             <!-- Updated Image Sections -->
                             <div class="image-pair">
                                 <img src="IMG/Galaga1.webp" alt="Galaga 1">
-                                <img src="IMG/Galaga3.webp" alt="Galaga 2">
+                                <img src="IMG/Galaga2.webp" alt="Galaga 2">
                             </div>
                             
                             <div class="image-pair">
-                                <img src="IMG/Galaga2.webp" alt="Galaga 3">
+                                <img src="IMG/Galaga3.webp" alt="Galaga 3">
                                 <img src="IMG/Galaga4.webp" alt="Galaga 4">
                             </div>
                         </div>
