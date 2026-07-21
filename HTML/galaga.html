@@ -273,6 +273,21 @@
             letter-spacing: 1px;
         }
 
+        /* --- 5. IMAGE PAIR GRID --- */
+        .image-pair {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .image-pair img {
+            max-width: 48%; /* Ensures images fit side-by-side inside the container */
+            height: auto;
+            border: 1px solid var(--neon-cyan); /* Optional: Adds a retro border matching your theme */
+            box-shadow: 0 0 5px var(--neon-cyan);
+        }
+
         @media (max-width: 600px) {
             .card {
                 flex-direction: column;
@@ -290,43 +305,42 @@
                 flex-wrap: wrap;
                 gap: 10px;
             }
+            .image-pair {
+                flex-direction: column; /* Stacks images vertically on mobile */
+                align-items: center;
+            }
+            .image-pair img {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- 1. Disclaimer Section -->
-    <!-- Create a placeholder where the disclaimer will load -->
-<div id="disclaimer-placeholder"></div>
+    <div id="disclaimer-placeholder"></div>
 
-<script>
-  // Fetch the external HTML file
-  fetch('disclaimer.html')
-    .then(response => response.text())
-    .then(data => {
-      // Inject the fetched HTML into the placeholder
-      document.getElementById('disclaimer-placeholder').innerHTML = data;
-    })
-    .catch(error => console.error('Error loading the disclaimer:', error));
-</script>
+    <script>
+      fetch('disclaimer.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('disclaimer-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading the disclaimer:', error));
+    </script>
 
     <!-- 2. Navigation Menu -->
-    <!-- Create a placeholder where the disclaimer will load -->
-<div id="navigation_menu-placeholder"></div>
+    <div id="navigation_menu-placeholder"></div>
 
-<script>
-  // Fetch the external HTML file
-  fetch('navigation_menu.html')
-    .then(response => response.text())
-    .then(data => {
-      // Inject the fetched HTML into the placeholder
-      document.getElementById('navigation_menu-placeholder').innerHTML = data;
-    })
-    .catch(error => console.error('Error loading the disclaimer:', error));
-</script>
+    <script>
+      fetch('navigation_menu.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('navigation_menu-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading the menu:', error));
+    </script>
     
-    <!-- 3. Search box (removed) -->
-
     <!-- 4. Dynamic Box Container -->
     <div class="content-list" id="contentList">
 
@@ -335,55 +349,42 @@
             <div class="card-content">
                 <div class="card-description">
                     
+                    <a href="../index.html" class="close-btn" style="float: right; font-size: 2.2rem; text-decoration: none;" title="Close - Return to HOME">✖</a>
 
+                    <div class="center">
+                        <p><img src="IMG/galaga0.webp" alt="Galaga"><br></p>
+                        <h2>  ギャラガ </h2>
+                        <h3>Galaga</h3>
 
-  <a href="../index.html" class="close-btn" style="float: right; font-size: 2.2rem; text-decoration: none;" title="Close - Return to HOME">✖</a>
+                        <div class="center">
+                            <p>
+                                AUTHOR: LiQuiDz <br>
+                                DATE: 2025 <br>
+                                SCALE: 4x <br>
+                            </p>
 
+                            <a href="https://drive.google.com/file/d/1gK2h2z2fs4nsRTl3Zuw_IhXgazpGR6NR/view?usp=sharing"
+                               target="_blank"
+                               class="download-btn">[DOWNLOAD] - v1.0 - 2025.11.02</a>
 
+                            <p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
+                            <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Popeye (World) (Rev A) <br> File CRC32: FB1A91D0 <br> SHA-1: 53CA7541404E51C248D10FAB198154F9970479B9 </p>
 
-<div class="center">
-        <p><img src="IMG/galaga0.webp" alt="Galaga"><br></p>
-  <h2>  ギャラガ </h2>
-        <h3>Galaga</h3>
-
-<div class="center">
-
-
-      <p>
-        AUTHOR: LiQuiDz <br>
-        DATE: 2025 <br>
-        SCALE: 4x <br></p>
-
-
-
-        <a href="https://drive.google.com/file/d/1gK2h2z2fs4nsRTl3Zuw_IhXgazpGR6NR/view?usp=sharing"
-           target="_blank"
-           class="download-btn">[DOWNLOAD] - v1.0 - 2025.11.02</a>
-
-
- <p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
- <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Popeye (World) (Rev A) <br> File CRC32: FB1A91D0 <br> SHA-1: 53CA7541404E51C248D10FAB198154F9970479B9 </p>
-
-   <!-- Updated Image Sections -->
-      <div class="image-pair">
-        <img src="IMG/Galaga1.webp" alt="image">
-        <img src="IMG/Galaga3.webp" alt="image">
-      </div>
-      
-      <div class="image-pair">
-        <img src="IMG/Galaga2.webp" alt="image">
-        <img src="IMG/Galaga4.webp" alt="image">
-      </div>
-    </div>
-
-
-
-                    
+                            <!-- Updated Image Sections -->
+                            <div class="image-pair">
+                                <img src="IMG/Galaga1.webp" alt="Galaga 1">
+                                <img src="IMG/Galaga2.webp" alt="Galaga 2">
+                            </div>
+                            
+                            <div class="image-pair">
+                                <img src="IMG/Galaga3.webp" alt="Galaga 3">
+                                <img src="IMG/Galaga4.webp" alt="Galaga 4">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </article>
-
-        
 
     </div>
 </body>
