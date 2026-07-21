@@ -1,4 +1,3 @@
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -304,6 +303,21 @@
             color: #ff3333; /* Red color */
             transform: scale(1.3); /* Makes it 30% larger */
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); /* Adds a subtle red glow */
+        }
+
+        /* --- 7. UTILITY CENTERING & IMAGE SIZING --- */
+        .center {
+            text-align: center;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .center img {
+            display: block; /* Allows margin: 0 auto to work */
+            margin: 15px auto; /* Centers the image and adds vertical spacing */
+            width: 350px; /* Constrains the images to make them smaller */
+            max-width: 90%; /* Ensures they don't break the container on mobile */
+            height: auto; /* Maintains aspect ratio */
         }
 
         @media (max-width: 600px) {
