@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NES NEA AUDIO PATCH</title>
+            <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
        
 
@@ -214,6 +215,48 @@
             .letter { border-right: none; border-bottom: 2px solid; margin: 0 auto 20px auto; padding-right: 0; padding-bottom: 10px; width: 100%; }
             .games { grid-template-columns: 1fr; text-align: center; }
         }
+        /* Disclaimer Section */
+        .disclaimer {
+            border: 3px solid var(--neon-cyan);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 15px var(--neon-cyan);
+        }
+
+        .disclaimer h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+        }
+
+        .disclaimer p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+        
+        .close-btn:hover {
+            color: var(--accentX);
+            transform: scale(1.75) rotate(5deg);
+        }
+
+        table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+
+        .panel {
+            position: relative;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+        }
     </style>
 
 
@@ -222,18 +265,32 @@
 <body>
 
 
+       <!-- ADDED: Wrap all content in the container class you already defined -->
     <div class="container">
-        <div class="disclaimer">
-            <h2>IMPORTANT DISCLAIMER: GAME NOT INCLUDED, ONLY PATCH.</h2>
-            <p>You must own a legal copy of the original game.</p>
-            <br>
-            <p> NES NEA (Nintendo Enhanced Audio) ARE SAME AS SNES MSU-1 <br>
-                NEA audio patch to replace audio in game with extrenal .ogg file <br>
-                Requires MESEN-2 Emulator.</p>
-        </div>
 
-        <h1 class="title">Urban Champion</h1>
+        <!-- 1. Disclaimer Section -->
+        <div id="disclaimer-placeholder"></div>
 
+        <script>
+        fetch('disclaimer.html')
+            .then(response => response.text())
+            .then(data => {
+            document.getElementById('disclaimer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading the disclaimer:', error));
+        </script>
+
+        <!-- 2. Navigation Menu -->
+        <div id="navigation_menu-placeholder"></div>
+
+        <script>
+        fetch('navigation_menu.html')
+            .then(response => response.text())
+            .then(data => {
+            document.getElementById('navigation_menu-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading the menu:', error));
+        </script>
         <div class="list-container">
               <div class="center">
 
