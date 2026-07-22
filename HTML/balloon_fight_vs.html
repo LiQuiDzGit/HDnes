@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NES NEA AUDIO PATCH</title>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #05010a;
+            --neon-pink: #ff00ff;
+            --neon-cyan: #00ffff;
+            --neon-blue: #4d4dff;
+            --text-strong: #00CED1;
+            --accent: #ff00ff;
+            --accentX: #8a0c0c;
+            --link: #00ffff;
+            --link-visited: #00ffff;
+            --warning: #B22222;
+            --card: #0e0e0e;
+            --shadow: 0 8px 24px rgba(0,0,0,.45);
+            --radius: 10px;
+            --maxw: 1080px;
+            --panel: #111826;
+            --muted: #9aa7b2;
+            --accent2: #a78bfa;
+            --border: #263241;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: #fff;
+            font-family: -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+            
+            /* Retro Grid Background */
+            background-image: 
+                linear-gradient(rgba(255, 0, 255, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center bottom;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: var(--link);
+        }
+
+        a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: orange;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        h2 { margin: 12px 0 12px; font-size: 1.30rem; color: var(--accent2); }
+
+        .center {
+            text-align: center;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Disclaimer Section */
+        .disclaimer {
+            border: 3px solid var(--neon-cyan);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 15px var(--neon-cyan);
+        }
+
+        .disclaimer h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+        }
+
+        .disclaimer p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+        
+        .close-btn:hover {
+            color: var(--accentX);
+            transform: scale(1.75) rotate(5deg);
+        }
+
+        table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+
+        .panel {
+            position: relative;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+        }
+        
+        /* Title */
+        .title {
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #fff;
+            text-shadow: 
+                2px 2px 0px var(--neon-blue),
+                -2px -2px 0px var(--neon-pink),
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink);
+            letter-spacing: 2px;
+        }
+
+        /* Game List Box */
+        .list-container {
+            border: 3px solid var(--neon-cyan);
+            border-radius: 15px;
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 20px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 20px 0;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        /* Big Letters & Color Cycling */
+        .letter {
+            font-size: 4rem;
+            font-weight: 900;
+            width: 100px;
+            text-align: center;
+            border-right: 2px solid;
+            margin-right: 30px;
+            padding-right: 10px;
+            font-style: italic;
+        }
+
+        /* Auto-cycling neon colors for the A-Z letters */
+        .row:nth-child(6n+1) .letter { color: #fff; text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366; border-right-color: #ff3366; }
+        .row:nth-child(6n+2) .letter { color: #fff; text-shadow: 0 0 10px #33ccff, 0 0 20px #33ccff, 0 0 30px #33ccff; border-right-color: #33ccff; }
+        .row:nth-child(6n+3) .letter { color: #fff; text-shadow: 0 0 10px #ffff33, 0 0 20px #ffff33, 0 0 30px #ffff33; border-right-color: #ffff33; }
+        .row:nth-child(6n+4) .letter { color: #fff; text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33, 0 0 30px #33ff33; border-right-color: #33ff33; }
+        .row:nth-child(6n+5) .letter { color: #fff; text-shadow: 0 0 10px #ff33ff, 0 0 20px #ff33ff, 0 0 30px #ff33ff; border-right-color: #ff33ff; }
+        .row:nth-child(6n+6) .letter { color: #fff; text-shadow: 0 0 10px #ff9933, 0 0 20px #ff9933, 0 0 30px #ff9933; border-right-color: #ff9933; }
+
+        /* Game Links/Items */
+        .games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .game-item {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px var(--neon-cyan);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-item:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-cyan);
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title { font-size: 1.8rem; }
+            .row { flex-direction: column; text-align: center; }
+            .letter { border-right: none; border-bottom: 2px solid; margin: 0 auto 20px auto; padding-right: 0; padding-bottom: 10px; width: 100%; }
+            .games { grid-template-columns: 1fr; text-align: center; }
+        }
+        
+        /* --- 1. DISCLAIMER BOX --- */
+        .disclaimer-container {
+            border: 3px solid var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto 30px auto; /* FIXED: Centers the disclaimer horizontally */
+            background: rgba(11, 3, 26, 0.8);
+        }
+
+        .disclaimer-title {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-cyan);
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            text-transform: uppercase;
+        }
+
+        .disclaimer-text {
+            font-size: 1.0rem;
+            line-height: 1.2;
+            color: #e0e0ff;
+            letter-spacing: 1px;
+        }
+
+        /* --- 2. MENU ITEMS --- */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+            list-style: none;
+            padding-left: 0; /* Ensures list centers perfectly */
+        }
+
+        .nav-item a {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-item a:hover {
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ADDED: Wrap all content in the container class you already defined -->
+    <div class="container">
+
+        <!-- 1. Disclaimer Section -->
+        <div id="disclaimer-placeholder"></div>
+
+        <script>
+        fetch('disclaimer.html')
+            .then(response => response.text())
+            .then(data => {
+            document.getElementById('disclaimer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading the disclaimer:', error));
+        </script>
+
+        <!-- 2. Navigation Menu -->
+        <div id="navigation_menu-placeholder"></div>
+
+        <script>
+        fetch('navigation_menu.html')
+            .then(response => response.text())
+            .then(data => {
+            document.getElementById('navigation_menu-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading the menu:', error));
+        </script>
+
+
+        <div class="list-container">
+            <section class="panel">
+                <a href="../index.html" class="close-btn" style="float: right; font-size: 2.2rem; text-decoration: none;" title="Close - Return to HOME">✖</a>
+
+                <div class="center">
+                                            
+
+   <img src="1.webp" alt="IMAGE">
+  <h2>バルーンファイト</h2>
+   <h3>VS. Balloon Fight</h3>
+
+      <p>
+        AUTHOR: LiQuiDz <br>
+        DATE: 2026 <br>
+      </p>
+      <br>
+
+<p style="color: Gray; font-family: monospace; ">
+This Patch is based on the NES conversion of the VS. version By "mr287cc / tvoybro" <br>
+    <a href="https://www.romhacking.net/forum/index.php?topic=32573.0" target="_blank">romhacking.net/forum/index.php?topic=32573.0</a> <br>
+    </p>
+
+    <br>
+<p style="color: Gray; font-family: monospace;">
+This hack converts VS. Balloon Fight into a fully playable NES/Famicom version, <br> with additional enhancements by LiQuiDz. <br>
+<br>
+✦ NEA external audio support ✦<br>
+✦ Enhanced Color Palette ✦<br>
+✦ Free Play Mode ✦<br>
+✦ DIP Switch Menu now accessible via Select ✦<br>
+✦ Redesigned title screen and Added background elements ✦<br>
+</p>
+<br>
+  <div class="center">
+   <img src="2.webp" alt="IMAGE">
+   <br>
+
+<button class="accordion-btn" onclick="toggleDOWNLOAD()">DOWNLOAD</button>
+
+
+<div id="download" class="accordion-content">
+
+ 
+<table border="1" cellpadding="4" cellspacing="0">
+  <thead>
+    <tr>
+      <th>FILENAME</th>
+      
+      <th>DOWNLOAD</th>
+      <th>DETAILS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>NEA-IceClimberVS-v1.1.zip<br>Size: 24 KB</td><td><a href="https://liquidzretrogaming.net/forum/download/file.php?id=16" target="_blank">DOWNLOAD</a><br> Local </td><td>BPS Patch + hires.txt<br> By: LiQuiDz</td></tr>
+   <tr><td>AUDIO1-IceClimberVS.zip<br>Size: 2.3 MB</td><td><a href="https://drive.google.com/file/d/1HO2IO7ZZbMhjISReGwrjdtu2GxMENv4Z/view?usp=sharing" target="_blank">DOWNLOAD</a><br> GoogleDrive </td><td>Audio Pack #1: Super Famicom <br>By:Andrew Ambrose</td></tr>
+   
+ 
+  </tbody>
+</table>
+
+</div>
+
+
+     
+ <p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
+ <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> balonfgt_prg_8000.nes <br> File CRC32: 68734EA4 <br> SHA-1: 255299F8F91256AC4CDD3C9F5E30184251B50A9A </p>
+ <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Balloon Fight (USA).nes *<br> File CRC32: CB8FD7B2 <br> SHA-1: F5E4CD9F287A8233EEE35AD1881B2770D9F2C453 <br> *<i> Will be converted to VS. version</i></p>
+ 
+   
+ <p style="font-family: 'Courier New', Courier, monospace; font-size: 1.1em;">
+
+      No VS. version? No problem! Just use the USA NES version, <br>and the hack will convert it into the VS. version for you.
+
+</p>
+
+     
+  
+<p style="text-align: left;"> 
+
+HIRES.TXT:</p>
+
+<pre style="text-align: left;"> 
+&lt;ver>106
+
+<sfx>0,002,ogg/sfx00-02-pop.ogg
+<sfx>0,003,ogg/sfx00-03-popbuble.ogg
+<sfx>0,004,ogg/sfx00-04-lightning.ogg
+<sfx>0,008,ogg/sfx00-08-walk.ogg
+<sfx>0,016,ogg/sfx00-16-fly.ogg
+<sfx>0,018,ogg/sfx00-02-pop.ogg
+<bgm>0,032,ogg/sfx00-32-fall.ogg
+<bgm>0,064,ogg/sfx00-64-water.ogg
+<sfx>0,128,ogg/sfx00-128-lightning.ogg
+
+<sfx>1,001,ogg/sfx01-01.ogg
+<sfx>1,002,ogg/sfx01-02-bump.ogg
+<sfx>1,004,ogg/sfx01-moo2.ogg
+<sfx>1,018,ogg/sfx01-02-bump.ogg
+<sfx>1,020,ogg/sfx01-goat.ogg
+<sfx>1,036,ogg/sfx01-goat.ogg
+<sfx>1,050,ogg/sfx01-goat.ogg
+<sfx>1,064,ogg/sfx01-64.ogg
+<sfx>1,112,ogg/sfx01-goat.ogg
+<sfx>1,128,ogg/sfx01-128.ogg
+<sfx>1,144,ogg/sfx01-128.ogg
+<sfx>1,160,ogg/sfx01-128.ogg
+
+<sfx>2,001,ogg/sfx02-01-gameover.ogg
+<sfx>2,002,ogg/sfx02-02-winround.ogg
+<sfx>2,004,ogg/sfx02-04-loopbgm.ogg
+<sfx>2,008,ogg/sfx02-08-mainbgm.ogg
+<sfx>2,016,ogg/sfx02-16-jingle.ogg
+<sfx>2,032,ogg/sfx02-32-trip.ogg
+<sfx>2,064,ogg/sfx02-64-fishgrab.ogg
+<sfx>2,128,ogg/sfx02-128-restart.ogg
+
+<sfx>3,001,ogg/sfx03-01-moo.ogg
+<sfx>3,008,ogg/sfx03-08-scoreboard.ogg
+<sfx>3,064,ogg/sfx03-64-watersplash.ogg
+<sfx>3,096,ogg/sfx03-64-watersplash.ogg
+<sfx>3,128,ogg/sfx03-128-lightning.ogg
+
+<condition>bonus,tileAtPosition,24,16,190,0F160221
+<condition>title1,tileAtPosition,184,176,0317,0F0F160F
+<condition>title2,memoryCheckConstant,00C7,==,0
+<condition>gameon,memoryCheckConstant,0069,==,0B
+[title1&title2]<background>title2.png,1.0,0,0,39,0,0
+[title1]<background>title1.png,1.0,0,0,39,0,0
+[bonus]<background>bonus.png,0.2,0,0,19,0,0
+[gameon]<background>bg.png,0.3,0,1,19,0,0
+
+
+</pre>   
+
+
+</div> </div> </section> </div> </div> </div>
+
+<script>
+
+let currentAudio = null;
+let currentButton = null;
+
+function toggleAudio(btn, src) {
+    // If clicking the same button that is currently playing, stop it
+    if (currentAudio && currentButton === btn) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        btn.innerHTML = '▶ Play';
+        currentAudio = null;
+        currentButton = null;
+    } else {
+        // If another audio is playing, stop it and reset its button
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            if (currentButton) currentButton.innerHTML = '▶ Play';
+        }
+        
+        // Start the new audio and change button text
+        currentAudio = new Audio(src);
+        currentButton = btn;
+        btn.innerHTML = '⏹ Stop';
+        currentAudio.play();
+        
+        // Revert the button text when the audio finishes naturally
+        currentAudio.onended = function() {
+            btn.innerHTML = '▶ Play';
+            currentButton = null;
+            currentAudio = null;
+        };
+    }
+}
+</script>
+</body>
+</html>
