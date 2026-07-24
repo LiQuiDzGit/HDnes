@@ -1,4 +1,3 @@
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -284,9 +283,9 @@
         }
         
         .image-pair img {
-            max-width: 48%; /* Ensures images fit side-by-side inside the container */
+            max-width: 48%;
             height: auto;
-            border: 1px solid var(--neon-cyan); /* Optional: Adds a retro border matching your theme */
+            border: 1px solid var(--neon-cyan);
             box-shadow: 0 0 5px var(--neon-cyan);
         }
 
@@ -296,14 +295,29 @@
             font-size: 2.2rem;
             text-decoration: none;
             color: #fff;
-            display: inline-block; /* Required for the scale transform to apply perfectly */
+            display: inline-block;
             transition: all 0.2s ease;
         }
 
         .close-btn:hover {
-            color: #ff3333; /* Red color */
-            transform: scale(1.3); /* Makes it 30% larger */
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); /* Adds a subtle red glow */
+            color: #ff3333;
+            transform: scale(1.3);
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+        }
+
+        /* --- 7. UTILITIES & TABLE FIX --- */
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            text-align: center;
         }
 
         @media (max-width: 600px) {
@@ -324,7 +338,7 @@
                 gap: 10px;
             }
             .image-pair {
-                flex-direction: column; /* Stacks images vertically on mobile */
+                flex-direction: column;
                 align-items: center;
             }
             .image-pair img {
@@ -370,57 +384,51 @@
                     <a href="../index.html" class="close-btn" title="Close - Return to HOME">✖</a>
 
                     <div class="center">
-      <p><img src="IMG/ice_climberHD0.webp" alt="IMAGE"><br></p>
-<br>
-      <p style="font-family: Verdana, Geneva, sans-serif;">
-        AUTHOR: imkrut <br>
-        DATE: 2020 <br>
-        SCALE: 1x <br></p>
-     
-<br>
-
-
-
+                        <p><img src="IMG/ice_climberHD0.webp" alt="IMAGE"><br></p>
+                        <br>
+                        <p style="font-family: Verdana, Geneva, sans-serif;">
+                            AUTHOR: imkrut <br>
+                            DATE: 2020 <br>
+                            SCALE: 1x <br>
+                        </p>
+                        <br>
+                    </div>
 
                     <div class="center">
-   <table border="1" cellpadding="4" cellspacing="0">
-  <thead>
-    <tr>
-      <th>FILENAME</th>
-      <th>DOWNLOAD</th>
-      <th>DETAILS</th>
-    </tr>
-  </thead>
-    
-  <tbody>
-
-   
-   <tr><td>IceClimber(USA,Europe).zip<br>Size: 42 KB</td><td>Host1: <a href="https://www.dropbox.com/s/72zbedrmj3lkg4r/Ice%20Climber%20%28USA%2C%20Europe%29.zip?dl=0" target="_blank">DropBox</a>
-        <br>Host2: <a href="https://liquidzgit.github.io/HDnes/Ice_Climber/HDpack-IceClimber(USA,Europe).zip" target="_blank">Github</a></td><td><b>HD Pack </b> </td></tr>
-
-  </td></tr>
-
-  </tbody>
-</table>
-
-</div>
-
-
-
- <p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
- <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Ice Climber (USA, Europe, Korea) <br> File CRC32: 70044A74 <br> SHA-1: 09D97003BF9D676F24A75CF3E1DCED28CDA3BE59 </p>
-<br>    <p> Relevant Link: <a href="https://www.romhacking.net/forum/index.php?topic=30581" target="_blank">https://www.romhacking.net/forum/index.php?topic=30581</a></p>
-
-                            <!-- Updated Image Sections -->
-                            <div class="image-pair">
-                                <img src="IMG/ice_climberHD1.webp" alt="Galaga 1">
-                                <img src="IMG/ice_climberHD2.png" alt="Galaga 2">
-                            </div>
-                            <br>
-                  
-                            
-                        </div>
+                        <table border="1" cellpadding="4" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>FILENAME</th>
+                                    <th>DOWNLOAD</th>
+                                    <th>DETAILS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>IceClimber(USA,Europe).zip<br>Size: 42 KB</td>
+                                    <td>
+                                        Host1: <a href="https://www.dropbox.com/s/72zbedrmj3lkg4r/Ice%20Climber%20%28USA%2C%20Europe%29.zip?dl=0" target="_blank">DropBox</a>
+                                        <br>
+                                        Host2: <a href="https://liquidzgit.github.io/HDnes/Ice_Climber/HDpack-IceClimber(USA,Europe).zip" target="_blank">Github</a>
+                                    </td>
+                                    <td><b>HD Pack</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+
+                    <p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
+                    <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Ice Climber (USA, Europe, Korea) <br> File CRC32: 70044A74 <br> SHA-1: 09D97003BF9D676F24A75CF3E1DCED28CDA3BE59 </p>
+                    
+
+                    <!-- Updated Image Sections -->
+                    <div class="image-pair">
+                        <img src="IMG/ice_climberHD1.webp" alt="Galaga 1">
+                        <img src="IMG/ice_climberHD2.png" alt="Galaga 2">
+                    </div>
+                    <br>
+                  
+                    <p> Relevant Link: <a href="https://www.romhacking.net/forum/index.php?topic=30581" target="_blank">https://www.romhacking.net/forum/index.php?topic=30581</a></p>
                 </div>
             </div>
         </article>
