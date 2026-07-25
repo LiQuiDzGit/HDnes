@@ -1,9 +1,6 @@
 00F0 / 00F1 / 00F2 : ARE RESPONSIBLE FOR AUDIO
 
-
-
-FA2F  EA             NOP
-                   --------sub start--------
+-------------------------------------------------
                    $FA30:
 FA30  A9 C0          LDA #$C0
 FA32  8D 17 40       STA Ctrl2_FrameCtr_4017
@@ -42,7 +39,7 @@ FA74  85 F1          STA $F1
 FA76  85 F2          STA $F2
 FA78  8D 15 40       STA ApuStatus_4015
 FA7B  60             RTS
-                   ----------------
+                   
                    $FA7C:
 FA7C  A9 01          LDA #$01
 FA7E  8D 00 41       STA $4100
@@ -51,6 +48,5 @@ FA83  8D 04 41       STA $4104
 FA86  A5 F2          LDA $F2
 FA88  8D 05 41       STA $4105
 FA8B  4C 70 FA       JMP $FA70
-FA8E  EA             NOP
-FA8F  EA             NOP
+
 
