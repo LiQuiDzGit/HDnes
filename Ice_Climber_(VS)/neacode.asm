@@ -1,3 +1,7 @@
+Audio Variable
+$FB, $FC, $FE, $FF
+--------------------------
+
 $EDDD:
 EDDD  LDA #$00
 EDDF  STA $4104 = $00
