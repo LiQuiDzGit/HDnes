@@ -95,7 +95,7 @@
             background: rgba(0, 240, 255, 0.1);
         }
 
-        /* --- 3. RETRO SEARCH BAR --- */
+        /* --- 3. RETRO SEARCH BAR & SORTING --- */
         .search-container {
             max-width: 800px;
             width: 100%;
@@ -118,17 +118,51 @@
             transition: all 0.3s ease;
         }
 
-        /* Search Bar Hover/Focus visual changes */
         .search-input:focus, .search-input:hover {
             border-color: var(--neon-green);
             box-shadow: 0 0 20px var(--neon-green);
             background: rgba(25, 10, 55, 0.95);
         }
 
-        /* Custom flashing placeholder text effect */
         .search-input::placeholder {
             color: rgba(255, 255, 255, 0.4);
             text-transform: uppercase;
+        }
+
+        /* Sorting Controls */
+        .sort-controls {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 15px;
+            gap: 12px;
+        }
+
+        .sort-label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: #e0e0ff;
+            text-transform: uppercase;
+        }
+
+        .sort-btn {
+            background: rgba(20, 5, 40, 0.9);
+            border: 2px solid var(--neon-purple);
+            color: #fff;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .sort-btn:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+            color: var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.1);
         }
 
         /* --- 4. CONTENT BOXES (CLICKABLE) --- */
@@ -162,7 +196,6 @@
             cursor: pointer;
         }
 
-        /* Visual change on hover over the boxes (Neon Green) */
         .card-link:hover {
             transform: scale(1.02);
         }
@@ -188,7 +221,6 @@
             text-shadow: 0 0 5px var(--neon-magenta);
         }
 
-        /* Image Placeholder styling */
         .card-img-wrapper {
             width: 140px;
             height: 140px;
@@ -210,7 +242,6 @@
             image-rendering: pixelated; 
         }
 
-        /* Info Content Layout */
         .card-content {
             flex-grow: 1;
             display: flex;
@@ -262,7 +293,6 @@
             letter-spacing: 1px;
         }
 
-        /* Responsive design */
         @media (max-width: 600px) {
             .card {
                 flex-direction: column;
@@ -280,12 +310,15 @@
                 flex-wrap: wrap;
                 gap: 10px;
             }
+            .sort-controls {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 
-        <!-- 1. Disclaimer Section -->
+    <!-- 1. Disclaimer Section -->
     <div class="disclaimer-container">
         <h1 class="disclaimer-title">Disclaimer</h1>
         <p class="disclaimer-text">
@@ -295,8 +328,7 @@
       holders. <br>No copyright infringement is intended.</p>
     </div>
 
-
-        <!-- 2. Navigation Menu -->
+    <!-- 2. Navigation Menu -->
     <nav>
         <ul class="nav-menu">
             <li class="nav-item"><a href="HTML/news.html">Home</a></li>
@@ -307,17 +339,20 @@
         </ul>
     </nav>
 
-    <!-- 3. Search Box Section -->
+    <!-- 3. Search Box & Sorting Section -->
     <div class="search-container">
         <input type="text" id="arcadeSearch" class="search-input" placeholder="Type to search...">
+        <div class="sort-controls">
+            <span class="sort-label">Sort By:</span>
+            <button id="btnSortName" class="sort-btn">Names</button>
+            <button id="btnSortDate" class="sort-btn">Dates</button>
+        </div>
     </div>
 
     <!-- 4. Dynamic Box Container -->
     <div class="content-list" id="contentList">
         
-
-
-<!-- 2026-02-28 Urban Champion -->     
+        <!-- 2026-02-28 Urban Champion -->     
         <a href="HTML/urban_champion.html" class="card-link">
             <article class="card">
                 <div class="card-img-wrapper">
@@ -331,7 +366,6 @@
                     <p class="card-description">
                         NEA Audio Patch <br>
                         by: LiQuiDz
-
                     </p>
                     <div class="card-footer">
                         <span class="card-date">2026-02-28</span>
@@ -340,7 +374,7 @@
             </article>
         </a>
         
-<!-- 2026-01-29 Dr. Mario-->     
+        <!-- 2026-01-29 Dr. Mario-->     
         <a href="HTML/dr_mario.html" class="card-link">
             <article class="card">
                 <div class="card-img-wrapper">
@@ -354,8 +388,6 @@
                     <p class="card-description">
                         NEA Audio Patch <br>
                         by: LiQuiDz<br>
-                        
-
                     </p>
                     <div class="card-footer">
                         <span class="card-date">2026-01-29</span>
@@ -379,7 +411,6 @@
                         NEA Audio Patch by: LiQuiDz<br>
                         Soundtrack by: Andrew Ambrose <br>
                         VS. to NES conversion: Morgan Johansson
-
                     </p>
                     <div class="card-footer">
                         <span class="card-date">2026-01-26</span>
@@ -387,9 +418,6 @@
                 </div>
             </article>
         </a>
-        
-        
-        
         
         <!-- 2026-01-22 Ice Climber -->     
         <a href="HTML/ice_climber.html" class="card-link">
@@ -406,7 +434,6 @@
                         NEA Audio Patch <br>
                         by: LiQuiDz<br>
                         Soundtrack by: Andrew Ambrose
-
                     </p>
                     <div class="card-footer">
                         <span class="card-date">2026-01-22</span>
@@ -415,8 +442,7 @@
             </article>
         </a>
 
-
- <!-- 2026-01-19 Duck Hunt NEA -->     
+        <!-- 2026-01-19 Duck Hunt NEA -->     
         <a href="HTML/duck_hunt-NEA.html" class="card-link">
             <article class="card">
                 <div class="card-img-wrapper">
@@ -430,8 +456,6 @@
                     <p class="card-description">
                         NEA Audio Patch <br>
                         by: LiQuiDz<br>
-                        
-
                     </p>
                     <div class="card-footer">
                         <span class="card-date">2026-01-19</span>
@@ -439,10 +463,8 @@
                 </div>
             </article>
         </a>
-
-
         
-<!-- 2026-01-03 Yie Ar Kung Fu -->     
+        <!-- 2026-01-03 Yie Ar Kung Fu -->     
         <a href="HTML/yie_ar-kung_fu.html" class="card-link">
             <article class="card">
                 <div class="card-img-wrapper">
@@ -456,7 +478,6 @@
                     <p class="card-description">
                         NEA Audio Patch <br>
                         by: LiQuiDz
-
                     </p>
                     <div class="card-footer">
                         <span class="card-date">2026-01-03</span>
@@ -465,7 +486,7 @@
             </article>
         </a>
         
-<!-- 2025-12-03 MAPPY 4 -->     
+        <!-- 2025-12-03 MAPPY 4 -->     
         <a href="HTML/mappy4.html" class="card-link">
             <article class="card">
                 <div class="card-img-wrapper">
@@ -487,8 +508,7 @@
             </article>
         </a>
 
-
-<!-- 2025-11-02 GALAGA -->     
+        <!-- 2025-11-02 GALAGA -->     
         <a href="HTML/galaga.html" class="card-link">
             <article class="card">
                 <div class="card-img-wrapper">
@@ -509,8 +529,7 @@
             </article>
         </a>
 
-
-<!-- 2025-11-01 Road Fighter -->     
+        <!-- 2025-11-01 Road Fighter -->     
         <a href="HTML/road_fighter.html" class="card-link">
             <article class="card">
                 <div class="card-img-wrapper">
@@ -530,8 +549,6 @@
                 </div>
             </article>
         </a>
-
-
 
         <!-- 2025-03-05 Mario Bros 1 NEA Cubear -->     
         <a href="HTML/super_mario_1.html" class="card-link">
@@ -554,10 +571,7 @@
             </article>
         </a>
 
-
-        
-
-<!-- 2023-10-02 POPEYE -->     
+        <!-- 2023-10-02 POPEYE -->     
         <a href="HTML/popeye.html" class="card-link">
             <article class="card">
                 <div class="card-img-wrapper">
@@ -571,7 +585,6 @@
                     <p class="card-description">
                         Popeye: Aracade by LiQuiDz<br>
                         Game updated using Arcade Sprites <br>and other drawing by LiQuiDz
-
                     </p>
                     <div class="card-footer">
                         <span class="card-date">2023-10-02</span>
@@ -580,8 +593,7 @@
             </article>
         </a>
 
-
- <!-- 2021-06-05 Duck Hunt HD -->     
+        <!-- 2021-06-05 Duck Hunt HD -->     
         <a href="HTML/duck_hunt.html" class="card-link">
             <article class="card">
                 <div class="card-img-wrapper">
@@ -595,8 +607,6 @@
                     <p class="card-description">
                         HD Pack <br>
                         by: Aclectico, GBAGuy007<br>
-                        
-
                     </p>
                     <div class="card-footer">
                         <span class="card-date">2021-06-05</span>
@@ -605,8 +615,7 @@
             </article>
         </a>
 
-
-  <!-- 2020-05-01 Ice Climber -->     
+        <!-- 2020-05-01 Ice Climber -->     
         <a href="HTML/ice_climber-HD.html" class="card-link">
             <article class="card">
                 <div class="card-img-wrapper">
@@ -620,8 +629,6 @@
                     <p class="card-description">
                         HD pack <br>
                         by: imkrut<br>
-                        
-
                     </p>
                     <div class="card-footer">
                         <span class="card-date">2020-05-01</span>
@@ -630,23 +637,25 @@
             </article>
         </a>
 
-
-        
-
     </div>
 
-    <!-- JavaScript Filter System -->
+    <!-- JavaScript Filter and Sorting System -->
     <script>
         const searchInput = document.getElementById('arcadeSearch');
-        const cards = document.querySelectorAll('.card-link');
+        const contentList = document.getElementById('contentList');
+        // Initial node list of all cards
+        let cards = Array.from(document.querySelectorAll('.card-link')); 
+        
+        // Sorting State Trackers
+        let nameAscending = true;
+        let dateAscending = false;
 
+        // Search Filter Logic
         searchInput.addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase();
 
-            cards.forEach(card => {
-                // Extracts all plain text within the card element
+            document.querySelectorAll('.card-link').forEach(card => {
                 const cardText = card.textContent.toLowerCase();
-                
                 if (cardText.includes(query)) {
                     card.style.display = "block";
                 } else {
@@ -654,6 +663,36 @@
                 }
             });
         });
+
+        // Sorting Function
+        function sortCards(type) {
+            // Get live current cards in the list to sort
+            let currentCards = Array.from(document.querySelectorAll('.card-link'));
+
+            currentCards.sort((a, b) => {
+                if (type === 'name') {
+                    const nameA = a.querySelector('.card-title').textContent.trim().toLowerCase();
+                    const nameB = b.querySelector('.card-title').textContent.trim().toLowerCase();
+                    return nameAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+                } else if (type === 'date') {
+                    const dateA = new Date(a.querySelector('.card-date').textContent.trim());
+                    const dateB = new Date(b.querySelector('.card-date').textContent.trim());
+                    return dateAscending ? dateA - dateB : dateB - dateA;
+                }
+            });
+
+            // Toggle state for the next click
+            if (type === 'name') nameAscending = !nameAscending;
+            if (type === 'date') dateAscending = !dateAscending;
+
+            // Clear container and append newly sorted elements
+            contentList.innerHTML = '';
+            currentCards.forEach(card => contentList.appendChild(card));
+        }
+
+        // Button Event Listeners
+        document.getElementById('btnSortName').addEventListener('click', () => sortCards('name'));
+        document.getElementById('btnSortDate').addEventListener('click', () => sortCards('date'));
     </script>
 
 </body>
