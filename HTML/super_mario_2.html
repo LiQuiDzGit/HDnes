@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NES NEA AUDIO PATCH</title>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #05010a;
+            --neon-pink: #ff00ff;
+            --neon-cyan: #00ffff;
+            --neon-blue: #4d4dff;
+            --text-strong: #00CED1;
+            --accent: #ff00ff;
+            --accentX: #8a0c0c;
+            --link: #00ffff;
+            --link-visited: #00ffff;
+            --warning: #B22222;
+            --card: #0e0e0e;
+            --shadow: 0 8px 24px rgba(0,0,0,.45);
+            --radius: 10px;
+            --maxw: 1080px;
+            --panel: #111826;
+            --muted: #9aa7b2;
+            --accent2: #a78bfa;
+            --border: #263241;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: #fff;
+            font-family: -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+            
+            /* Retro Grid Background */
+            background-image: 
+                linear-gradient(rgba(255, 0, 255, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center bottom;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: var(--link);
+        }
+
+        a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: orange;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        h2 { margin: 12px 0 12px; font-size: 1.30rem; color: var(--accent2); }
+
+        .center {
+            text-align: center;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Disclaimer Section */
+        .disclaimer {
+            border: 3px solid var(--neon-cyan);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 15px var(--neon-cyan);
+        }
+
+        .disclaimer h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+        }
+
+        .disclaimer p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+        
+        .close-btn:hover {
+            color: var(--accentX);
+            transform: scale(1.75) rotate(5deg);
+        }
+
+        table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+
+        .panel {
+            position: relative;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+        }
+        
+        /* Title */
+        .title {
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #fff;
+            text-shadow: 
+                2px 2px 0px var(--neon-blue),
+                -2px -2px 0px var(--neon-pink),
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink);
+            letter-spacing: 2px;
+        }
+
+        /* Game List Box */
+        .list-container {
+            border: 3px solid var(--neon-cyan);
+            border-radius: 15px;
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 20px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 20px 0;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        /* Big Letters & Color Cycling */
+        .letter {
+            font-size: 4rem;
+            font-weight: 900;
+            width: 100px;
+            text-align: center;
+            border-right: 2px solid;
+            margin-right: 30px;
+            padding-right: 10px;
+            font-style: italic;
+        }
+
+        /* Auto-cycling neon colors for the A-Z letters */
+        .row:nth-child(6n+1) .letter { color: #fff; text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366; border-right-color: #ff3366; }
+        .row:nth-child(6n+2) .letter { color: #fff; text-shadow: 0 0 10px #33ccff, 0 0 20px #33ccff, 0 0 30px #33ccff; border-right-color: #33ccff; }
+        .row:nth-child(6n+3) .letter { color: #fff; text-shadow: 0 0 10px #ffff33, 0 0 20px #ffff33, 0 0 30px #ffff33; border-right-color: #ffff33; }
+        .row:nth-child(6n+4) .letter { color: #fff; text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33, 0 0 30px #33ff33; border-right-color: #33ff33; }
+        .row:nth-child(6n+5) .letter { color: #fff; text-shadow: 0 0 10px #ff33ff, 0 0 20px #ff33ff, 0 0 30px #ff33ff; border-right-color: #ff33ff; }
+        .row:nth-child(6n+6) .letter { color: #fff; text-shadow: 0 0 10px #ff9933, 0 0 20px #ff9933, 0 0 30px #ff9933; border-right-color: #ff9933; }
+
+        /* Game Links/Items */
+        .games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .game-item {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px var(--neon-cyan);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-item:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-cyan);
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title { font-size: 1.8rem; }
+            .row { flex-direction: column; text-align: center; }
+            .letter { border-right: none; border-bottom: 2px solid; margin: 0 auto 20px auto; padding-right: 0; padding-bottom: 10px; width: 100%; }
+            .games { grid-template-columns: 1fr; text-align: center; }
+        }
+        
+        /* --- 1. DISCLAIMER BOX --- */
+        .disclaimer-container {
+            border: 3px solid var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto 30px auto; /* FIXED: Centers the disclaimer horizontally */
+            background: rgba(11, 3, 26, 0.8);
+        }
+
+        .disclaimer-title {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-cyan);
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            text-transform: uppercase;
+        }
+
+        .disclaimer-text {
+            font-size: 1.0rem;
+            line-height: 1.2;
+            color: #e0e0ff;
+            letter-spacing: 1px;
+        }
+
+        /* --- 2. MENU ITEMS --- */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+            list-style: none;
+            padding-left: 0; /* Ensures list centers perfectly */
+        }
+
+        .nav-item a {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-item a:hover {
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ADDED: Wrap all content in the container class you already defined -->
+    <div class="container">
+
+        <!-- 1. Disclaimer Section -->
+        <div id="disclaimer-placeholder"></div>
+
+        <script>
+        fetch('disclaimer.html')
+            .then(response => response.text())
+            .then(data => {
+            document.getElementById('disclaimer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading the disclaimer:', error));
+        </script>
+
+        <!-- 2. Navigation Menu -->
+        <div id="navigation_menu-placeholder"></div>
+
+        <script>
+        fetch('navigation_menu.html')
+            .then(response => response.text())
+            .then(data => {
+            document.getElementById('navigation_menu-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading the menu:', error));
+        </script>
+
+
+        <div class="list-container">
+            <section class="panel">
+                <a href="../index.html" class="close-btn" style="float: right; font-size: 2.2rem; text-decoration: none;" title="Close - Return to HOME">✖</a>
+
+                <div class="center">
+
+   <img src="smb2.webp" alt="IMAGE">
+
+  <h2>Super Mario Bros. 2</h2>
+
+      <p>
+        AUTHOR: LiQuiDz <br>
+        DATE: 2026 <br>
+      </p>
+      
+
+
+
+<button class="accordion-btn" onclick="toggleDOWNLOAD()">DOWNLOAD</button>
+
+
+<div id="download" class="accordion-content">
+
+ 
+<table border="1" cellpadding="4" cellspacing="0">
+  <thead>
+    <tr>
+      <th>FILENAME</th>
+      
+      <th>DOWNLOAD</th>
+      <th>DETAILS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>NEA-smb2.zip<br>Size: 1.22 KB</td><td><a href="https://liquidzretrogaming.net/forum/download/file.php?id=22" target="_blank">DOWNLOAD</a><br> Host: Local </td><td>BPS Patch + hires.txt<br> By: LiQuiDz</td></tr>
+
+   <tr><td>AUDIO-smb2-doki.zip<br>Size: 8.7 MB</td><td><a href="https://drive.google.com/file/d/1wpFd3VRA4PM7UIQUMgsIqDAgAb1wP1we/view?usp=sharing" target="_blank">Host1: GoogleDrive</a><br> <a href="https://mega.nz/file/BVxkSKDZ#0ecN274XYorRhmwvXtEN8ggjoGj6oqcvcnN2K_SZbtc" target="_blank">Host2: MEGA</a> </td><td><b>Audio Pack #1:</b> <br>Yume Kōjō: Doki Doki Panic </td></tr>
+
+
+   <tr><td>AUDIO-smb2-remix_ShoesBeDrawin.zip<br>Size: 19.6 MB</td><td><a href="https://drive.google.com/file/d/18GGjyayaNsAvhnbMtaie7CyAOvM7S-T4/view?usp=sharing" target="_blank">Host1: GoogleDrive</a><br> <a href="https://mega.nz/file/1ZxzHY4R#3iMV6bJCV6UHE9Td3TNrK30YcwtINWEtGscCipSx0eo" target="_blank">Host2: MEGA</a> </td><td><b>Audio Pack #2:</b><br>  SMB2 OST (Remix Album) Published by: ShoesBeDrawin   <br> <a href="https://downloads.khinsider.com/game-soundtracks/album/super-mario-bros-2-ost-remix-album-2023" target="_blank"> khinsider.com/.../super-mario-bros-2-ost-remix-album-2023</a>                               </td></tr>
+   
+ 
+   
+      <tr><td>bgm-00.01-mainbgm.ogg<br>Size: 3.0 MB</td><td><a href="https://drive.google.com/file/d/1ON6ZUWIoEQltZPDASBEfB-r3L1CIXXG5/view?usp=sharing" target="_blank">Host1: GoogleDrive</a><br> <a href="https://mega.nz/file/EMZRCK6R#-qOV3j5RUdPRN4q6bZbhiak9f_pMKhXbxG3b5nA5XO8" target="_blank">Host2: MEGA</a> </td><td>Overworld [Remix] (Main track only)<br> By: Qumu: <a href="https://www.youtube.com/watch?v=ZyX0C-zRVZU" target="_blank"> youtube.com/watch?v=ZyX0C-zRVZU</a></td></tr>
+   
+
+   
+  </tbody>
+</table>
+
+</div>
+
+
+     
+<p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
+ <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Super Mario Bros. 2 (USA) (Rev 1) <br> File CRC32: 17518181 <br> SHA-1: D9F36F09B863ACC8DE374EA886ABB146959078B3 </p>
+ 
+ 
+<p style="color: #498DD1; font-family:'comic sans ms', cursive; font-size: 1.1em;">Experience Super Mario Bros. 2 with new music.</p>
+
+
+
+ <br>
+     
+      
+    
+<table id="audioTable" border="1" cellpadding="4" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Album #</th>
+      <th>Track #</th>
+      <th>File (suggested)</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr><td>BGM</td><td>00</td><td>001</td><td>bgm-00.01-mainbgm.ogg</td><td>Main background music (Overworld)</td></tr>
+    <tr><td>BGM</td><td>00</td><td>002</td><td>bgm-00.02-playerselect.ogg</td><td>Player select screen</td></tr>
+    <tr><td>BGM</td><td>00</td><td>004</td><td>bgm-00.04-underground.ogg</td><td>Underground theme</td></tr>
+    <tr><td>BGM</td><td>00</td><td>008</td><td>bgm-00.08-boss.ogg</td><td>Boss battle music</td></tr>
+    <tr><td>BGM</td><td>00</td><td>016</td><td>bgm-00.16-invincible.ogg</td><td>Invincibility theme</td></tr>
+    <tr><td>BGM</td><td>00</td><td>032</td><td>bgm-00.32-mario1.ogg</td><td>Alternate stage theme</td></tr>
+    <tr><td>BGM</td><td>00</td><td>064</td><td>bgm-00.64-finalboss.ogg</td><td>Final boss music</td></tr>
+    <tr><td>BGM</td><td>00</td><td>128</td><td>bgm-00.128-intro.ogg</td><td>Intro Music</td></tr>
+
+    <tr><td>BGM</td><td>01</td><td>001</td><td>bgm-01.01-mushroom.ogg</td><td>Grab Mushroom</td></tr>
+
+    <tr><td>SFX</td><td>01</td><td>002</td><td>sfx-01.02.ogg</td><td>SFX</td></tr>
+    <tr><td>SFX</td><td>01</td><td>004</td><td>sfx-01.04.ogg</td><td>SFX</td></tr>
+    <tr><td>SFX</td><td>01</td><td>008</td><td>sfx-01.08-nobonus.ogg</td><td>No bonus sound</td></tr>
+    <tr><td>SFX</td><td>01</td><td>016</td><td>sfx-01.16.ogg</td><td>SFX</td></tr>
+
+    <tr><td>BGM</td><td>01</td><td>032</td><td>sfx-01.32-pickegg.ogg</td><td>Grab Egg (after defeating boss)</td></tr>
+    <tr><td>BGM</td><td>01</td><td>033</td><td>sfx-01.33-winbonus.ogg</td><td>Bonus win jingle</td></tr>
+
+    <tr><td>SFX</td><td>01</td><td>064</td><td>sfx-01.64-slotmachine.ogg</td><td>Slot machine sound</td></tr>
+    <tr style="color: grey;"><td>-</td><td>01</td><td>128</td><td>-</td><td>[Stop] BGM/SFX Will Stop</td></tr>
+
+    <tr><td>SFX</td><td>02</td><td>001</td><td>sfx-02.01-jump.ogg</td><td>Jump</td></tr>
+    <tr><td>SFX</td><td>02</td><td>002</td><td>sfx-02.02-climb.ogg</td><td>Climb</td></tr>
+    <tr><td>SFX</td><td>02</td><td>004</td><td>sfx-02.04-coin.ogg</td><td>Coin collected</td></tr>
+    <tr><td>SFX</td><td>02</td><td>008</td><td>sfx-02.08-shrink.ogg</td><td>Shrink</td></tr>
+    <tr><td>SFX</td><td>02</td><td>016</td><td>sfx-02.16-fall.ogg</td><td>Fall</td></tr>
+    <tr><td>SFX</td><td>02</td><td>032</td><td>sfx-02.32-grow.ogg</td><td>Grow</td></tr>
+
+    <tr><td>SFX</td><td>03</td><td>001</td><td>sfx-03.01.ogg</td><td>SFX</td></tr>
+    <tr><td>SFX</td><td>03</td><td>002</td><td>sfx-03.02.ogg</td><td>SFX</td></tr>
+    <tr><td>BGM</td><td>03</td><td>003</td><td>sfx-03.03-slotmachine.ogg</td><td>Slot Machine music</td></tr>
+    <tr><td>SFX</td><td>03</td><td>004</td><td>sfx-03.04-cherry.ogg</td><td>Cherry collected</td></tr>
+    <tr><td>SFX</td><td>03</td><td>008</td><td>sfx-03.08-throw.ogg</td><td>Throw action</td></tr>
+    <tr><td>SFX</td><td>03</td><td>016</td><td>sfx-03.16-1up.ogg</td><td>1-Up</td></tr>
+    <tr><td>SFX</td><td>03</td><td>032</td><td>sfx-03.32-kill.ogg</td><td>Enemy defeated</td></tr>
+    <tr><td>SFX</td><td>03</td><td>064</td><td>sfx-03.64-time.ogg</td><td>Time Stopwatch</td></tr>
+    <tr><td>SFX</td><td>03</td><td>128</td><td>sfx-03.128.ogg</td><td>SFX</td></tr>
+
+    <tr><td>SFX</td><td>04</td><td>001</td><td>sfx-04.01.ogg</td><td>SFX</td></tr>
+    <tr><td>SFX</td><td>04</td><td>002</td><td>sfx-04.02-bomb.ogg</td><td>Bomb explosion</td></tr>
+    <tr><td>SFX</td><td>04</td><td>004</td><td>sfx-04.04-bomb.ogg</td><td>Bomb explosion</td></tr>
+
+    <tr><td>SFX</td><td>05</td><td>001</td><td>sfx-05.01-door.ogg</td><td>Door enter</td></tr>
+    <tr><td>SFX</td><td>05</td><td>002</td><td>sfx-05.02.ogg</td><td>SFX</td></tr>
+    <tr><td>SFX</td><td>05</td><td>004</td><td>sfx-05.04.ogg</td><td>SFX</td></tr>
+    <tr><td>SFX</td><td>05</td><td>008</td><td>sfx-05.08-grab.ogg</td><td>Grab item</td></tr>
+    <tr><td>SFX</td><td>05</td><td>016</td><td>sfx-05.16.ogg</td><td>SFX</td></tr>
+    <tr><td>SFX</td><td>05</td><td>032</td><td>sfx-05.32.ogg</td><td>SFX</td></tr>
+    <tr><td>SFX</td><td>05</td><td>064</td><td>sfx-05.64.ogg</td><td>SFX</td></tr>
+    <tr><td>SFX</td><td>05</td><td>128</td><td>sfx-05.128.ogg</td><td>SFX</td></tr>
+
+  </tbody>
+</table>
+
+   
+  </tbody>
+</table>
+<p style="text-align: left;"> 
+<br>
+<br>
+HIRES.TXT: <br>
+( Place music in /ogg/ directory)<br>
+</p>
+<pre style="text-align: left;"> 
+&lt;ver>106
+&lt;patch>NEA-smb2.bps,D9F36F09B863ACC8DE374EA886ABB146959078B3
+&lt;bgm>00,001,ogg/bgm-00.01-mainbgm.ogg
+&lt;bgm>00,002,ogg/bgm-00.02-playerselect.ogg
+&lt;bgm>00,004,ogg/bgm-00.04-underground.ogg
+&lt;bgm>00,008,ogg/bgm-00.08-boss.ogg
+&lt;bgm>00,016,ogg/bgm-00.16-invincible.ogg
+&lt;bgm>00,032,ogg/bgm-00.32-mario1.ogg
+&lt;bgm>00,064,ogg/bgm-00.64-finalboss.ogg
+&lt;bgm>00,128,ogg/bgm-00.128-intro.ogg
+&lt;bgm>01,001,ogg/bgm-01.01-mushroom.ogg
+&lt;sfx>01,002,ogg/sfx-01.02.ogg
+&lt;sfx>01,004,ogg/sfx-01.04.ogg
+&lt;sfx>01,008,ogg/sfx-01.08-nobonus.ogg
+&lt;sfx>01,016,ogg/sfx-01.16.ogg
+&lt;bgm>01,032,ogg/sfx-01.32-pickegg.ogg
+&lt;bgm>01,033,ogg/sfx-01.33-winbonus.ogg
+&lt;sfx>01,064,ogg/sfx-01.64-slotmachine.ogg
+&lt;sfx>02,001,ogg/sfx-02.01-jump.ogg
+&lt;sfx>02,002,ogg/sfx-02.02-climb.ogg
+&lt;sfx>02,004,ogg/sfx-02.04-coin.ogg
+&lt;sfx>02,008,ogg/sfx-02.08-shrink.ogg
+&lt;sfx>02,016,ogg/sfx-02.16-fall.ogg
+&lt;sfx>02,032,ogg/sfx-02.32-grow.ogg
+&lt;sfx>03,001,ogg/sfx-03.01.ogg
+&lt;sfx>03,002,ogg/sfx-03.02.ogg
+&lt;bgm>03,003,ogg/sfx-03.03-slotmachine.ogg
+&lt;sfx>03,004,ogg/sfx-03.04-cherry.ogg
+&lt;sfx>03,008,ogg/sfx-03.08-throw.ogg
+&lt;sfx>03,016,ogg/sfx-03.16-1up.ogg
+&lt;sfx>03,032,ogg/sfx-03.32-kill.ogg
+&lt;sfx>03,064,ogg/sfx-03.64-time.ogg
+&lt;sfx>03,128,ogg/sfx-03.128.ogg
+&lt;sfx>04,001,ogg/sfx-04.01.ogg
+&lt;sfx>04,002,ogg/sfx-04.02-bomb.ogg
+&lt;sfx>04,004,ogg/sfx-04.04-bomb.ogg
+&lt;sfx>05,001,ogg/sfx-05.01-door.ogg
+&lt;sfx>05,002,ogg/sfx-05.02.ogg
+&lt;sfx>05,004,ogg/sfx-05.04.ogg
+&lt;sfx>05,008,ogg/sfx-05.08-grab.ogg
+&lt;sfx>05,016,ogg/sfx-05.16.ogg
+&lt;sfx>05,032,ogg/sfx-05.32.ogg
+&lt;sfx>05,064,ogg/sfx-05.64.ogg
+&lt;sfx>05,128,ogg/sfx-05.128.ogg
+</pre>      
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div> <!-- Close container wrapper -->
+
+    <script>
+    let currentAudio = null;
+    let currentButton = null;
+
+    function toggleAudio(btn, src) {
+        // If clicking the same button that is currently playing, stop it
+        if (currentAudio && currentButton === btn) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            btn.innerHTML = '▶ Play';
+            currentAudio = null;
+            currentButton = null;
+        } else {
+            // If another audio is playing, stop it and reset its button
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                if (currentButton) currentButton.innerHTML = '▶ Play';
+            }
+            
+            // Start the new audio and change button text
+            currentAudio = new Audio(src);
+            currentButton = btn;
+            btn.innerHTML = '⏹ Stop';
+            currentAudio.play();
+            
+            // Revert the button text when the audio finishes naturally
+            currentAudio.onended = function() {
+                btn.innerHTML = '▶ Play';
+                currentButton = null;
+                currentAudio = null;
+            };
+        }
+    }
+    </script>
+</body>
+</html>
