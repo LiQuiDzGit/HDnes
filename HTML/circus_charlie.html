@@ -271,6 +271,19 @@
             text-shadow: 0 0 5px var(--neon-cyan);
             background: rgba(0, 240, 255, 0.1);
         }
+        .image-pair {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .image-pair img {
+            max-width: 48%;
+            height: auto;
+            border: 1px solid var(--neon-cyan);
+            box-shadow: 0 0 5px var(--neon-cyan);
+        }
     </style>
 </head>
 <body>
@@ -328,12 +341,14 @@
  <p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
  <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Circus Charlie (J) [b1] <br> File MD5:8486048C48F40F3787E4B7D9F1788659 <br> SHA-1: C310FD08866A215E71B9713B115DA260F9D722DD </p>
 
-      <p>
+      <div class="image-pair">
         <img src="IMG/circus_charlie-1A.webp" alt="IMAGE">
         <img src="IMG/circus_charlie-1B.webp" alt="IMAGE"><br><br>
+      </div>
+      <div class="image-pair">
         <img src="IMG/circus_charlie-2A.webp" alt="IMAGE">
         <img src="IMG/circus_charlie-2B.webp" alt="IMAGE">
-      </p>
+      </div>
                      
                     
                     </div>
