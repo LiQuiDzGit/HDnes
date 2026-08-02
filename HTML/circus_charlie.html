@@ -271,6 +271,7 @@
             text-shadow: 0 0 5px var(--neon-cyan);
             background: rgba(0, 240, 255, 0.1);
         }
+
         .image-pair {
             display: flex;
             justify-content: center;
@@ -283,6 +284,32 @@
             height: auto;
             border: 1px solid var(--neon-cyan);
             box-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        /* --- 3. DOWNLOAD BUTTON --- */
+        .download-btn {
+            display: inline-block;
+            font-family: 'Press Start 2P', cursive;
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--neon-pink);
+            text-decoration: none !important;
+            padding: 15px 30px;
+            margin: 25px 0;
+            border: 2px solid var(--neon-pink);
+            border-radius: 8px;
+            box-shadow: 0 0 15px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+            text-shadow: 0 0 8px var(--neon-pink);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        .download-btn:hover {
+            background: var(--neon-pink);
+            color: var(--bg-color);
+            text-shadow: none;
+            box-shadow: 0 0 25px var(--neon-pink), inset 0 0 20px var(--neon-pink);
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -315,42 +342,36 @@
             .catch(error => console.error('Error loading the menu:', error));
         </script>
 
-
         <div class="list-container">
             <section class="panel">
                 <a href="../index.html" class="close-btn" style="float: right; font-size: 2.2rem; text-decoration: none;" title="Close - Return to HOME">✖</a>
 
                 <div class="center">
-  <div class="center">
-      <p><img src="IMG/circuscharlie.webp" alt="IMAGE"><br></p>
+                    <p><img src="IMG/circuscharlie.webp" alt="IMAGE"><br></p>
 
-      <p>
-        AUTHOR: N/A <br>
-        DATE: 2021 <br>
-        SCALE: 8x <br></p>
-     <p> Relevant Link: <a href="https://www.romhacking.net/forum/index.php?topic=33445.0" target="_blank">https://www.romhacking.net/forum/index.php?topic=33445.0</a></p>
+                    <p>
+                      AUTHOR: N/A <br>
+                      DATE: 2021 <br>
+                      SCALE: 8x <br>
+                    </p>
+                    <p>Relevant Link: <a href="https://www.romhacking.net/forum/index.php?topic=33445.0" target="_blank">https://www.romhacking.net/forum/index.php?topic=33445.0</a></p>
 
+                    <a href="https://www.mediafire.com/file/vfe7erfphxabd4b/Circus_Charlie_ROM_TexturePack_HD.zip/file" target="_blank" class="download-btn">DOWNLOAD</a>
 
-        <a href="https://www.mediafire.com/file/vfe7erfphxabd4b/Circus_Charlie_ROM_TexturePack_HD.zip/file"
-           target="_blank"
-           class="download-btn">DOWNLOAD</a>
-           
+                    <p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;">ROM is not included in the download</p>
+                    <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;">
+                      Circus Charlie (J) [b1] <br> 
+                      File MD5:8486048C48F40F3787E4B7D9F1788659 <br> 
+                      SHA-1: C310FD08866A215E71B9713B115DA260F9D722DD 
+                    </p>
 
-
-
- <p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
- <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Circus Charlie (J) [b1] <br> File MD5:8486048C48F40F3787E4B7D9F1788659 <br> SHA-1: C310FD08866A215E71B9713B115DA260F9D722DD </p>
-
-      <div class="image-pair">
-        <img src="IMG/circus_charlie-1A.webp" alt="IMAGE">
-        <img src="IMG/circus_charlie-1B.webp" alt="IMAGE"><br><br>
-      </div>
-      <div class="image-pair">
-        <img src="IMG/circus_charlie-2A.webp" alt="IMAGE">
-        <img src="IMG/circus_charlie-2B.webp" alt="IMAGE">
-      </div>
-                     
-                    
+                    <div class="image-pair">
+                      <img src="IMG/circus_charlie-1A.webp" alt="IMAGE">
+                      <img src="IMG/circus_charlie-1B.webp" alt="IMAGE"><br><br>
+                    </div>
+                    <div class="image-pair">
+                      <img src="IMG/circus_charlie-2A.webp" alt="IMAGE">
+                      <img src="IMG/circus_charlie-2B.webp" alt="IMAGE">
                     </div>
                 </div>
             </section>
