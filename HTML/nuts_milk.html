@@ -347,18 +347,18 @@
                 <a href="../index.html" class="close-btn" style="float: right; font-size: 2.2rem; text-decoration: none;" title="Close - Return to HOME">✖</a>
 
                 <div class="center">
-                                             <p><img src="../IMG/nutsmilk.webp" alt="IMAGE"><br></p>
+                                             <p><img src="IMG/nuts_milk-0.webp" alt="IMAGE"><br></p>
 
       <p>
         AUTHOR: Evgeny <br>
-        DATE: N/A <br>
+        DATE: 2017 <br>
         SCALE: 4x <br>
      </p>
 
 
         <a href="https://forums.nesdev.org/download/file.php?id=12071"
            target="_blank"
-           class="download-btn">DOWNLOAD-1</a>
+           class="download-btn">DOWNLOAD</a>
 
 
 
@@ -367,48 +367,11 @@
  <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Filename: Nuts & Milk (J) [p1] <br> File CRC32: 1C1ED18A <br> SHA-1: E1061C9241B06A965FB7845CB951D921ACA010EF </p>
 
       <p>
-        <img src="1.webp" alt="IMAGE"> <img src="2.webp" alt="IMAGE"><br>
+        <img src="nuts_milk-1.webp" alt="IMAGE"> <img src="nuts_milk-2.webp" alt="IMAGE"><br>
 
       
       </p>
 
 </div> </div> </section> </div> </div> </div>
-
-<script>
-
-let currentAudio = null;
-let currentButton = null;
-
-function toggleAudio(btn, src) {
-    // If clicking the same button that is currently playing, stop it
-    if (currentAudio && currentButton === btn) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        btn.innerHTML = '▶ Play';
-        currentAudio = null;
-        currentButton = null;
-    } else {
-        // If another audio is playing, stop it and reset its button
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-            if (currentButton) currentButton.innerHTML = '▶ Play';
-        }
-        
-        // Start the new audio and change button text
-        currentAudio = new Audio(src);
-        currentButton = btn;
-        btn.innerHTML = '⏹ Stop';
-        currentAudio.play();
-        
-        // Revert the button text when the audio finishes naturally
-        currentAudio.onended = function() {
-            btn.innerHTML = '▶ Play';
-            currentButton = null;
-            currentAudio = null;
-        };
-    }
-}
-</script>
 </body>
 </html>
