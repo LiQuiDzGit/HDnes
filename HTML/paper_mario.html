@@ -271,44 +271,61 @@
             text-shadow: 0 0 5px var(--neon-cyan);
             background: rgba(0, 240, 255, 0.1);
         }
-/* --- NEON DOWNLOAD BUTTON --- */
-.download-btn {
-    display: inline-block;
-    padding: 15px 30px;
-    margin: 20px 0;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1rem;
-    color: var(--neon-cyan);
-    background-color: transparent;
-    border: 3px solid var(--neon-cyan);
-    border-radius: 8px;
-    text-transform: uppercase;
-    text-decoration: none;
-    
-    /* Text and Box Glow */
-    text-shadow: 0 0 8px var(--neon-cyan);
-    box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
-    
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-}
+        
+        /* --- NEON DOWNLOAD BUTTON --- */
+        .download-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 20px 0;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            background-color: transparent;
+            border: 3px solid var(--neon-cyan);
+            border-radius: 8px;
+            text-transform: uppercase;
+            text-decoration: none;
+            
+            /* Text and Box Glow */
+            text-shadow: 0 0 8px var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
+            
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
 
-.download-btn:hover {
-    color: #fff;
-    background-color: rgba(255, 0, 255, 0.2);
-    border-color: var(--neon-pink);
-    
-    /* Intense Pink Glow on Hover */
-    text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-pink);
-    box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), inset 0 0 15px var(--neon-pink);
-    
-    transform: scale(1.05);
-}
+        .download-btn:hover {
+            color: #fff;
+            background-color: rgba(255, 0, 255, 0.2);
+            border-color: var(--neon-pink);
+            
+            /* Intense Pink Glow on Hover */
+            text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-pink);
+            box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), inset 0 0 15px var(--neon-pink);
+            
+            transform: scale(1.05);
+        }
 
-.download-btn:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 10px var(--neon-pink), inset 0 0 5px var(--neon-pink);
-}
+        .download-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 10px var(--neon-pink), inset 0 0 5px var(--neon-pink);
+        }
+
+        /* --- 3. GALLERY 2x3 GRID --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 Columns */
+            gap: 15px; /* Spacing between images */
+            margin-top: 20px;
+            justify-items: center;
+        }
+        
+        /* Switch to 1 column on smaller screens */
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
         
     </style>
 </head>
@@ -369,16 +386,15 @@
  <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Super Mario Bros. (JU) (PRG0)  <br> File CRC32: 3337EC46 <br> SHA-1: EA343F4E445A9050D4B4FBAC2C77D0693B1D0922 </p>
  
 
-
-      <p>
+      <!-- REPLACED <br> TAGS WITH A 2x3 CSS GRID CONTAINER -->
+      <div class="gallery-grid">
         <img src="IMG/paper_mario1.png" alt="IMAGE">
-        <img src="IMG/paper_mario2.jpg" alt="IMAGE"><br>
+        <img src="IMG/paper_mario2.jpg" alt="IMAGE">
         <img src="IMG/paper_mario3.png" alt="IMAGE">
-        <img src="IMG/paper_mario4.png" alt="IMAGE"><br>
+        <img src="IMG/paper_mario4.png" alt="IMAGE">
         <img src="IMG/paper_mario5.jpg" alt="IMAGE">
-        <img src="IMG/paper_mario6.png" alt="IMAGE"><br>
-      
-      </p>
+        <img src="IMG/paper_mario6.png" alt="IMAGE">
+      </div>
 
 
 </div> </div> </section> </div> </div> </div>
