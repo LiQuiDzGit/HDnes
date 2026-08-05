@@ -1,4 +1,4 @@
-HDnes
+HDnes for Mesen Emulator
 
 HD-pack:
 Replace original 8-bit graphics with high-definition external images. (.png)
