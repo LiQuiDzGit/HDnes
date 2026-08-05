@@ -271,44 +271,60 @@
             text-shadow: 0 0 5px var(--neon-cyan);
             background: rgba(0, 240, 255, 0.1);
         }
-/* --- NEON DOWNLOAD BUTTON --- */
-.download-btn {
-    display: inline-block;
-    padding: 15px 30px;
-    margin: 20px 0;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1rem;
-    color: var(--neon-cyan);
-    background-color: transparent;
-    border: 3px solid var(--neon-cyan);
-    border-radius: 8px;
-    text-transform: uppercase;
-    text-decoration: none;
-    
-    /* Text and Box Glow */
-    text-shadow: 0 0 8px var(--neon-cyan);
-    box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
-    
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-}
 
-.download-btn:hover {
-    color: #fff;
-    background-color: rgba(255, 0, 255, 0.2);
-    border-color: var(--neon-pink);
-    
-    /* Intense Pink Glow on Hover */
-    text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-pink);
-    box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), inset 0 0 15px var(--neon-pink);
-    
-    transform: scale(1.05);
-}
+        /* --- NEON DOWNLOAD BUTTON --- */
+        .download-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 20px 0;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            background-color: transparent;
+            border: 3px solid var(--neon-cyan);
+            border-radius: 8px;
+            text-transform: uppercase;
+            text-decoration: none;
+            
+            /* Text and Box Glow */
+            text-shadow: 0 0 8px var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
+            
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
 
-.download-btn:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 10px var(--neon-pink), inset 0 0 5px var(--neon-pink);
-}
+        .download-btn:hover {
+            color: #fff;
+            background-color: rgba(255, 0, 255, 0.2);
+            border-color: var(--neon-pink);
+            
+            /* Intense Pink Glow on Hover */
+            text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-pink);
+            box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), inset 0 0 15px var(--neon-pink);
+            
+            transform: scale(1.05);
+        }
+
+        .download-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 10px var(--neon-pink), inset 0 0 5px var(--neon-pink);
+        }
+
+        /* --- 2x2 IMAGE GRID --- */
+        .image-grid-2x2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        
+        .image-grid-2x2 img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
         
     </style>
 </head>
@@ -365,13 +381,13 @@
  <p style="color: FireBrick; font-family: 'Courier New', Courier, monospace; font-size: 0.7em;"> ROM is not included in the download</p>
  <p style="color: darkgrey; font-family: 'Courier New', Courier, monospace; font-size: 0.8em;"> Pac-Man (USA) (Namco) <br> File CRC32: 15D202D8 <br> SHA-1: E7D818E128593109B5C480497A050FACC0744F1B </p>
 
-
-      <p>
+      <!-- 2x2 Grid Implementation -->
+      <div class="image-grid-2x2">
         <img src="pac_man1.jpg" alt="IMAGE">
-        <img src="pac_man2.png" alt="IMAGE"><br><br>
+        <img src="pac_man2.png" alt="IMAGE">
         <img src="pac_man3.png" alt="IMAGE">
         <img src="pac_man4.png" alt="IMAGE">
-      </p>
+      </div>
 
 </div> </div> </section> </div> </div> </div>
 
