@@ -1,4 +1,8 @@
- LDA #$C0
+Audio Variable
+  $00F0, $00F1, $00F2, $00F3, 
+  ------------------------------------------------
+
+LDA #$C0
   STA Ctrl2_FrameCtr_4017
   LDA $00F0
   BEQ album1
