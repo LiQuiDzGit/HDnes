@@ -1,6 +1,4 @@
 
-readme_content = """# Ninja Gaiden (US) - Mesen HD Nintendo Enhanced Audio (NEA) Patch
-
 **Patcher:** PeV  
 **Version:** 1  
 **Date:** August 28, 2023  
